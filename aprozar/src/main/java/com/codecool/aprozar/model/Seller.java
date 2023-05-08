@@ -1,11 +1,11 @@
 package com.codecool.aprozar.model;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+
+import com.codecool.aprozar.model.Product;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,17 +18,17 @@ import java.util.Map;
 public class Seller extends Person {
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "seller")
-    private List<Products> availableProducts;
+    private List<Product> availableProducts;
     Seller( String name, String adress, String bankAccount, String phoneNumber) {
-        super( name, adress, bankAccount, phoneNumber);
+        super( );
         this.availableProducts = new ArrayList<>();
     }
 
-    public List<Products> getAvailableProducts() {
+    public List<Product> getAvailableProducts() {
         return availableProducts;
     }
 
-    public void setAvailableProducts(List<Products> availableProducts) {
+    public void setAvailableProducts(List<Product> availableProducts) {
         if (isInstock()) {
             this.availableProducts = availableProducts;
         } else {

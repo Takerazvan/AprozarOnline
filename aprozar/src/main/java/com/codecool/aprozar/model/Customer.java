@@ -17,7 +17,7 @@ public class Customer extends Person {
 
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "customer")
-    private List<Products> productBasket;
+    private List<Product> productBasket;
 
 
     public Customer(String name, String adress, String bankAccount, String phoneNumber) {
@@ -26,7 +26,7 @@ public class Customer extends Person {
     }
 
 
-    public void addProductBasket(List<Products> productBasket) {
+    public void addProductBasket(List<Product> productBasket) {
         this.productBasket = productBasket;
     }
 

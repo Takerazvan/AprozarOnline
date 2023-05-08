@@ -1,15 +1,14 @@
 package com.codecool.aprozar.model;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import com.codecool.aprozar.model.Customer;
+import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
+
 
 @Entity
 @NoArgsConstructor
-public class Products {
+public class Product {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -19,7 +18,7 @@ public class Products {
     private Customer customer;
     private  String name;
 
-    public Products(String name) {
+    public Product(String name) {
         this.name = name;
     }
 
