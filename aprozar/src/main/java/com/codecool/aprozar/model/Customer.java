@@ -1,5 +1,6 @@
 package com.codecool.aprozar.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
@@ -20,6 +21,7 @@ public class Customer extends Person {
 
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "customer")
+    @JsonIgnoreProperties("customer") // ignore this property when serializing to JSON
     private List<Product> productBasket;
 
 

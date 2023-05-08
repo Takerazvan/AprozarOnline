@@ -2,6 +2,7 @@ package com.codecool.aprozar.model;
 
 
 import com.codecool.aprozar.model.Product;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,7 +21,10 @@ import java.util.Map;
 @Entity
 public class Seller extends Person {
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "seller")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "seller", orphanRemoval = true)
+    @JsonIgnoreProperties("seller")
+
+
     private List<Product> availableProducts;
     Seller( String name, String adress, String bankAccount, String phoneNumber) {
         super( );
