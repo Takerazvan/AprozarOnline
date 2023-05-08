@@ -1,0 +1,39 @@
+@startuml
+abstract class Person{
+-id:UUID
+-name:String
+-adress:String
+-phoneNumber: String
+-emailAdress:String
+-bankAccount:String
+
+}
+class Customer extends Person{
+-productsInBasket:Map<Products, Integer>
++addProductsToBasket():void
++deleteProducts():void
+
+}
+class Seller extends Person{
+-productsToSell:Map<Products,Integer>
++addProductsToDataBase():void
++isInStock():boolean
+}
+
+class Products {
+-id:UUID
+-type:ProductType
+-name:String
+}
+
+class MarketManager{
+-customers:List<Customer>
+-sellers:List<Seller>
++addCustomer():void
++removeCustomer():void
+
+}
+MarketManager-->Customer
+MarketManager-->Seller
+Seller--*Products
+@enduml
