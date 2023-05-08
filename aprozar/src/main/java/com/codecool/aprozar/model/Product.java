@@ -1,16 +1,20 @@
 package com.codecool.aprozar.model;
 import com.codecool.aprozar.model.Customer;
 import jakarta.persistence.*;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import aprozar.src.main.java.com.codecool.aprozar.model.Types.ProductType;
+import lombok.Setter;
 
-
+@Getter
+@Setter
 @Entity
 @NoArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+private ProductType productType;
     @ManyToOne(fetch = FetchType.LAZY)
     private Seller seller;
 
@@ -18,21 +22,6 @@ public class Product {
     private Customer customer;
     private  String name;
 
-    public Product(String name) {
-        this.name = name;
-    }
 
-
-    public String getName() {
-        return name;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
 
 }

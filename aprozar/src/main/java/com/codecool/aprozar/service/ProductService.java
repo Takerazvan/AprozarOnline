@@ -32,5 +32,9 @@ public class ProductService {
         productRepository.save(product);
     }
 
+    public Product findProductById(Long Id){
+       return productRepository.findById(Id).orElseThrow(()->new IllegalArgumentException("Unavailable Product"));
+    }
+
 
 }

@@ -27,4 +27,9 @@ public class CustomerService {
         customerRepository.save(customer);
     }
 
+    public Customer getCustomerByID(Long id){
+        return customerRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Person does not exist"));
+    }
+
+
 }

@@ -5,21 +5,24 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import lombok.Getter;
+import lombok.Setter;
 
 
 import java.util.UUID;
-
+@Getter
+@Setter
 @MappedSuperclass
 abstract class Person {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private long id;
-    private final String name;
+    private  String name;
 
-    private final String adress;
-    private final String bankAccount;
+    private  String adress;
+    private  String bankAccount;
 
-    private final String phoneNumber;
+    private  String phoneNumber;
 
 
     Person( String name, String adress, String bankAccount, String phoneNumber) {
@@ -34,24 +37,4 @@ abstract class Person {
     }
 
 
-
-    public String getName() {
-        return name;
-    }
-
-    public String getAdress() {
-        return adress;
-    }
-
-    public String getBankAccount() {
-        return bankAccount;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public long getId() {
-        return id;
-    }
 }
