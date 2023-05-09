@@ -23,9 +23,8 @@ public class Seller extends Person {
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "seller", orphanRemoval = true)
     @JsonIgnoreProperties("seller")
-
-
     private List<Product> availableProducts;
+
     Seller( String name, String adress, String bankAccount, String phoneNumber) {
         super( );
         this.availableProducts = new ArrayList<>();

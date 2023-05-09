@@ -8,32 +8,34 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.List;
+
 @Getter
 @Setter
 @Service
 public class ProductService {
 
     private ProductRepository productRepository;
+
     @Autowired
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 
 
-    public List<Product> getAllProducts(){
+    public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
-    public void addProducts(List<Product> products){
+    public void addProducts(List<Product> products) {
         productRepository.saveAll(products);
     }
 
-    public void addProduct(Product product){
+    public void addProduct(Product product) {
         productRepository.save(product);
     }
 
-    public Product findProductById(Long Id){
-       return productRepository.findById(Id).orElseThrow(()->new IllegalArgumentException("Unavailable Product"));
+    public Product findProductById(Long Id) {
+        return productRepository.findById(Id).orElseThrow(() -> new IllegalArgumentException("Unavailable Product"));
     }
 
 

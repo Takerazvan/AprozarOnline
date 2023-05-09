@@ -14,7 +14,8 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-private ProductType productType;
+    private int quantity;
+    private ProductType productType;
     @ManyToOne(fetch = FetchType.EAGER)
     private Seller seller;
 

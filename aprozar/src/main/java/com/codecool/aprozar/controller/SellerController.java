@@ -31,8 +31,8 @@ public class SellerController {
     @PostMapping("/{sellerId}/products")
     public ResponseEntity<Product> addProduct(@PathVariable Long sellerId, @RequestBody Product product) {
         Seller seller = sellerService.getSellerByID(sellerId);
-        product.setSeller(seller);
         seller.getAvailableProducts().add(product);
+        product.setSeller(seller);
         productService.addProduct(product);
         return ResponseEntity.ok(product);
     }

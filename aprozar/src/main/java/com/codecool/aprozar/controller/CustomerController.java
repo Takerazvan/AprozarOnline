@@ -1,7 +1,9 @@
 package com.codecool.aprozar.controller;
 
 import com.codecool.aprozar.model.Customer;
+import com.codecool.aprozar.model.Product;
 import com.codecool.aprozar.service.CustomerService;
+import com.codecool.aprozar.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,8 +14,20 @@ import java.util.List;
 @RequestMapping("/customers")
 public class CustomerController {
 
+
+    private final CustomerService customerService;
+
+    private ProductService productService;
     @Autowired
-    private CustomerService customerService;
+    public CustomerController(CustomerService customerService, ProductService productService) {
+        this.customerService = customerService;
+        this.productService = productService;
+    }
+    @GetMapping("/products")
+    public List<Product> getProducts(){
+        return productService.getAllProducts();
+    }
+
 
     @GetMapping
     public ResponseEntity<List<Customer>> getAllCustomers() {
