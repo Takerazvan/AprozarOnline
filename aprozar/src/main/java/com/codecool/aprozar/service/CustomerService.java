@@ -2,7 +2,6 @@ package com.codecool.aprozar.service;
 
 
 import com.codecool.aprozar.model.Customer;
-import com.codecool.aprozar.model.Product;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +25,8 @@ public class CustomerService {
     public void addCustomer(Customer customer){
         customerRepository.save(customer);
     }
+
+    public void removeCustomer(Long customerId){customerRepository.delete(getCustomerByID(customerId));}
 
     public Customer getCustomerByID(Long id){
         return customerRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Person does not exist"));

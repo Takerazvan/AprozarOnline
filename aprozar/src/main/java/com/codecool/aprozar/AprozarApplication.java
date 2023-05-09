@@ -40,6 +40,18 @@ public class AprozarApplication implements CommandLineRunner {
 	seller1.setAvailableProducts(List.of(milk));
 	productService.addProduct(milk);
 
+
+		Seller seller2=new Seller();
+		seller2.setName("Mihai");
+		sellerService.addSeller(seller2);
+
+		Product chocolate =new Product();
+		chocolate.setName("chocolate");
+		chocolate.setProductType(ProductType.Fruits);
+		chocolate.setSeller(seller2);
+		seller2.setAvailableProducts(List.of(chocolate));
+		productService.addProduct(chocolate);
+
 	}
 
 }
