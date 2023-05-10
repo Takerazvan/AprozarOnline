@@ -55,15 +55,10 @@ public class CustomerController {
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/{customerId}/shoppingCart/")
-    public void addToShoppingCart(@PathVariable Long customerId,@RequestBody OrderItem orderItem){
-        customerService.addToCart(orderItem,customerId);
-    }
 
 
-    public void removeFromShoppingCart(@PathVariable Long customerId,@RequestBody OrderItem orderItem){
-        customerService.takeOutFromCart(orderItem,customerId);
-    }
+
+
 
     @PutMapping("/{customerId}")
     public void updateUser(@PathVariable Long customerId,@RequestBody Customer customer){

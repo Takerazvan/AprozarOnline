@@ -39,19 +39,6 @@ public class CustomerService {
         return customerRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Person does not exist"));
     }
 
-    public void addToCart(OrderItem orderItem,Long id){
-        var profile=getCustomerByID(id);
-        profile.getShoppingCart().addItem(orderItem);
-    }
-
-    public void takeOutFromCart(OrderItem orderItem,Long id){
-        var profile=getCustomerByID(id);
-        profile.getShoppingCart().decreaseItem(orderItem);
-    }
-public void deleteItemFromCart(OrderItem orderItem,Long id){
-    var profile=getCustomerByID(id);
-    profile.getShoppingCart().removeOrderItem(orderItem);
-}
 
     public Customer updateUser(Long id, Customer user) {
         Customer existingUser = customerRepository.findById(id)

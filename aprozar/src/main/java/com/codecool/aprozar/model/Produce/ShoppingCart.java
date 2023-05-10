@@ -2,7 +2,7 @@ package com.codecool.aprozar.model.Produce;
 
 import com.codecool.aprozar.model.Produce.OrderItem;
 import com.codecool.aprozar.model.Users.Customer;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,8 +13,11 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity
 public class ShoppingCart {
+
+    private Long id;
+
+
     public ShoppingCart(Customer customer) {
         this.customer = customer;
         this.orderItems = new ArrayList<>();
@@ -22,6 +25,7 @@ public class ShoppingCart {
     }
 
     private Customer customer;
+
     private List<OrderItem> orderItems;
     private double total;
 
