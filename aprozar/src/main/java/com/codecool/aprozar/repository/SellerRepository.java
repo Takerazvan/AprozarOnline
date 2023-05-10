@@ -1,5 +1,5 @@
-package com.codecool.aprozar.service;
-import com.codecool.aprozar.model.Seller;
+package com.codecool.aprozar.repository;
+import com.codecool.aprozar.model.Users.Seller;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 @Repository

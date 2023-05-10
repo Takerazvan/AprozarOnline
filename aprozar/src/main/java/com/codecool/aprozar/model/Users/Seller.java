@@ -1,19 +1,17 @@
-package com.codecool.aprozar.model;
+package com.codecool.aprozar.model.Users;
 
 
-import com.codecool.aprozar.model.Product;
+
+import com.codecool.aprozar.model.Produce.Product;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Getter
 @Setter

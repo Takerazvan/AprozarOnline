@@ -1,4 +1,4 @@
-package com.codecool.aprozar.model;
+package com.codecool.aprozar.model.Users;
 
 
 import jakarta.persistence.GeneratedValue;
@@ -19,7 +19,7 @@ abstract class Person {
    private long id;
     private  String name;
 
-    private  String adress;
+    private  String address;
     private  String bankAccount;
 
     private  String phoneNumber;
@@ -28,7 +28,7 @@ abstract class Person {
     Person( String name, String adress, String bankAccount, String phoneNumber) {
 
         this.name = name;
-        this.adress = adress;
+        this.address = adress;
         this.bankAccount = bankAccount;
         this.phoneNumber = phoneNumber;
     }

@@ -1,7 +1,8 @@
 package com.codecool.aprozar.controller;
 
-import com.codecool.aprozar.model.Customer;
-import com.codecool.aprozar.model.Product;
+import com.codecool.aprozar.model.Users.Customer;
+import com.codecool.aprozar.model.Produce.OrderItem;
+import com.codecool.aprozar.model.Produce.Product;
 import com.codecool.aprozar.service.CustomerService;
 import com.codecool.aprozar.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,5 +53,20 @@ public class CustomerController {
     public ResponseEntity<Void> deleteCustomer(@PathVariable Long customerId) {
         customerService.removeCustomer(customerId);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{customerId}/shoppingCart/")
+    public void addToShoppingCart(@PathVariable Long customerId,@RequestBody OrderItem orderItem){
+        customerService.addToCart(orderItem,customerId);
+    }
+
+
+    public void removeFromShoppingCart(@PathVariable Long customerId,@RequestBody OrderItem orderItem){
+        customerService.takeOutFromCart(orderItem,customerId);
+    }
+
+    @PutMapping("/{customerId}")
+    public void updateUser(@PathVariable Long customerId,@RequestBody Customer customer){
+        customerService.updateUser(customerId,customer);
     }
 }

@@ -1,5 +1,6 @@
-package com.codecool.aprozar.model;
+package com.codecool.aprozar.model.Users;
 
+import com.codecool.aprozar.model.Produce.ShoppingCart;
 import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,14 +10,14 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
-
 public class Customer extends Person {
+
 
     private ShoppingCart shoppingCart;
 
-    public Customer(String name, String adress, String bankAccount, String phoneNumber) {
+    public Customer(String name, String adress, String bankAccount, String phoneNumber, ShoppingCart shoppingCart) {
         super(name, adress, bankAccount, phoneNumber);
-//        this.shoppingCart = new ShoppingCart();
+        this.shoppingCart = new ShoppingCart(this);
     }
 
 

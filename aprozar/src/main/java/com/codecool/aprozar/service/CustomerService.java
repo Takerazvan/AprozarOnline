@@ -1,10 +1,11 @@
 package com.codecool.aprozar.service;
-
-
-import com.codecool.aprozar.model.Customer;
+import com.codecool.aprozar.model.Users.Customer;
+import com.codecool.aprozar.model.Produce.OrderItem;
+import com.codecool.aprozar.repository.CustomerRepository;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,23 +16,56 @@ import java.util.List;
 public class CustomerService {
     private CustomerRepository customerRepository;
 
-@Autowired
+
+    @Autowired
     public CustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
 
-    public List<Customer> getAllCustomers(){
-    return customerRepository.findAll();
+
+    public List<Customer> getAllCustomers() {
+        return customerRepository.findAll();
     }
-    public void addCustomer(Customer customer){
+
+    public void addCustomer(Customer customer) {
         customerRepository.save(customer);
     }
 
-    public void removeCustomer(Long customerId){customerRepository.delete(getCustomerByID(customerId));}
+    public void removeCustomer(Long customerId) {
+        customerRepository.delete(getCustomerByID(customerId));
+    }
 
-    public Customer getCustomerByID(Long id){
+    public Customer getCustomerByID(Long id) {
         return customerRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Person does not exist"));
     }
 
+    public void addToCart(OrderItem orderItem,Long id){
+        var profile=getCustomerByID(id);
+        profile.getShoppingCart().addItem(orderItem);
+    }
+
+    public void takeOutFromCart(OrderItem orderItem,Long id){
+        var profile=getCustomerByID(id);
+        profile.getShoppingCart().decreaseItem(orderItem);
+    }
+public void deleteItemFromCart(OrderItem orderItem,Long id){
+    var profile=getCustomerByID(id);
+    profile.getShoppingCart().removeOrderItem(orderItem);
+}
+
+    public Customer updateUser(Long id, Customer user) {
+        Customer existingUser = customerRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
+        existingUser.setAddress(user.getAddress());
+        existingUser.setName(user.getName());
+        existingUser.setBankAccount(user.getBankAccount());
+        existingUser.setPhoneNumber(user.getPhoneNumber());
+
+        return customerRepository.save(existingUser);
+    }
+
+    public void deleteUser(Long id) {
+        customerRepository.deleteById(id);
+    }
 
 }

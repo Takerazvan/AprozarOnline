@@ -1,7 +1,7 @@
 package com.codecool.aprozar.controller;
 
-import com.codecool.aprozar.model.Product;
-import com.codecool.aprozar.model.Seller;
+import com.codecool.aprozar.model.Produce.Product;
+import com.codecool.aprozar.model.Users.Seller;
 import com.codecool.aprozar.service.ProductService;
 import com.codecool.aprozar.service.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
