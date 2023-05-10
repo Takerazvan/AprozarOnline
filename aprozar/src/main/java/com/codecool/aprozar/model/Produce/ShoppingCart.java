@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 public class ShoppingCart {
 
-    private Long id;
+
 
 
     public ShoppingCart(Customer customer) {

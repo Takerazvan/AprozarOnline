@@ -27,17 +27,4 @@ public class Seller extends Person {
         super( );
         this.availableProducts = new ArrayList<>();
     }
-
-//    public void setAvailableProducts(List<Product> availableProducts) {
-//        if (isInstock()) {
-//            this.availableProducts = availableProducts;
-//        } else {
-//            throw new IllegalArgumentException("Product Not In Stock");
-//        }
-//    }
-
-
-//    public boolean isInstock(){
-//        return !availableProducts.isEmpty();
-//    }
 }

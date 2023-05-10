@@ -1,39 +1,102 @@
 @startuml
 abstract class Person{
+abstract class Person{
 -id:UUID
 -name:String
 -adress:String
 -phoneNumber: String
 -emailAdress:String
 -bankAccount:String
-
-}
-class Customer extends Person{
--productsInBasket:Map<Products, Integer>
-+addProductsToBasket():void
-+deleteProducts():void
-
-}
-class Seller extends Person{
--productsToSell:Map<Products,Integer>
-+addProductsToDataBase():void
-+isInStock():boolean
 }
 
-class Products {
--id:UUID
--type:ProductType
--name:String
+class Product{
+-id:Long;
+-price:Double;
+-quantity:int;
+-productType:ProductType;
+-provider;Seller;
 }
 
-class MarketManager{
--customers:List<Customer>
--sellers:List<Seller>
-+addCustomer():void
-+removeCustomer():void
+class Customer{}
+class Seller{}
 
+class OrderItem{
+-product:Product
+-quantity:int
+
+void increaseQuantity();
+void decreaseQuantity();
 }
-MarketManager-->Customer
-MarketManager-->Seller
-Seller--*Products
+
+class ShoppingCart{
+-customer:Customer;
+-orderItems:List<OrderItem>
+-total:Double
+
+void addItem(OrderItem orderItem);
+void takeOutItem(OrderItem orderItem);
+OrderItem findOrderItem(OrderItem orderItem);
+void removeOrderItem(OrderItem item);
+double getTotal()
+}
+interface CustomerRepository{}
+interface SellerRepository{}
+interface ProductRepository{}
+
+class CustomerService{
+void create(Body);
+void update(id,body);
+void delete(id);
+Entity getbyId(id);
+List<Entity> getAll();
+}
+class SellerService{
+void create(Body);
+void update(id,body);
+void delete(id);
+Entity getbyId(id);
+List<Entity> getAll();
+}
+class ProductService{
+void create(Body);
+void update(id,body);
+void delete(id);
+Entity getbyId(id);
+List<Entity> getAll();
+}
+
+class CustomerController{
+-SellerService:SellerService
+-CustomerService:CustomerService
+
+get()
+post()
+put()
+delete()
+}
+
+class SellerController{
+-SellerService:SellerService
+-CustomerService:CustomerService
+
+get()
+post()
+put()
+delete()
+}
+
+Person--|>Customer
+Person--|>Seller
+SellerService--*SellerRepository
+SellerRepository--*Seller
+CustomerService--*CustomerRepository
+CustomerRepository--*Customer
+ProductService--*ProductRepository
+ProductRepository--*Product
+OrderItem--*Product
+ShoppingCart--*OrderItem
+CustomerService--*ShoppingCart
+SellerService--*ProductService
+SellerController--*SellerService
+CustomerController--*CustomerService
 @enduml
