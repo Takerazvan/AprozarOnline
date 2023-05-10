@@ -1,17 +1,10 @@
 package com.codecool.aprozar.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,21 +12,12 @@ import java.util.Map;
 
 public class Customer extends Person {
 
-
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "customer")
-    @JsonIgnoreProperties("customer") // ignore this property when serializing to JSON
-    private List<Product> productBasket;
-
+    private ShoppingCart shoppingCart;
 
     public Customer(String name, String adress, String bankAccount, String phoneNumber) {
         super(name, adress, bankAccount, phoneNumber);
-        this.productBasket = new ArrayList<>();
+//        this.shoppingCart = new ShoppingCart();
     }
-
-    public void addProductBasket(List<Product> productBasket) {
-        this.productBasket = productBasket;
-    }
-
 
 
 }
