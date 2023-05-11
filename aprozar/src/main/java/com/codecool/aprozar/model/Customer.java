@@ -12,7 +12,7 @@ import lombok.Setter;
 
 public class Customer extends Person {
 
-    private ShoppingCart shoppingCart;
+//    private ShoppingCart shoppingCart;
 
     public Customer(String name, String adress, String bankAccount, String phoneNumber) {
         super(name, adress, bankAccount, phoneNumber);

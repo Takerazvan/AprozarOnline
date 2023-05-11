@@ -15,14 +15,11 @@ public class OrderItem {
         quantity++;
     }
 
-    public boolean decreaseQuantity(){
-        var check=true;
+    public void decreaseQuantity(){
+
         if(quantity>1) {
             quantity--;
-        }else {
-            check=false;
         }
-        return check;
     }
 
 }

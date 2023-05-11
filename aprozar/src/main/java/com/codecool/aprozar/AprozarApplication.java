@@ -27,6 +27,7 @@ public class AprozarApplication implements CommandLineRunner {
 		SpringApplication.run(AprozarApplication.class, args);
 	}
 
+
 	public void run(String... args) throws Exception {
 
 		Seller seller1=new Seller();
