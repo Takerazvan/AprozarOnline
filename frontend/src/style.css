@@ -4,7 +4,7 @@ body {
   background-color: #333;
   margin: 0rem;
   overflow: hidden;
-   
+  box-shadow: 0px 20px 10px rgba(0, 0, 0, 0.5);
 }#title {
   display: flex;
   justify-content: space-between;
@@ -13,9 +13,11 @@ body {
   background-color: #fff;
 }
 #menu {
-  position: fixed;
+ position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
+  z-index: 9999;
   background-color: #333;
 }
 
@@ -62,8 +64,11 @@ nav a:hover {
   display: flex;
   gap: 4vmin;
   position: absolute;
-  left: 50%;
+ 
+  margin-right: 40vmin;
+  left: -5%;
   top: 50%;
+  
   transform: translate(0%, -50%);
   user-select: none;
   
@@ -170,6 +175,7 @@ ul li a:before,ul li a:after{
   transition: all 0.5s;
   transform-origin:left;
 }
+
 ul li a:before{
   top:0;
 }
@@ -184,4 +190,12 @@ ul li a:hover{
 ul li a:hover:before,ul li a:hover:after{
   color:#fff;
   transform:scaleX(1);
+}
+.image {
+  width: 40vmin;
+  height: 56vmin;
+  object-fit: cover;
+  object-position: 100% center;
+  border-radius: 20px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
 }
