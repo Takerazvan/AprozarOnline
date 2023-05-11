@@ -1,6 +1,5 @@
 package com.codecool.aprozar.service;
 import com.codecool.aprozar.model.Users.Customer;
-import com.codecool.aprozar.model.Produce.OrderItem;
 import com.codecool.aprozar.repository.CustomerRepository;
 import lombok.Getter;
 import lombok.Setter;

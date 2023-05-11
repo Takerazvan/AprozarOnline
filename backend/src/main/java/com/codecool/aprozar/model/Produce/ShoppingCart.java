@@ -1,6 +1,5 @@
 package com.codecool.aprozar.model.Produce;
 
-import com.codecool.aprozar.model.Produce.OrderItem;
 import com.codecool.aprozar.model.Users.Customer;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -13,51 +12,59 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@Entity
 public class ShoppingCart {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
 
 
 
     public ShoppingCart(Customer customer) {
         this.customer = customer;
-        this.orderItems = new ArrayList<>();
+        this.cartItems = new ArrayList<>();
         this.total = getTotal();
     }
 
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "shoppingCart", orphanRemoval = true)
     private Customer customer;
 
-    private List<OrderItem> orderItems;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "shoppingCart", orphanRemoval = true)
+    private List<CartItem> cartItems;
+
+
     private double total;
 
 
 
-    public void addItem(OrderItem orderItem) {
-        var checkForOrderItem = findOrderItem(orderItem);
+    public void addItem(CartItem cartItem) {
+        var checkForOrderItem = findOrderItem(cartItem);
         if (checkForOrderItem != null) {
             checkForOrderItem.increaseQuantity();
         } else {
-            orderItems.add(orderItem);
+            cartItems.add(cartItem);
         }
     }
 
-    public OrderItem findOrderItem(OrderItem orderItem) {
-        return orderItems.get(orderItems.indexOf(orderItem));
+    public CartItem findOrderItem(CartItem cartItem) {
+        return cartItems.get(cartItems.indexOf(cartItem));
     }
 
-    public void decreaseItem(OrderItem orderItem) {
-        var checkForOrderItem = findOrderItem(orderItem);
+    public void decreaseItem(CartItem cartItem) {
+        var checkForOrderItem = findOrderItem(cartItem);
         if (checkForOrderItem.getQuantity() > 0) {
             checkForOrderItem.decreaseQuantity();
         } else {
-            orderItems.remove(orderItem);
+            cartItems.remove(cartItem);
         }
     }
 
-    public void removeOrderItem(OrderItem orderItem) {
-        orderItems.remove(orderItem);
+    public void removeOrderItem(CartItem cartItem) {
+        cartItems.remove(cartItem);
     }
 
     public double getTotal() {
-        return orderItems.stream().mapToDouble(orderItem -> orderItem.getProduct().getPrice()).sum();
+        return cartItems.stream().mapToDouble(cartItem -> cartItem.getProduct().getPrice()).sum();
     }
 }

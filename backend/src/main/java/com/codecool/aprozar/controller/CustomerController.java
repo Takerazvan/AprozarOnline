@@ -1,7 +1,6 @@
 package com.codecool.aprozar.controller;
 
 import com.codecool.aprozar.model.Users.Customer;
-import com.codecool.aprozar.model.Produce.OrderItem;
 import com.codecool.aprozar.model.Produce.Product;
 import com.codecool.aprozar.service.CustomerService;
 import com.codecool.aprozar.service.ProductService;
