@@ -1,9 +1,8 @@
-package com.codecool.aprozar.model.Users;
+package com.codecool.backend.model.Users;
 
-import com.codecool.aprozar.model.Produce.ShoppingCart;
+import com.codecool.backend.model.Produce.ShoppingCart;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

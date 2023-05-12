@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./ProductPage.css";
-import Button from "react-bootstrap/Button";
+
 import Card from "react-bootstrap/Card";
 
 function ProductPage() {

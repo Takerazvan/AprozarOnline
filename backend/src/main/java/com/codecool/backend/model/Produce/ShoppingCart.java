@@ -1,6 +1,6 @@
-package com.codecool.aprozar.model.Produce;
+package com.codecool.backend.model.Produce;
 
-import com.codecool.aprozar.model.Users.Customer;
+import com.codecool.backend.model.Users.Customer;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

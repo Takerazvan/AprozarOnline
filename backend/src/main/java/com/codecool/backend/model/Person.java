@@ -1,5 +1,4 @@
-package com.codecool.aprozar.model.Users;
-
+package com.codecool.backend.model;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,12 +7,10 @@ import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
 
-
-import java.util.UUID;
 @Getter
 @Setter
 @MappedSuperclass
-abstract class Person {
+public abstract class Person {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private long id;

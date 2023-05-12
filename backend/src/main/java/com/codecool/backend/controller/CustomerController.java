@@ -1,9 +1,9 @@
-package com.codecool.aprozar.controller;
+package com.codecool.backend.controller;
 
-import com.codecool.aprozar.model.Users.Customer;
-import com.codecool.aprozar.model.Produce.Product;
-import com.codecool.aprozar.service.CustomerService;
-import com.codecool.aprozar.service.ProductService;
+import com.codecool.backend.model.Produce.Product;
+import com.codecool.backend.model.Users.Customer;
+import com.codecool.backend.service.CustomerService;
+import com.codecool.backend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,14 +17,16 @@ public class CustomerController {
 
     private final CustomerService customerService;
 
-    private ProductService productService;
+    private final ProductService productService;
+
     @Autowired
     public CustomerController(CustomerService customerService, ProductService productService) {
         this.customerService = customerService;
         this.productService = productService;
     }
+
     @GetMapping("/products")
-    public List<Product> getProducts(){
+    public List<Product> getProducts() {
         return productService.getAllProducts();
     }
 
@@ -54,13 +56,8 @@ public class CustomerController {
         return ResponseEntity.noContent().build();
     }
 
-
-
-
-
-
     @PutMapping("/{customerId}")
-    public void updateUser(@PathVariable Long customerId,@RequestBody Customer customer){
-        customerService.updateUser(customerId,customer);
+    public void updateUser(@PathVariable Long customerId, @RequestBody Customer customer) {
+        customerService.updateUser(customerId, customer);
     }
 }

@@ -1,33 +1,13 @@
   import { useState, useRef, useEffect } from "react";
 
   import "./style.css";
-  import ProductPage from "./ProductPage";
 
   function HomePage() {
     const [mouseDownAt, setMouseDownAt] = useState(0);
     const [prevPercentage, setPrevPercentage] = useState(0);
-    const [productName, setProductName] = useState({});
-    const [data, setData] = useState([]);
-    const [showP, setShowProducts] = useState(false)
-    const[showHome,setShowHome]=useState(true)
-
-    const handleClick = () => {
-      setShowProducts(true)
-    }
-    const handleHomeClick = () => {
-      setShowProducts(false);
-    };
-
-    // const [showAbout, setShowAbout] = useState(false);
-    // const [showMenu, setShowMenu] = useState(false);
-
-    // const click = () => {
-    //   setShowAbout((prevState) => !prevState);
-    // };
-
+   
     const trackRef = useRef(null);
-     const observerRef = useRef(null);
-
+   
     const handleOnDown = (e) => setMouseDownAt(e.clientX);
 
     const handleOnUp = () => {
@@ -90,37 +70,14 @@
     
     return (
       <>
-        <div id="menu">
-          <ul>
-            <li>
-              <a style={{ fontSize: "25px" }}>APROZAR ONLINE</a>
-            </li>
-            <li>
-              <a onClick={handleHomeClick}>Home</a>
-            </li>
-            <li>
-              <a href="#">About</a>
-            </li>
-            <li>
-              <a onClick={handleClick}>Products</a>
-            </li>
-            <li>
-              <a href="#">Portfolio</a>
-            </li>
-            <li>
-              <a href="#">Contact</a>
-            </li>
-          </ul>
-        </div>
-        {showP && <ProductPage></ProductPage>}
-        {!showP && (
+       
           <div
             id="image-track"
             ref={trackRef}
             data-mouse-down-at={mouseDownAt}
             data-prev-percentage={prevPercentage}
           >
-            <div className="category" onClick={handleClick}>
+            <div className="category" >
               Vegetables
             </div>
 
@@ -162,9 +119,7 @@
               draggable="false"
             />
           </div>
-        )}
-
-        <div id="cent">
+           <div id="cent">
           <a id="source-link" className="meta-link" href="" target="_blank">
             <i className="fa-solid fa-link"></i>
             <span>LOGIN</span>

@@ -1,4 +1,4 @@
-package com.codecool.aprozar.model.Produce;
+package com.codecool.backend.model.Produce;
 
 import jakarta.persistence.*;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.codecool.aprozar.config;
+package com.codecool.backend.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

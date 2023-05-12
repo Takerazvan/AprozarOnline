@@ -1,12 +1,20 @@
-import { useState, useRef, useEffect } from "react";
-import "./style.css";
-import HomePage from "./HomePage"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import HomePage from "./HomePage";
+import ProductPage from "./ProductPage";
+import NavBar from "./NavBar";
+
+
 function App() {
- 
   return (
-    <>
-     <HomePage/>
-    </>
+    <BrowserRouter>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/products" element={<ProductPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-export default App
+
+export default App;

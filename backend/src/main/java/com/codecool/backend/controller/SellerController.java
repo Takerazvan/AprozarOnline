@@ -1,9 +1,9 @@
-package com.codecool.aprozar.controller;
+package com.codecool.backend.controller;
 
-import com.codecool.aprozar.model.Produce.Product;
-import com.codecool.aprozar.model.Users.Seller;
-import com.codecool.aprozar.service.ProductService;
-import com.codecool.aprozar.service.SellerService;
+import com.codecool.backend.model.Produce.Product;
+import com.codecool.backend.model.Users.Seller;
+import com.codecool.backend.service.ProductService;
+import com.codecool.backend.service.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

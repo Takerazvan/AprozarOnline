@@ -1,7 +1,6 @@
-package com.codecool.aprozar.service;
+package com.codecool.backend.service;
 
-import com.codecool.aprozar.model.Users.Seller;
-import com.codecool.aprozar.repository.SellerRepository;
+import com.codecool.backend.model.Users.Seller;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;

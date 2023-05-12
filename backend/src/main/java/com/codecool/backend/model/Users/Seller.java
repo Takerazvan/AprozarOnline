@@ -1,8 +1,8 @@
-package com.codecool.aprozar.model.Users;
+package com.codecool.backend.model.Users;
 
 
 
-import com.codecool.aprozar.model.Produce.Product;
+import com.codecool.backend.model.Produce.Product;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
