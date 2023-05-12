@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
+import java.util.Arrays;
 import java.util.List;
 
 @SpringBootApplication
@@ -24,7 +26,9 @@ public class AprozarApplication implements CommandLineRunner {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(AprozarApplication.class, args);
+		ConfigurableApplicationContext run = SpringApplication.run(AprozarApplication.class, args);
+		String[] beanDefinitionNames = run.getBeanDefinitionNames();
+		Arrays.stream(beanDefinitionNames).forEach(System.out::println);
 	}
 
 

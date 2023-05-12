@@ -21,8 +21,8 @@ public class Product {
     @ManyToOne(fetch = FetchType.EAGER)
     private Seller seller;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Customer customer;
+    @OneToOne(fetch = FetchType.EAGER)
+    private CartItem cartItem;
     private  String name;
 
 
