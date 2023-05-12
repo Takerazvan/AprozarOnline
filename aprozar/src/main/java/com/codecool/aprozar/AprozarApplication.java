@@ -35,7 +35,7 @@ public class AprozarApplication implements CommandLineRunner {
 		sellerService.addSeller(seller1);
 
 	Product milk =new Product();
-	milk.setName("milk");
+	milk.setName("Milk");
 	milk.setProductType(ProductType.Dairy);
 	milk.setSeller(seller1);
 	seller1.setAvailableProducts(List.of(milk));
@@ -46,12 +46,12 @@ public class AprozarApplication implements CommandLineRunner {
 		seller2.setName("Mihai");
 		sellerService.addSeller(seller2);
 
-		Product chocolate =new Product();
-		chocolate.setName("chocolate");
-		chocolate.setProductType(ProductType.Fruits);
-		chocolate.setSeller(seller2);
-		seller2.setAvailableProducts(List.of(chocolate));
-		productService.addProduct(chocolate);
+		Product tomato =new Product();
+		tomato.setName("Tomatoes");
+		tomato.setProductType(ProductType.Vegetables);
+		tomato.setSeller(seller2);
+		seller2.setAvailableProducts(List.of(tomato));
+		productService.addProduct(tomato);
 
 	}
 
