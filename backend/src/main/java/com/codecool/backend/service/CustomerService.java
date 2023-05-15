@@ -27,8 +27,12 @@ public class CustomerService {
     }
 
     public void addCustomer(Customer customer) {
+        if (customerRepository.findByEmail(customer.getEmail()).isPresent()) {
+            throw new IllegalArgumentException("Email already exists");
+        }
         customerRepository.save(customer);
     }
+
 
     public void removeCustomer(Long customerId) {
         customerRepository.delete(getCustomerByID(customerId));

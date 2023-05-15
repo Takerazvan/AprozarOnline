@@ -18,15 +18,13 @@ public class CustomerController {
     private final CustomerService customerService;
 
     private final ProductService productService;
-
     @Autowired
     public CustomerController(CustomerService customerService, ProductService productService) {
         this.customerService = customerService;
         this.productService = productService;
     }
-
     @GetMapping("/products")
-    public List<Product> getProducts() {
+    public List<Product> getProducts(){
         return productService.getAllProducts();
     }
 
@@ -44,9 +42,13 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer) {
-        customerService.addCustomer(customer);
-        return ResponseEntity.ok(customer);
+    public ResponseEntity<?> addCustomer(@RequestBody Customer customer) {
+        try {
+            customerService.addCustomer(customer);
+            return ResponseEntity.ok(customer);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body("Email already exists");
+        }
     }
 
 
@@ -56,8 +58,11 @@ public class CustomerController {
         return ResponseEntity.noContent().build();
     }
 
+
+
+
     @PutMapping("/{customerId}")
-    public void updateUser(@PathVariable Long customerId, @RequestBody Customer customer) {
-        customerService.updateUser(customerId, customer);
+    public void updateUser(@PathVariable Long customerId,@RequestBody Customer customer){
+        customerService.updateUser(customerId,customer);
     }
 }

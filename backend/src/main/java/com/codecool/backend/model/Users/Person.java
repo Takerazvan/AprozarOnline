@@ -18,20 +18,22 @@ abstract class Person {
     private  String name;
 
     private  String address;
+    private String email;
     private  String bankAccount;
 
     private  String phoneNumber;
 
 
-    Person( String name, String adress, String bankAccount, String phoneNumber) {
+    Person( String name, String adress,String email, String bankAccount, String phoneNumber) {
 
         this.name = name;
         this.address = adress;
+        this.email=email;
         this.bankAccount = bankAccount;
         this.phoneNumber = phoneNumber;
     }
     Person() {
-        this("", "", "", "");
+        this("","", "", "", "");
     }
 
 

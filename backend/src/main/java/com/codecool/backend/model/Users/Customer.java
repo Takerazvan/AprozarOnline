@@ -19,8 +19,8 @@ private ShoppingCart shoppingCart;
 
 
 
-    public Customer(String name, String adress, String bankAccount, String phoneNumber, ShoppingCart shoppingCart) {
-        super(name, adress, bankAccount, phoneNumber);
+    public Customer(String name, String adress,String email, String bankAccount, String phoneNumber, ShoppingCart shoppingCart) {
+        super(name, adress,email, bankAccount, phoneNumber);
         this.shoppingCart=new ShoppingCart(this);
     }
 
