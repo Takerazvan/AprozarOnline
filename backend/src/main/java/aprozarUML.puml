@@ -1,12 +1,14 @@
 @startuml
-abstract class Person{
-abstract class Person{
+abstract class AppUser{
 -id:UUID
--name:String
--adress:String
--phoneNumber: String
--emailAdress:String
--bankAccount:String
+-String FirstName;
+-String LastName;
+-String email;
+-String password;
+-String Pasword;
+-String BankAcount;
+-Token;
+-Role
 }
 
 class Product{
@@ -17,8 +19,6 @@ class Product{
 -provider;Seller;
 }
 
-class Customer{}
-class Seller{}
 
 class OrderItem{
 -product:Product
@@ -39,24 +39,17 @@ OrderItem findOrderItem(OrderItem orderItem);
 void removeOrderItem(OrderItem item);
 double getTotal()
 }
-interface CustomerRepository{}
-interface SellerRepository{}
+interface AppUserRepository{}
 interface ProductRepository{}
 
-class CustomerService{
+class AppUserService{
 void create(Body);
 void update(id,body);
 void delete(id);
 Entity getbyId(id);
 List<Entity> getAll();
 }
-class SellerService{
-void create(Body);
-void update(id,body);
-void delete(id);
-Entity getbyId(id);
-List<Entity> getAll();
-}
+
 class ProductService{
 void create(Body);
 void update(id,body);
@@ -65,15 +58,6 @@ Entity getbyId(id);
 List<Entity> getAll();
 }
 
-class CustomerController{
--SellerService:SellerService
--CustomerService:CustomerService
-
-get()
-post()
-put()
-delete()
-}
 
 class SellerController{
 -SellerService:SellerService

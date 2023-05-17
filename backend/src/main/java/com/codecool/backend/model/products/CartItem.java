@@ -1,4 +1,4 @@
-package com.codecool.backend.model.Produce;
+package com.codecool.backend.model.products;
 
 import jakarta.persistence.*;
 import lombok.Getter;

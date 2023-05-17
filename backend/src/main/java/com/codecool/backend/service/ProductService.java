@@ -1,6 +1,6 @@
 package com.codecool.backend.service;
 
-import com.codecool.backend.model.Produce.Product;
+import com.codecool.backend.model.products.Product;
 import com.codecool.backend.repository.ProductRepository;
 import lombok.Getter;
 import lombok.Setter;

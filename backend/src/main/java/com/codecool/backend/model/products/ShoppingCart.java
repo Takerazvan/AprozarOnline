@@ -1,6 +1,6 @@
-package com.codecool.backend.model.Produce;
+package com.codecool.backend.model.products;
 
-import com.codecool.backend.model.Users.Customer;
+import com.codecool.backend.model.users.AppUser;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,14 +21,14 @@ public class ShoppingCart {
 
 
 
-    public ShoppingCart(Customer customer) {
+    public ShoppingCart(AppUser customer) {
         this.customer = customer;
         this.cartItems = new ArrayList<>();
         this.total = getTotal();
     }
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "shoppingCart", orphanRemoval = true)
-    private Customer customer;
+    private AppUser customer;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "shoppingCart", orphanRemoval = true)
     private List<CartItem> cartItems;
