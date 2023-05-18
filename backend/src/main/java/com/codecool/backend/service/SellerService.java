@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SellerService extends BaseUserService {
+
+
     public SellerService(AppUserRepository appUserRepository) {
         super(appUserRepository);
     }

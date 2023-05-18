@@ -1,5 +1,5 @@
 @startuml
-abstract class AppUser{
+ class AppUser{
 -id:UUID
 -String FirstName;
 -String LastName;
