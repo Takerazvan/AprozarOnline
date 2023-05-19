@@ -16,10 +16,11 @@ public class Product {
     private Double price;
     private int quantity;
     private ProductType productType;
-    @ManyToOne(fetch = FetchType.EAGER)
 
     @OneToOne(fetch = FetchType.EAGER)
     private CartItem cartItem;
+
+
     private  String name;
 
 
