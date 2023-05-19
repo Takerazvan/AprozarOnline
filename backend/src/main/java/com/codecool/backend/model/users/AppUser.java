@@ -1,6 +1,8 @@
 package com.codecool.backend.model.users;
 
 
+import com.codecool.backend.model.products.ShoppingCart;
+import com.codecool.backend.security.token.Token;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -9,42 +11,38 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 @Data
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@NoArgsConstructor
 @Table(name = "_user")
- public class AppUser implements UserDetails {
-   @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Integer id;
+public class AppUser implements UserDetails {
+
+    @Id
+    @GeneratedValue
+    private Integer id;
     private String firstname;
     private String lastname;
-    private  String address;
     private String email;
     private String password;
 
     @Enumerated(EnumType.STRING)
     private AppUserRole role;
 
-    private  String bankAccount;
-    private  String phoneNumber;
-
-    private Boolean locked=false;
-    private Boolean enabled=false;
+    @OneToMany(mappedBy = "user")
+    private List<Token> tokens;
 
 
-
-
-
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "shopping_cart_id")
+    private ShoppingCart shoppingCart;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority authority =
-                new SimpleGrantedAuthority(role.name());
-        return Collections.singletonList(authority);
+        return null;
     }
 
     @Override
@@ -64,7 +62,7 @@ import java.util.Collections;
 
     @Override
     public boolean isAccountNonLocked() {
-        return !locked;
+        return true;
     }
 
     @Override
@@ -74,6 +72,6 @@ import java.util.Collections;
 
     @Override
     public boolean isEnabled() {
-        return enabled;
+        return true;
     }
 }
