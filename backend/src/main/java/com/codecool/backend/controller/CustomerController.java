@@ -1,7 +1,8 @@
 //package com.codecool.backend.controller;
 //
-//import com.codecool.backend.model.Produce.Product;
-//import com.codecool.backend.model.Users.Customer;
+//import com.codecool.backend.model.products.Product;
+//import com.codecool.backend.model.users.AppUser;
+//import com.codecool.backend.security.RegistrationRequest;
 //import com.codecool.backend.service.CustomerService;
 //import com.codecool.backend.service.ProductService;
 //import org.springframework.beans.factory.annotation.Autowired;
@@ -29,27 +30,27 @@
 //    }
 //
 //
-//    @GetMapping
-//    public ResponseEntity<List<Customer>> getAllCustomers() {
-//        List<Customer> customers = customerService.getAllCustomers();
-//        return ResponseEntity.ok(customers);
-//    }
+////    @GetMapping
+////    public ResponseEntity<List<AppUser>> getAllCustomers() {
+////        List<Customer> customers = customerService.getAllCustomers();
+////        return ResponseEntity.ok(customers);
+////    }
 //
-//    @GetMapping("/{customerId}")
-//    public ResponseEntity<Customer> getCustomerById(@PathVariable Long customerId) {
-//        Customer customer = customerService.getCustomerByID(customerId);
-//        return ResponseEntity.ok(customer);
-//    }
+////    @GetMapping("/{customerId}")
+////    public ResponseEntity<Customer> getCustomerById(@PathVariable Long customerId) {
+////        Customer customer = customerService.getCustomerByID(customerId);
+////        return ResponseEntity.ok(customer);
+////    }
 //
-//    @PostMapping
-//    public ResponseEntity<?> addCustomer(@RequestBody Customer customer) {
-//        try {
-//            customerService.addCustomer(customer);
-//            return ResponseEntity.ok(customer);
-//        } catch (IllegalArgumentException e) {
-//            return ResponseEntity.badRequest().body("Email already exists");
-//        }
-//    }
+////    @PostMapping
+////    public ResponseEntity<?> addCustomer(@RequestBody RegistrationRequest request) {
+////        try {
+////            customerService.register();
+////            return ResponseEntity.ok(customer);
+////        } catch (IllegalArgumentException e) {
+////            return ResponseEntity.badRequest().body("Email already exists");
+////        }
+////    }
 //
 //
 //    @DeleteMapping("/{customerId}")

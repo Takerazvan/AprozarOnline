@@ -17,18 +17,17 @@ public class ShoppingCart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Long userId;
 
 
 
 
-    public ShoppingCart(AppUser customer) {
-        this.customer = customer;
+    public ShoppingCart(Long userId) {
+        this.userId = userId;
         this.cartItems = new ArrayList<>();
         this.total = getTotal();
     }
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "shoppingCart", orphanRemoval = true)
-    private AppUser customer;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "shoppingCart", orphanRemoval = true)
     private List<CartItem> cartItems;

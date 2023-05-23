@@ -19,10 +19,7 @@ public class Product {
 
     @OneToOne(fetch = FetchType.EAGER)
     private CartItem cartItem;
-
-
     private  String name;
-
-
+    private Long userId;
 
 }

@@ -31,6 +31,10 @@ public class ProductService {
         productRepository.saveAll(products);
     }
 
+    public List<Product> getAllProductsBySeller(Long id){
+        return productRepository.findProductsByUserId(id);
+    }
+
     public void addProduct(Product product) {
         productRepository.save(product);
     }

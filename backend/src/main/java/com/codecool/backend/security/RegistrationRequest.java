@@ -1,14 +1,11 @@
 package com.codecool.backend.security;
 
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.Data;
 
-@Getter
+
 @AllArgsConstructor
-@EqualsAndHashCode
-@ToString
+@Data
 public class RegistrationRequest {
     private final String firstName;
     private final String lastName;

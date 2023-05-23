@@ -2,7 +2,6 @@ package com.codecool.backend.model.users;
 
 
 import com.codecool.backend.model.products.ShoppingCart;
-import com.codecool.backend.security.token.Token;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -23,7 +22,7 @@ public class AppUser implements UserDetails {
 
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
     private String firstname;
     private String lastname;
     private String email;
@@ -32,13 +31,11 @@ public class AppUser implements UserDetails {
     @Enumerated(EnumType.STRING)
     private AppUserRole role;
 
-    @OneToMany(mappedBy = "user")
-    private List<Token> tokens;
+//    @OneToOne (fetch = FetchType.EAGER, cascade = CascadeType.ALL,
+//            mappedBy = "user")
+//    private Token token;
 
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "shopping_cart_id")
-    private ShoppingCart shoppingCart;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -11,6 +11,8 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Product, Long> {
     public List<Product> findProductsByProductType(ProductType type);
 
+    public List<Product> findProductsByUserId(Long userId);
+
 
     public List<Product> findProductsByNameContainingIgnoreCase(String name);
 }

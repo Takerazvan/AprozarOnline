@@ -1,5 +1,4 @@
 package com.codecool.backend.model.users;
-
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,6 +19,7 @@ public class AppUserService implements UserDetailsService {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
+
     @Override
     public UserDetails loadUserByUsername(String email)
             throws UsernameNotFoundException {
@@ -29,7 +29,7 @@ public class AppUserService implements UserDetailsService {
                                 String.format(USER_NOT_FOUND_MSG, email)));
     }
 
-    public String signUpUser(AppUser appUser) {
+    public void signUpUser(AppUser appUser) {
         boolean userExists = appUserRepository
                 .findAppUserByEmail(appUser.getEmail())
                 .isPresent();
@@ -46,10 +46,8 @@ public class AppUserService implements UserDetailsService {
 
         appUserRepository.save(appUser);
 
-        String token = UUID.randomUUID().toString();
 
 
-        return token;
     }
 
 }
