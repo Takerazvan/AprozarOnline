@@ -38,7 +38,7 @@ Future plans for @Prozar include the integration of AWS and Google OAuth for sea
 
 3. Build and run the Spring Boot backend.
 
-4. Navigate to the frontend directory and install the necessary dependencies using `npm install`.
+4. Navigate to the frontend directory and install the necessary dependencies using  #`npm install`.
 
 5. Start the React development server using `npm start`.
 
