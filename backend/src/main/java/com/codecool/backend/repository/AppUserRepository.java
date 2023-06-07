@@ -1,6 +1,7 @@
-package com.codecool.backend.model.users;
+package com.codecool.backend.repository;
 
 
+import com.codecool.backend.model.users.AppUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

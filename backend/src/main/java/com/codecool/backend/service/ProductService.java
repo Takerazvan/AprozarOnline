@@ -1,6 +1,7 @@
 package com.codecool.backend.service;
 
 import com.codecool.backend.model.products.Product;
+import com.codecool.backend.model.products.Types.ProductType;
 import com.codecool.backend.repository.ProductRepository;
 import lombok.Getter;
 import lombok.Setter;
@@ -43,5 +44,7 @@ public class ProductService {
         return productRepository.findById(Id).orElseThrow(() -> new IllegalArgumentException("Unavailable Product"));
     }
 
-
+public List<Product> getProductsByCategory(ProductType productType){
+        return productRepository.findProductsByProductType(productType);
+}
 }

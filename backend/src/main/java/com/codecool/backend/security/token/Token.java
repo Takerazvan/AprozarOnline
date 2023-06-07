@@ -7,25 +7,52 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 public class Token {
-
+    @SequenceGenerator(
+            name = "confirmation_token_sequence",
+            sequenceName = "confirmation_token_sequence",
+            allocationSize = 1
+    )
     @Id
-    @GeneratedValue
-    public Integer id;
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "confirmation_token_sequence"
+    )
+    private Long id;
+    private Boolean revoked=false;
 
-    @Column(unique = true)
-    public String token;
+    @Column(nullable = false)
+    private String token;
 
-    public boolean revoked=false;
+    @Column(nullable = false)
+    private LocalDateTime createdAt;
 
-    public boolean expired=false;
+    @Column(nullable = false)
+    private LocalDateTime expiresAt;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    public AppUser user;
+    private LocalDateTime confirmedAt;
+
+    @OneToOne()
+    @JoinColumn(
+            nullable = false,
+            name = "appuser_id"
+    )
+    private AppUser appUser;
+
+    public Token(String token,
+                             LocalDateTime createdAt,
+                             LocalDateTime expiresAt,
+                             AppUser appUser) {
+        this.token = token;
+        this.createdAt = createdAt;
+        this.expiresAt = expiresAt;
+        this.appUser = appUser;
+    }
 }

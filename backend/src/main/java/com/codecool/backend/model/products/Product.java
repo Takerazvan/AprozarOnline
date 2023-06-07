@@ -1,14 +1,14 @@
 package com.codecool.backend.model.products;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import com.codecool.backend.model.products.Types.ProductType;
-import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
 @NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

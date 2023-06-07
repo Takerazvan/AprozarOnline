@@ -69,16 +69,17 @@ put()
 delete()
 }
 
-Person--|>Customer
-Person--|>Seller
-SellerService--*SellerRepository
-SellerRepository--*Seller
-CustomerService--*CustomerRepository
-CustomerRepository--*Customer
+
+
+
 ProductService--*ProductRepository
 ProductRepository--*Product
 OrderItem--*Product
 ShoppingCart--*OrderItem
+AppUserService--*AppUserRepository
+AppUserRepository--*AppUser
+AppUserService--|>CustomerService
+AppUserService--|>SellerService
 CustomerService--*ShoppingCart
 SellerService--*ProductService
 SellerController--*SellerService

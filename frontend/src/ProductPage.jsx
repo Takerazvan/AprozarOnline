@@ -11,7 +11,7 @@ function ProductPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8080/products", {
+        const response = await fetch("http://localhost:8080/home", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

@@ -1,18 +1,25 @@
 package com.codecool.backend.security.configuration;
 
-import lombok.AllArgsConstructor;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.mail.javamail.JavaMailSender;
+
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
+
+
+import java.util.Properties;
 
 @Configuration
 @EnableWebSecurity
@@ -26,12 +33,17 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-      return   http
-                .csrf()
-                .disable()
+      return
+        http
+                .csrf().disable()
+                .cors(Customizer.withDefaults())
                 .authorizeHttpRequests()
-                .anyRequest()
-                .authenticated()
+                .requestMatchers(
+                        HttpMethod.GET,
+                        "/api/v1/home",
+                        "/api/v1/auth/register"
+                )
+                .permitAll()
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -48,4 +60,6 @@ public class SecurityConfiguration {
               .and()
               .build();
     }
+
+
 }
