@@ -24,7 +24,7 @@ public class ProductService {
     public void addProduct(Product product){
         productDAO.addProduct(product);
     }
-
+///
     public void deleteProduct(Long productId){
         productDAO.findProductById(productId);
     }
