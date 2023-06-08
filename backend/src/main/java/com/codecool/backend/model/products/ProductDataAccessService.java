@@ -1,8 +1,6 @@
-package com.codecool.backend.service;
+package com.codecool.backend.model.products;
 
-import com.codecool.backend.model.products.Product;
 import com.codecool.backend.model.products.Types.ProductType;
-import com.codecool.backend.repository.ProductRepository;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +12,12 @@ import java.util.List;
 @Getter
 @Setter
 @Service
-public class ProductService {
+public class ProductDataAccessService implements ProductDAO {
 
     private ProductRepository productRepository;
 
     @Autowired
-    public ProductService(ProductRepository productRepository) {
+    public ProductDataAccessService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 
@@ -46,5 +44,9 @@ public class ProductService {
 
 public List<Product> getProductsByCategory(ProductType productType){
         return productRepository.findProductsByProductType(productType);
+}
+
+public void deleteProductById(Long productId){
+        productRepository.deleteById(productId);
 }
 }

@@ -1,7 +1,6 @@
 package com.codecool.backend.model.users;
 
 
-import com.codecool.backend.model.products.ShoppingCart;
 import com.codecool.backend.security.token.Token;
 import jakarta.persistence.*;
 import lombok.*;
@@ -9,10 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Getter
 @Setter
@@ -44,8 +40,6 @@ public class AppUser implements UserDetails {
     private AppUserRole appUserRole;
 
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "appUser", orphanRemoval = true)
-    private Token token;
 
 
     @Override
@@ -86,4 +80,5 @@ public class AppUser implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }

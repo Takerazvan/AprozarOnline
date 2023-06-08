@@ -1,47 +1,48 @@
 package com.codecool.backend.security.configuration;
 
 
+import com.codecool.backend.security.jwt.JWTAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.mail.javamail.JavaMailSender;
 
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.logout.LogoutHandler;
-
-
-import java.util.Properties;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 @EnableMethodSecurity
-public class SecurityConfiguration {
+public class SecurityFilterChainConfig {
 
     private final AuthenticationProvider authenticationProvider;
-    private final LogoutHandler logoutHandler;
+    private final JWTAuthenticationFilter jwtAuthenticationFilter;
+//   private final AuthenticationEntryPoint authenticationEntryPoint;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-      return
-        http
-                .csrf().disable()
+        return http.csrf()
+                .disable()
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests()
                 .requestMatchers(
                         HttpMethod.GET,
-                        "/api/v1/home",
-                        "/api/v1/auth/register"
+                        "/api/products"
+                        )
+                .permitAll()
+                .requestMatchers(
+                        HttpMethod.POST,
+                        "/api/auth/register",
+                        "/api/auth/login"
                 )
                 .permitAll()
                 .and()
@@ -49,16 +50,13 @@ public class SecurityConfiguration {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authenticationProvider(authenticationProvider)
-                .logout()
-                .logoutUrl("/logout")
-                .addLogoutHandler(logoutHandler)
-                .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext())
-                .and()
-                .cors()
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .exceptionHandling()
+//                 .authenticationEntryPoint(authenticationEntryPoint)
                 .and()
                 .httpBasic()
-              .and()
-              .build();
+                .and()
+                .build();
     }
 
 

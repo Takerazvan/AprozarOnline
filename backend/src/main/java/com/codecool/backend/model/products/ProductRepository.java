@@ -1,4 +1,4 @@
-package com.codecool.backend.repository;
+package com.codecool.backend.model.products;
 
 import com.codecool.backend.model.products.Product;
 import com.codecool.backend.model.products.Types.ProductType;
