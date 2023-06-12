@@ -17,7 +17,7 @@ import java.util.List;
 public class SellerService extends AppUserService {
     private final ProductService productService;
 
-    public SellerService(@Qualifier("jdbc") AppUserDao appUserDao, AppUserDTOMapper userDTOMapper, PasswordEncoder passwordEncoder, S3Service s3Service, S3Buckets s3Buckets, ProductService productService) {
+    public SellerService(@Qualifier("jpa") AppUserDao appUserDao, AppUserDTOMapper userDTOMapper, PasswordEncoder passwordEncoder, S3Service s3Service, S3Buckets s3Buckets, ProductService productService) {
         super(appUserDao, userDTOMapper, passwordEncoder, s3Service, s3Buckets);
         this.productService = productService;
     }

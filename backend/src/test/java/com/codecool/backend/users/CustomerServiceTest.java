@@ -1,6 +1,7 @@
 package com.codecool.backend.users;
 
 import com.codecool.backend.products.ShoppingCartRepository;
+import com.codecool.backend.s3.S3Service;
 import com.codecool.backend.service.CustomerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,11 +21,14 @@ public class CustomerServiceTest {
     private PasswordEncoder passwordEncoder;
     @Mock
     private ShoppingCartRepository shoppingCartRepository;
+    @Mock
+    private S3Service s3Service;
+    @
     private CustomerService uut;
 
     @BeforeEach
     void setUp() {
-        uut = new CustomerService(userDao, userDTOMapper, passwordEncoder, shoppingCartRepository);
+        uut = new CustomerService(userDao, userDTOMapper, passwordEncoder);
     }
 
     @Test

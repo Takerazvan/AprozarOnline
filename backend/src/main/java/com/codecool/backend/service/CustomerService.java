@@ -19,7 +19,7 @@ public class CustomerService extends AppUserService {
     private final ShoppingCartRepository shoppingCartRepository;
 
     @Autowired
-    public CustomerService(@Qualifier("jdbc") AppUserDao appUserDao, AppUserDTOMapper userDTOMapper, PasswordEncoder passwordEncoder, S3Service s3Service, S3Buckets s3Buckets, ShoppingCartRepository shoppingCartRepository) {
+    public CustomerService(@Qualifier("jpa") AppUserDao appUserDao, AppUserDTOMapper userDTOMapper, PasswordEncoder passwordEncoder, S3Service s3Service, S3Buckets s3Buckets, ShoppingCartRepository shoppingCartRepository) {
         super(appUserDao, userDTOMapper, passwordEncoder, s3Service, s3Buckets);
         this.shoppingCartRepository = shoppingCartRepository;
     }

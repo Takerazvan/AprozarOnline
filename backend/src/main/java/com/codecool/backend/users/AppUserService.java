@@ -20,7 +20,7 @@ public class AppUserService {
     private final S3Service s3Service;
     private final S3Buckets s3Buckets;
 
-    public AppUserService(@Qualifier("jdbc") AppUserDao appUserDao, AppUserDTOMapper userDTOMapper, PasswordEncoder passwordEncoder, S3Service s3Service, S3Buckets s3Buckets) {
+    public AppUserService(@Qualifier("jpa") AppUserDao appUserDao, AppUserDTOMapper userDTOMapper, PasswordEncoder passwordEncoder, S3Service s3Service, S3Buckets s3Buckets) {
         this.appUserDao = appUserDao;
         this.userDTOMapper = userDTOMapper;
         this.passwordEncoder = passwordEncoder;
