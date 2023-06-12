@@ -1,13 +1,12 @@
 package com.codecool.backend;
 
 
-import com.codecool.backend.model.products.Product;
-import com.codecool.backend.model.products.ProductService;
-import com.codecool.backend.model.products.Types.ProductType;
-import com.codecool.backend.model.users.RegistrationRequest;
-import com.codecool.backend.security.auth.AuthenthicationService;
-import com.codecool.backend.service.CustomerService;
-import com.codecool.backend.model.products.ProductDataAccessService;
+import com.codecool.backend.products.Product;
+import com.codecool.backend.products.ProductService;
+import com.codecool.backend.products.Types.ProductType;
+import com.codecool.backend.s3.S3Service;
+import com.codecool.backend.security.auth.AuthenticationService;
+import com.codecool.backend.users.RegistrationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,9 +19,11 @@ import java.util.List;
 public class AprozarApplication implements CommandLineRunner {
 
     @Autowired
-    private AuthenthicationService authenthicationService;
+    private AuthenticationService authenthicationService;
     @Autowired
     private ProductService productService;
+    @Autowired
+    private S3Service s3Service;
 
 
     public static void main(String[] args) {
@@ -58,12 +59,13 @@ public class AprozarApplication implements CommandLineRunner {
         productList.add(apple);
 
 
-        RegistrationRequest newUserRequest=new RegistrationRequest("admin","admin","mail","123");
+        RegistrationRequest newUserRequest = new RegistrationRequest("admin", "admin", "mail", "123");
         authenthicationService.registerCustomer(newUserRequest);
-        productService.addInventory(productList);
+        productService.addProducts(productList);
+        s3Service.putObject("aprozar", "key", apple.getName().getBytes());
 
-
-
+        byte[] obj = s3Service.getObject("aprozar", "key");
+        System.out.println("Heep-heep horay" + new String(obj));
     }
 
 }

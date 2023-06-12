@@ -1,6 +1,6 @@
 package com.codecool.backend.security.auth;
 
-import com.codecool.backend.model.users.RegistrationRequest;
+import com.codecool.backend.users.RegistrationRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/auth")
 public class AuthenticationController {
 
-private final AuthenthicationService authenthicationService;
+    private final AuthenticationService authenticationService;
 
     @PostMapping("login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
-        AuthenthicationResponse response = authenthicationService.login(request);
+        AuthenticationResponse response = authenticationService.login(request);
         return ResponseEntity.ok()
                 .header(HttpHeaders.AUTHORIZATION, response.token())
                 .body(response);
@@ -26,7 +26,7 @@ private final AuthenthicationService authenthicationService;
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody RegistrationRequest request){
-        AuthenthicationResponse response=authenthicationService.registerCustomer(request);
+        AuthenticationResponse response = authenticationService.registerCustomer(request);
         return ResponseEntity.ok()
                 .body(response);
     }

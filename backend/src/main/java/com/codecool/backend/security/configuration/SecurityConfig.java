@@ -1,7 +1,6 @@
 package com.codecool.backend.security.configuration;
 
-import com.codecool.backend.model.users.AppUser;
-import com.codecool.backend.model.users.AppUserRepository;
+import com.codecool.backend.users.AppUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

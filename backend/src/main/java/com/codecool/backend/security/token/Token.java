@@ -1,6 +1,6 @@
 package com.codecool.backend.security.token;
 
-import com.codecool.backend.model.users.AppUser;
+import com.codecool.backend.users.AppUser;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
