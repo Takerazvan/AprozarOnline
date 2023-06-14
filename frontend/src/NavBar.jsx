@@ -1,34 +1,44 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-
 function NavBar() {
   return (
-    <div id="menu">
+    <div
+      id="menu"
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        backgroundColor: "#8DA4A5",
+      }}
+    >
       <ul>
         <li>
-          <Link to="/" style={{ fontSize: "25px" }}>
+          <Link to="/" style={{ fontSize: "20px" }}>
             APROZAR ONLINE
+         
           </Link>
         </li>
+
         <li>
-          <Link to="/">
+          <Link to="/" style={{ fontSize: "20px" }}>
             Home
           </Link>
         </li>
+        <Link to="/about">
+          <li>
+            <a href="#" style={{ fontSize: "20px" }}>
+              About
+            </a>
+          </li>
+        </Link>
         <li>
-          <a href="#">About</a>
-        </li>
-        <li>
-          <Link to="/products" >
+          <Link to="/products" style={{ fontSize: "20px" }}>
             Products
           </Link>
         </li>
+
         <li>
-          <a href="#">Portfolio</a>
-        </li>
-        <li>
-          <a>Contact</a>
+          <a style={{ fontSize: "20px" }}>Contact</a>
         </li>
       </ul>
     </div>

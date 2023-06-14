@@ -19,6 +19,7 @@ function ProductPage() {
         });
         const data = await response.json();
         setProducts(data);
+        console.log(data);
         setIsLoading(false);
       } catch (error) {
         console.error(error);
@@ -60,7 +61,7 @@ function ProductPage() {
             <Card style={{ width: "18rem" }} bg="red">
               <Card.Body>
                 <Card.Title>{product.name}</Card.Title>
-                <Card.Text>{product.seller.name}</Card.Text>
+                <Card.Text>{product.price}</Card.Text>
                 <Card.Text>{product.productType}</Card.Text>
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <label style={{ marginRight: "16px", fontSize: "18px" }}>

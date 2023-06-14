@@ -2,6 +2,8 @@ import { useState, useRef, useEffect } from "react";
 
   import "./style.css";
 import { Link } from "react-router-dom";
+import ShoppingCart from "./ShoppingCart";
+
 
   function HomePage() {
     const [mouseDownAt, setMouseDownAt] = useState(0);
@@ -71,6 +73,7 @@ import { Link } from "react-router-dom";
     
     return (
       <>
+        
         <div
           id="image-track"
           ref={trackRef}
@@ -121,15 +124,18 @@ import { Link } from "react-router-dom";
           />
         </div>
         <div id="cent">
-          <a id="source-link" className="meta-link" href="" target="_blank">
-            <i className="fa-solid fa-link"></i>
-            <span>LOGIN</span>
-          </a>
+          <Link to="/login">
+            <a id="source-link" className="meta-link" href="" target="_blank">
+              <i className="fa-solid fa-link"></i>
+              <span>LOGIN</span>
+            </a>
+          </Link>
           <Link to="/register">
             <a id="yt-link" className="meta-link" href="" target="_blank">
               <i className="fa-brands fa-youtube"></i>
               <span>REGISTER</span>
             </a>
+           
           </Link>
         </div>
       </>
