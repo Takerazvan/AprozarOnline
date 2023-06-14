@@ -77,7 +77,11 @@ export default function LoginForm() {
           onChange={handlePasswordChange}
         />
 
-        <button className="login-button" type="submit">
+        <button
+          className="login-button"
+          type="submit"
+          style={{ fontSize: "2.8rem" }}
+        >
           LOGIN
         </button>
         <p className="login-link">Forgot your password?</p>

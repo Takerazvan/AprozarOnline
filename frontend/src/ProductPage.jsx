@@ -7,6 +7,7 @@ function ProductPage() {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedQuantities, setSelectedQuantities] = useState({});
+  const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,74 +29,115 @@ function ProductPage() {
     fetchData();
   }, []);
 
-  const handleQuantityChange = (quantity) => {
-    setSelectedQuantities({ quantity });
+  const handleQuantityChange = (productId, quantity) => {
+    if ((selectedQuantities[productId] || 0) + quantity >= 0) {
+      setSelectedQuantities((prevQuantities) => ({
+        ...prevQuantities,
+        [productId]: (prevQuantities[productId] || 0) + quantity,
+      }));
+    }
   };
 
   const handleAddToCart = (product) => {
-    setProducts((prevProducts) =>
-      prevProducts.map((prevProduct) =>
-        prevProduct.id === product.id
-          ? {
-              ...prevProduct,
-              buttonText:
-                prevProduct.buttonText === "Add to Cart"
-                  ? "Added to Cart"
-                  : "Add to Cart",
-            }
-          : prevProduct
-      )
+    const existingIndex = cartItems.findIndex(
+      (item) => item.product.id === product.id
     );
-    // TODO Perform additional logic here, such as adding/removing the item from the cart
+    if (existingIndex !== -1) {
+      const updatedCartItems = [...cartItems];
+      updatedCartItems[existingIndex].quantity +=
+        selectedQuantities[product.id] || 1;
+      setCartItems(updatedCartItems);
+    } else {
+      setCartItems((prevItems) => [
+        ...prevItems,
+        {
+          product,
+          quantity: selectedQuantities[product.id] || 1,
+        },
+      ]);
+    }
+    setSelectedQuantities((prevQuantities) => ({
+      ...prevQuantities,
+      [product.id]: 0,
+    }));
   };
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
   return (
-    <div class="products">
-      <div class="products-container">
-        <h1>Our Products</h1>
-        <div class="product-list">
+    <>
+      <section className="section-meals">
+        <div className="container grid grid--3-cols margin-right-md">
           {products.map((product) => (
-            <Card style={{ width: "18rem" }} bg="red">
-              <Card.Body>
-                <Card.Title>{product.name}</Card.Title>
-                <Card.Text>{product.price}</Card.Text>
-                <Card.Text>{product.productType}</Card.Text>
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  <label style={{ marginRight: "16px", fontSize: "18px" }}>
-                    Quantity:
-                  </label>
-                  <input
-                    type="number"
-                    min="0"
-                    onChange={(e) => handleQuantityChange(e.target.value)}
-                    style={{
-                      width: "40px",
-                      height: "12px",
-                      marginRight: "16px",
-                      borderRadius: "4px",
-                      border: "1px solid #ccc",
-                      padding: "8px",
-                      fontSize: "16px",
-                      textAlign: "center",
-                    }}
-                  />
-                  <button
-                    class="button-62"
-                    role="button"
-                    onClick={() => handleAddToCart(product)}
-                  >
-                    {product.buttonText || "Add to Cart"}
-                  </button>
-                </div>
-              </Card.Body>
-            </Card>
+            <div className="meal" key={product.id}>
+              <img
+                src="https://cdn.romania-insider.com/sites/default/files/styles/article_large_image/public/2020-06/vegetables_in_a_bag_-_photo_julia_sudnitskaya_-_dreamstime.com_.jpg"
+                className="meal-img"
+                alt={product.name}
+              />
+              <div className="meal-content">
+                <div className="meal-tags"></div>
+                <p className="meal-title">{product.name}</p>
+                <ul className="meal-attributes">
+                  <li className="meal-attribute">
+                    <ion-icon
+                      className="meal-icon"
+                      name="flame-outline"
+                    ></ion-icon>
+                    <span>
+                      <strong>{product.price}</strong> PRICE
+                    </span>
+                  </li>
+                  <li className="meal-attribute">
+                    <ion-icon
+                      className="meal-icon"
+                      name="restaurant-outline"
+                    ></ion-icon>
+                    <span>
+                      CATEGORY <strong>{product.productType}</strong>
+                    </span>
+                  </li>
+                  <li className="meal-attribute">
+                    <ion-icon
+                      className="meal-icon"
+                      name="star-outline"
+                    ></ion-icon>
+                    <button
+                      className="button-33"
+                      role="button"
+                      onClick={() => handleAddToCart(product)}
+                    >
+                      🛒
+                      <span className="quantity-badge">
+                        {selectedQuantities[product.id] || 0}
+                      </span>
+                    </button>
+                  </li>
+                  <li className="meal-attribute quantity-controls">
+                    <button
+                      className="quantity-button"
+                      onClick={() => handleQuantityChange(product.id, -1)}
+                    >
+                      -
+                    </button>
+                    <span className="quantity-value">
+                    
+                    </span>
+                    <button
+                      className="quantity-button"
+                      onClick={() => handleQuantityChange(product.id, 1)}
+                    >
+                      +
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
           ))}
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 }
 

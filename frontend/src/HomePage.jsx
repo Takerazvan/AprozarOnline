@@ -73,7 +73,6 @@ import ShoppingCart from "./ShoppingCart";
     
     return (
       <>
-        
         <div
           id="image-track"
           ref={trackRef}
@@ -127,15 +126,14 @@ import ShoppingCart from "./ShoppingCart";
           <Link to="/login">
             <a id="source-link" className="meta-link" href="" target="_blank">
               <i className="fa-solid fa-link"></i>
-              <span>LOGIN</span>
+              <span style={{ fontSize: "2.8rem" }}>LOGIN</span>
             </a>
           </Link>
           <Link to="/register">
             <a id="yt-link" className="meta-link" href="" target="_blank">
               <i className="fa-brands fa-youtube"></i>
-              <span>REGISTER</span>
+              <span style={{ fontSize: "2.8rem" }}>REGISTER</span>
             </a>
-           
           </Link>
         </div>
       </>

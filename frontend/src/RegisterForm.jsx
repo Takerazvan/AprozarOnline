@@ -140,7 +140,6 @@ function RegisterForm() {
             onChange={handleChange}
             required
           />
-        
 
           <div className="select-container">
             <Form.Select
@@ -153,14 +152,17 @@ function RegisterForm() {
               <option value="BUYER">BUYER</option>
               <option value="SELLER">SELLER</option>
             </Form.Select>
-            <button className="login-button" type="submit">
+            <button
+              className="login-button"
+              type="submit"
+              style={{ fontSize: "2.8rem" }}
+            >
               REGISTER
             </button>
-              {passwordError && <h1 className="error">{passwordError}</h1>}
+            {passwordError && <h1 className="error">{passwordError}</h1>}
           </div>
         </fieldset>
       </Form>
-      
     </div>
   );
 }
