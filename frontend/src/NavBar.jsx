@@ -1,47 +1,57 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import logo from "./11zon_cropped.png";
+import "./NavBar.css"
 function NavBar() {
   return (
-    <div
-      id="menu"
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        backgroundColor: "#8DA4A5",
-      }}
-    >
-      <ul>
-        <li>
-          <Link to="/" style={{ fontSize: "20px" }}>
-            APROZAR ONLINE
-         
-          </Link>
-        </li>
-
-        <li>
-          <Link to="/" style={{ fontSize: "20px" }}>
-            Home
-          </Link>
-        </li>
-        <Link to="/about">
-          <li>
-            <a href="#" style={{ fontSize: "20px" }}>
-              About
+    <>
+      <nav className="header__nav">
+        <ul className="header__nav-list">
+          <img src={logo} alt="Logo" style={{ height: "100px" }} />
+          <li className="header__nav-item">
+            <Link to="/home">
+              <a
+                className="header__nav-link"
+                href="#"
+                style={{ color: "black" }}
+              >
+                Home
+              </a>
+            </Link>
+            <Link to="/about">
+              <a
+                className="header__nav-link"
+                href="#"
+                style={{ color: "black" }}
+              >
+                About
+              </a>
+            </Link>
+          </li>
+          <li className="header__nav-item">
+            <Link to="/products">
+              <a
+                className="header__nav-link"
+                href="#"
+                style={{ color: "black" }}
+              >
+                Products
+              </a>
+            </Link>
+          </li>
+          <li className="header__nav-item">
+            <a className="header__nav-link" href="#" style={{ color: "black" }}>
+              Contact
             </a>
           </li>
-        </Link>
-        <li>
-          <Link to="/products" style={{ fontSize: "20px" }}>
-            Products
-          </Link>
-        </li>
+        </ul>
+      </nav>
 
-        <li>
-          <a style={{ fontSize: "20px" }}>Contact</a>
-        </li>
-      </ul>
-    </div>
+      <label className="toggle-button__label" for="toggleInput">
+        <i className="fa-solid fa-bars toggle-button__burger"></i>
+        <i className="fa-solid fa-xmark toggle-button__cross"></i>
+      </label>
+    </>
   );
 }
 

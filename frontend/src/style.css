@@ -1,11 +1,12 @@
 body {
-  height: 100vh;
-  width: 100vw;
-  background-color: #8DA4A5;
-  margin: 0rem;
-  overflow: hidden;
-  box-shadow: 0px 20px 10px rgba(0, 0, 0, 0.5);
-}#title {
+  background-image: url("https://www.nestle.com/sites/default/files/styles/full_width_image_1920x795_/public/sustainability-vegetables-article-header-fw.jpg?itok=6EEmQnW9");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+
+#title {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -109,8 +110,12 @@ nav a:hover {
 }
 
 .meta-link:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(250, 234, 14, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+  /* Added box-shadow property */
+  transition: background-color 400ms, border-color 400ms, box-shadow 400ms;
+  /* Added box-shadow to the transition */
 }
 
 .meta-link>i,
@@ -128,13 +133,13 @@ nav a:hover {
 .category {
   position: relative;
   z-index: 1;
-  color: rgb(251, 255, 252);
+  color: rgb(0, 0, 0);
   font-size: 24px;
   font-weight: bold;
-  text-align: center;
+  
   width: 100%;
   top: -40px;
-  left: 210px;
+  left: 209px;
 }
 #description {
   columns: 2;
@@ -170,7 +175,7 @@ ul li a:before,ul li a:after{
   left:0;
   width:100%;
   height:2px;
-  background-color:#ddd;
+  background-color:#18ea3f;
   transform:scaleX(0);
   transition: all 0.5s;
   transform-origin:left;

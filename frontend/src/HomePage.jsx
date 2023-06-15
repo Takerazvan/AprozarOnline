@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react";
   import "./style.css";
 import { Link } from "react-router-dom";
 import ShoppingCart from "./ShoppingCart";
-
+import NavBar from "./NavBar";
 
   function HomePage() {
     const [mouseDownAt, setMouseDownAt] = useState(0);
@@ -80,14 +80,12 @@ import ShoppingCart from "./ShoppingCart";
           data-prev-percentage={prevPercentage}
         >
           <div className="category">Vegetables</div>
-
           <img
             className="image"
             src="https://media.istockphoto.com/id/1203599923/photo/food-background-with-assortment-of-fresh-organic-vegetables.jpg?b=1&s=170667a&w=0&k=20&c=fRNCED4dyey-i6K2RHTPaIm_HFLUr3hnj4J6WblHaXc="
             draggable="false"
             data-category="Vegetables"
           />
-
           <div className="category">Fruits</div>
           <img
             className="image"
@@ -97,7 +95,6 @@ import ShoppingCart from "./ShoppingCart";
           <Link to="/add">
             <div className="category">Dairy</div>
           </Link>
-
           <img
             className="image"
             src="https://media.istockphoto.com/id/1194287257/photo/dairy-products-on-rustic-wooden-table.jpg?s=612x612&w=0&k=20&c=WFbC5ZtHzp7En_Zmpa19pfHlP9z7Xs3aMrT33rT537c="
@@ -109,6 +106,7 @@ import ShoppingCart from "./ShoppingCart";
             src="https://media.istockphoto.com/id/1310910433/photo/selection-of-assorted-raw-meat-food-for-zero-carb-carnivore-diet-uncooked-beef-steak-ground.jpg?b=1&s=170667a&w=0&k=20&c=kHDw07LONz2akPa8pPe_rhUXhoc_aCryBdgI9G2QG3g="
             draggable="false"
           />
+         
           <div className="category">Wines</div>
           <img
             className="image"
@@ -125,14 +123,14 @@ import ShoppingCart from "./ShoppingCart";
         <div id="cent">
           <Link to="/login">
             <a id="source-link" className="meta-link" href="" target="_blank">
-              <i className="fa-solid fa-link"></i>
-              <span style={{ fontSize: "2.8rem" }}>LOGIN</span>
+              <span style={{ fontSize: "2.8rem", color: "black" }}>LOGIN</span>
             </a>
           </Link>
           <Link to="/register">
             <a id="yt-link" className="meta-link" href="" target="_blank">
-              <i className="fa-brands fa-youtube"></i>
-              <span style={{ fontSize: "2.8rem" }}>REGISTER</span>
+              <span style={{ fontSize: "2.8rem", color: "black" }}>
+                REGISTER
+              </span>
             </a>
           </Link>
         </div>
