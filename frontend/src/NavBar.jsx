@@ -7,9 +7,8 @@ function NavBar() {
     <>
       <nav className="header__nav">
         <ul className="header__nav-list">
-          <img src={logo} alt="Logo" style={{ height: "100px" }} />
           <li className="header__nav-item">
-            <Link to="/home">
+            <Link to="/">
               <a
                 className="header__nav-link"
                 href="#"
@@ -28,6 +27,7 @@ function NavBar() {
               </a>
             </Link>
           </li>
+          <img src={logo} alt="Logo" style={{ height: "100px" }} />
           <li className="header__nav-item">
             <Link to="/products">
               <a
@@ -43,6 +43,9 @@ function NavBar() {
             <a className="header__nav-link" href="#" style={{ color: "black" }}>
               Contact
             </a>
+          </li>
+          <li>
+            
           </li>
         </ul>
       </nav>

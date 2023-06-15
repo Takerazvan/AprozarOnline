@@ -1,5 +1,5 @@
 :root {
-  --accent-color: #9c9a8e;
+  --accent-color: #ffffff;
   --secondary-color: #fafafa;
   --main-color: #ecf8e1;
 }
@@ -20,7 +20,7 @@ body{
   margin: 20px 50px;
   padding: 30px;
   width: 350px;
-  height: 400px;
+  height: 500px;
   box-shadow: 0px 5px 15px 2px #101010;
   border-radius: 10px;
 }
@@ -88,7 +88,7 @@ input[type="password"] {
   height: 30px;
   border-radius: 20px;
   font-weight: bold;
-  background: #9c9a8e;
+  background: #ffffff;
   border: 1px solid #000000;
   outline: none;
   color: #0c0c0c;
@@ -101,7 +101,7 @@ select {
   height: 35px;
   border-radius: 30px;
   font-weight: bold;
-  background: #9c9a8e;
+  background: #ffffff;
   border: 2px solid #000000;
   outline: none;
   color: #0c0d0c;

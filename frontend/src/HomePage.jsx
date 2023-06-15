@@ -127,7 +127,7 @@ import NavBar from "./NavBar";
             </a>
           </Link>
           <Link to="/register">
-            <a id="yt-link" className="meta-link" href="" target="_blank">
+            <a id="yt-link" className="meta-link" href="" target="_blank"   >
               <span style={{ fontSize: "2.8rem", color: "black" }}>
                 REGISTER
               </span>
