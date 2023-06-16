@@ -3,7 +3,7 @@ import "./Login.css";
 
 export default function LoginForm() {
   const backgroundImageUrl =
-    "https://img.freepik.com/free-vector/hand-drawn-flat-design-farmers-market-illustration_23-2149344902.jpg?w=2000";
+    "https://img.freepik.com/free-vector/vegetable-seller-concept-illustration_114360-12369.jpg?w=2000";
   const mainDivStyle = {
     maxWidth: "800px",
     margin: "0 auto",

@@ -50,9 +50,9 @@
   height: 35px;
   border-radius: 20px;
   font-weight: bold;
-  background: var(--accent-color);
+  background: yellow;
   margin: 40px 15px 20px 15px;
-  color: var(--secondary-color);
+  color: #0D971C;
   transition: all 500ms ease-out;
   animation: lights 4000ms infinite ease-in;
   border: 0;
@@ -83,11 +83,11 @@
 }
 
 .login-link {
-  color: rgb(255, 255, 255);
+  color: rgb(3, 53, 2);
   text-decoration: none;
-  font-size:80%;
+  font-size:350%;
   font-weight: bolder;
-  opacity: 0.6;
+  
   transition: all 300ms ease-in-out;
 }
 

@@ -3,8 +3,97 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import "./RegisterForm.css";
 
 function RegisterForm() {
+
+//PASSWORD
+  
+    const [meter, setMeter] = useState(false);
+    const [password, setPassword] = useState("");
+
+    const atLeastOneUppercase = /[A-Z]/g; // capital letters from A to Z
+    const atLeastOneLowercase = /[a-z]/g; // small letters from a to z
+    const atLeastOneNumeric = /[0-9]/g; // numbers from 0 to 9
+    const atLeastOneSpecialChar = /[#?!@$%^&*-]/g; // any of the special characters within the square brackets
+    const eightCharsOrMore = /.{8,}/g; // eight characters or more
+
+    const passwordTracker = {
+      uppercase: password.match(atLeastOneUppercase),
+      lowercase: password.match(atLeastOneLowercase),
+      number: password.match(atLeastOneNumeric),
+      specialChar: password.match(atLeastOneSpecialChar),
+      eightCharsOrGreater: password.match(eightCharsOrMore),
+    };
+
+    const passwordStrength = Object.values(passwordTracker).filter(
+      (value) => value
+    ).length;
+
+ 
+  
+   
+
+    const [input, setInput] = useState({
+      password: "",
+      confirmPassword: "",
+    });
+
+    const [error, setError] = useState({
+      password: "",
+      confirmPassword: "",
+    });
+
+    const onInputChange = (e) => {
+      const { name, value } = e.target;
+      setInput((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+      validateInput(e);
+    };
+
+    const validateInput = (e) => {
+      let { name, value } = e.target;
+
+      setError((prev) => {
+        const stateObj = { ...prev, [name]: "" };
+
+        switch (name) {
+          case "password":
+            if (!value) {
+              stateObj[name] = "Please enter Password.";
+            } else if (
+              input.confirmPassword &&
+              value !== input.confirmPassword
+            ) {
+              stateObj["confirmPassword"] =
+                "Password and Confirm Password does not match.";
+            } else {
+              stateObj["confirmPassword"] = input.confirmPassword
+                ? ""
+                : error.confirmPassword;
+            }
+            break;
+
+          case "confirmPassword":
+            if (!value) {
+              stateObj[name] = "Please enter Confirm Password.";
+            } else if (input.password && value !== input.password) {
+              stateObj[name] = "Password and Confirm Password does not match.";
+            } else {
+              stateObj[name] = " Access granted";
+            }
+            break;
+
+          default:
+            break;
+        }
+
+        return stateObj;
+      });
+  };
+  ///
+
   const backgroundImageUrl =
-    "https://img.freepik.com/free-vector/hand-drawn-flat-design-farmers-market-illustration_23-2149344902.jpg?w=2000";
+    "https://img.freepik.com/free-vector/vegetable-seller-concept-illustration_114360-12369.jpg?w=2000";
   const mainDivStyle = {
     maxWidth: "800px",
     margin: "0 auto",
@@ -83,7 +172,8 @@ function RegisterForm() {
     });
     setPasswordError("");
   };
-
+//
+  
   return (
     <div id="container" style={mainDivStyle}>
       <Form onSubmit={handleSubmit} className="center-form">
@@ -121,18 +211,20 @@ function RegisterForm() {
           <br />
 
           <br />
-          <Form.Control
+
+          <input
             type="password"
             name="password"
-            placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
-            required
+            placeholder="Enter Password"
+            value={input.password}
+            onChange={onInputChange}
+            onFocus={() => setMeter(true)}
+            onInput={(e) => setPassword(e.target.value)}
           />
           <br />
 
           <br />
-          <Form.Control
+          <input
             type="password"
             name="confirmPassword"
             placeholder="Confirm Password"
@@ -152,17 +244,99 @@ function RegisterForm() {
               <option value="BUYER">BUYER</option>
               <option value="SELLER">SELLER</option>
             </Form.Select>
+            {input.password ? (
+              <>
+                {password.length < 5 && (
+                  <p
+                    id="err"
+                    className="error"
+                    style={{
+                      fontFamily: "Monserat",
+                      fontSize: "18px",
+                      fontWeight: "bold",
+                      color: "white",
+                    }}
+                  ></p>
+                )}
+
+                {passwordStrength < 5 ? (
+                  <p
+                    id="err"
+                    className="error"
+                    style={{
+                      fontFamily: "Monserat",
+                      fontSize: "19px",
+                      fontWeight: "bold",
+                      color: "black",
+                      fontStyle: "oblique",
+                      backgroundColor: "#7FEBAA",
+                      borderRadius: "10%",
+                    }}
+                  >
+                    Password must contain:
+                    {!passwordTracker.eightCharsOrGreater &&
+                      "at least 8 characters"}
+                    {!passwordTracker.uppercase && " uppercase"}
+                    {!passwordTracker.lowercase && " lowercase"}
+                    {!passwordTracker.specialChar && " special character"}
+                    {!passwordTracker.number && ", number"}
+                  </p>
+                ) : null}
+                {passwordStrength >= 5 && (
+                  <h1 style={{ fontSize: "18px", color: "black" }}>
+                    Strong Password
+                  </h1>
+                )}
+                {passwordError && (
+                  <h1 className="error" style={{ fontSize: "18px" }}>
+                    {passwordError}
+                  </h1>
+                )}
+              </>
+            ) : null}
+            <div className="error">
+              {meter && <div className="password-strength-meter"></div>}
+            </div>
             <button
               className="login-button"
               type="submit"
-              style={{ fontSize: "2.8rem" }}
+              style={{
+                fontSize: "3.6rem",
+                backgroundColor: "yellow",
+                color: "#0D971C",
+              }}
             >
               REGISTER
             </button>
-            {passwordError && <h1 className="error">{passwordError}</h1>}
           </div>
         </fieldset>
       </Form>
+      <style jsx>
+        {`
+          .password-strength-meter {
+            height: 1.2rem;
+            background-color: white;
+            border-radius: 3px;
+            margin: 0.5rem 0;
+          }
+
+          .password-strength-meter::before {
+            content: "";
+            background-color: ${[
+              "red",
+              "orange",
+              "#03a2cc",
+              "#03a2cc",
+              "#0ce052",
+            ][passwordStrength - 1] || ""};
+            height: 100%;
+            width: ${(passwordStrength / 5) * 100}%;
+            display: block;
+            border-radius: 3px;
+            transition: width 0.2s;
+          }
+        `}
+      </style>
     </div>
   );
 }
