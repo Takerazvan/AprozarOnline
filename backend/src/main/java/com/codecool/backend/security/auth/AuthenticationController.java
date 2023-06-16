@@ -1,6 +1,7 @@
 package com.codecool.backend.security.auth;
 
 import com.codecool.backend.users.RegistrationRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -29,5 +30,11 @@ public class AuthenticationController {
         AuthenticationResponse response = authenticationService.registerCustomer(request);
         return ResponseEntity.ok()
                 .body(response);
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(HttpServletRequest request) {
+        authenticationService.logout(request);
+        return ResponseEntity.ok("Logged out successfully");
     }
 }

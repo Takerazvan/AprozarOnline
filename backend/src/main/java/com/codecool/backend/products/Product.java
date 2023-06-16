@@ -1,6 +1,7 @@
 package com.codecool.backend.products;
 
 import com.codecool.backend.products.Types.ProductType;
+import com.codecool.backend.products.shoppingcart.CartItem;
 import jakarta.persistence.*;
 import lombok.*;
 
