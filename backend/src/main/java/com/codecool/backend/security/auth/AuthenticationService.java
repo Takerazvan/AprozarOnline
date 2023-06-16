@@ -6,22 +6,29 @@ import com.codecool.backend.users.repository.AppUser;
 import com.codecool.backend.users.repository.AppUserDTO;
 import com.codecool.backend.users.repository.AppUserDTOMapper;
 import com.codecool.backend.users.RegistrationRequest;
+import com.codecool.backend.users.service.AppUserService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-
-@AllArgsConstructor
 @Service
 public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
     private final JWTService jwtService;
     private final AppUserDTOMapper appUserDTOMapper;
-    private final CustomerService customerService;
+    private final AppUserService userService;
+
+    public AuthenticationService(AuthenticationManager authenticationManager, JWTService jwtService, AppUserDTOMapper appUserDTOMapper, @Qualifier("appUser") AppUserService userService) {
+        this.authenticationManager = authenticationManager;
+        this.jwtService = jwtService;
+        this.appUserDTOMapper = appUserDTOMapper;
+        this.userService = userService;
+    }
 
     public AuthenticationResponse login(LoginRequest request) {
         Authentication authentication = authenticationManager.authenticate(
@@ -38,7 +45,7 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse registerCustomer(RegistrationRequest request) {
-        AppUser newUser = customerService.registerCustomer(request);
+        AppUser newUser = userService.addUser(request);
 
         AppUserDTO newUserDTO = appUserDTOMapper.apply(newUser);
 

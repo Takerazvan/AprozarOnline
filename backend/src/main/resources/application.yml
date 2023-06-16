@@ -1,28 +1,28 @@
 spring:
-datasource:
-url: jdbc:postgresql://db.fhfspezscoxvatknduhd.supabase.co:5432/postgres?sslmode=require
-username: postgres
-password: rPwYLhsOg8LpbsUs
-jpa:
-database-platform: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: jdbc:postgresql://db.fhfspezscoxvatknduhd.supabase.co:5432/postgres?sslmode=require
+    username: postgres
+    password: rPwYLhsOg8LpbsUs
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
 hibernate:
-   ddl-auto: create-drop
-   show-sql: true
-   open-in-view: false
-security:
- oauth2:
- client:
- registration:
- google:
- client-id: 935019481866-tc7t9rgucm0nup9j511c6gfph028a491.apps.googleusercontent.com
- client-secret: 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
-aws:
-credentials:
-access-key:
-region: eu-central-1
-s3:
-buckets: aprozar
+  ddl-auto: create-drop
+  show-sql: true
+  open-in-view: false
+#security:
+#  oauth2:
+#    client:
+#      registration:
+#        google:
+#          client-id: 935019481866-tc7t9rgucm0nup9j511c6gfph028a491.apps.googleusercontent.com
+#          client-secret: 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
+#aws:
+#  credentials:
+#    access-key:
+#  region: eu-central-1
+#  s3:
+#    buckets: aprozar
 logging:
-level:
-org.springframework: debug
-org.springframework.security: TRACE
+  level:
+    org.springframework: debug
+    org.springframework.security: TRACE

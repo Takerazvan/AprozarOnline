@@ -34,7 +34,7 @@ public class AprozarApplication implements CommandLineRunner {
     public void run(String... args) {
         List<Product> productList = new ArrayList<>();
 
-        // Example products
+
         Product bread = Product.builder()
                 .name("Bread")
                 .productType(ProductType.Meat)
@@ -59,7 +59,7 @@ public class AprozarApplication implements CommandLineRunner {
         productList.add(apple);
 
 
-        RegistrationRequest newUserRequest = new RegistrationRequest("admin", "admin", "mail", "123");
+        RegistrationRequest newUserRequest = new RegistrationRequest("admin", "admin", "mail", "123","BUYER");
         authenthicationService.registerCustomer(newUserRequest);
         productService.addProducts(productList);
         s3Service.putObject("aprozar", "key", apple.getName().getBytes());

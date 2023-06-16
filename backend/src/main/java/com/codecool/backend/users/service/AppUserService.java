@@ -1,11 +1,14 @@
 package com.codecool.backend.users.service;
 
+import com.codecool.backend.products.shoppingcart.ShoppingCart;
+import com.codecool.backend.products.shoppingcart.ShoppingCartRepository;
 import com.codecool.backend.s3.S3Buckets;
 import com.codecool.backend.s3.S3Service;
 import com.codecool.backend.users.RegistrationRequest;
 import com.codecool.backend.users.UpdateRequest;
 import com.codecool.backend.users.repository.*;
 import com.sun.jdi.request.DuplicateRequestException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,7 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
+@Service("appUser")
 public class AppUserService {
 
     private final AppUserDao appUserDao;
@@ -23,12 +26,15 @@ public class AppUserService {
     private final S3Service s3Service;
     private final S3Buckets s3Buckets;
 
-    public AppUserService(@Qualifier("jpa") AppUserDao appUserDao, AppUserDTOMapper userDTOMapper, PasswordEncoder passwordEncoder, S3Service s3Service, S3Buckets s3Buckets) {
+    private final ShoppingCartRepository shoppingCartrepository;
+    @Autowired
+    public AppUserService(@Qualifier("jpa") AppUserDao appUserDao, AppUserDTOMapper userDTOMapper, PasswordEncoder passwordEncoder, S3Service s3Service, S3Buckets s3Buckets,ShoppingCartRepository shoppingCartRepository) {
         this.appUserDao = appUserDao;
         this.userDTOMapper = userDTOMapper;
         this.passwordEncoder = passwordEncoder;
         this.s3Service = s3Service;
         this.s3Buckets = s3Buckets;
+        this.shoppingCartrepository=shoppingCartRepository;
     }
 
     public List<AppUserDTO> getAllCustomers() {
@@ -44,7 +50,7 @@ public class AppUserService {
     }
 
 
-    public AppUser addUser(RegistrationRequest registrationRequest, AppUserRole role){
+    public AppUser addUser(RegistrationRequest registrationRequest){
         String email=registrationRequest.email();
         if(appUserDao.isAppUserWithEmail(email)){
             throw new DuplicateRequestException(
@@ -57,10 +63,15 @@ public class AppUserService {
                 .lastName(registrationRequest.lastName())
                 .email(registrationRequest.email())
                 .password(passwordEncoder.encode(registrationRequest.password()))
-                .appUserRole(role)
+                .appUserRole(AppUserRole.valueOf(registrationRequest.role()))
                 .build();
-
         appUserDao.addAppUser(appUser);
+        if (appUser.getAppUserRole()==AppUserRole.BUYER){
+            ShoppingCart shoppingCart=new ShoppingCart(appUser.getId());
+            shoppingCartrepository.save(shoppingCart);
+        }
+
+
 
         return appUser;
     }

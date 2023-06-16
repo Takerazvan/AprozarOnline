@@ -3,6 +3,7 @@ package com.codecool.backend.users.seller;
 import com.codecool.backend.products.Product;
 import com.codecool.backend.products.ProductForm;
 import com.codecool.backend.products.ProductService;
+import com.codecool.backend.products.shoppingcart.ShoppingCartRepository;
 import com.codecool.backend.s3.S3Buckets;
 import com.codecool.backend.s3.S3Service;
 import com.codecool.backend.users.*;
@@ -18,15 +19,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 
-@Service
+@Service("seller")
 public class SellerService extends AppUserService {
     private final ProductService productService;
 
-    public SellerService(@Qualifier("jpa") AppUserDao appUserDao, AppUserDTOMapper userDTOMapper, PasswordEncoder passwordEncoder, S3Service s3Service, S3Buckets s3Buckets, ProductService productService) {
-        super(appUserDao, userDTOMapper, passwordEncoder, s3Service, s3Buckets);
+    public SellerService(@Qualifier("jpa") AppUserDao appUserDao, AppUserDTOMapper userDTOMapper, PasswordEncoder passwordEncoder, S3Service s3Service, S3Buckets s3Buckets, ShoppingCartRepository shoppingCartRepository, ProductService productService) {
+        super(appUserDao, userDTOMapper, passwordEncoder, s3Service, s3Buckets, shoppingCartRepository);
         this.productService = productService;
     }
-
 
     public List<Product> getProductList(Long sellerId) {
         return productService.getAllProductsBySeller(sellerId);
@@ -34,7 +34,7 @@ public class SellerService extends AppUserService {
 
 
     public void register(RegistrationRequest request) {
-        AppUser newUser = addUser(request, AppUserRole.SELLER);
+        AppUser newUser = addUser(request);
     }
 
     public void addProduct(ProductForm productForm, Long userId) {
