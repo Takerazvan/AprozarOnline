@@ -62,10 +62,10 @@ public class AprozarApplication implements CommandLineRunner {
         RegistrationRequest newUserRequest = new RegistrationRequest("admin", "admin", "mail", "123");
         authenthicationService.registerCustomer(newUserRequest);
         productService.addProducts(productList);
-        s3Service.putObject("aprozar", "key", apple.getName().getBytes());
-
-        byte[] obj = s3Service.getObject("aprozar", "key");
-        System.out.println("Heep-heep horay" + new String(obj));
+//        s3Service.putObject("aprozar", "key", apple.getName().getBytes());
+//
+//        byte[] obj = s3Service.getObject("aprozar", "key");
+//        System.out.println("Heep-heep horay" + new String(obj));
     }
 
 }
