@@ -1,16 +1,19 @@
 package com.codecool.backend.security.auth;
 
 import com.codecool.backend.security.jwt.JWTService;
-import com.codecool.backend.service.CustomerService;
-import com.codecool.backend.users.AppUser;
-import com.codecool.backend.users.AppUserDTO;
-import com.codecool.backend.users.AppUserDTOMapper;
+import com.codecool.backend.users.buyer.CustomerService;
+import com.codecool.backend.users.repository.AppUser;
+import com.codecool.backend.users.repository.AppUserDTO;
+import com.codecool.backend.users.repository.AppUserDTOMapper;
 import com.codecool.backend.users.RegistrationRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
 
 @AllArgsConstructor
 @Service
@@ -44,6 +47,15 @@ public class AuthenticationService {
         return new AuthenticationResponse(token, newUserDTO);
     }
 
-
+    public void logout(HttpServletRequest request) {
+        String authHeader = request.getHeader("Authorization");
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            String jwt = authHeader.substring(7);
+            String subject = jwtService.getSubject(jwt);
+            if (subject != null) {
+                SecurityContextHolder.getContext().setAuthentication(null);
+            }
+        }
+    }
 
 }
