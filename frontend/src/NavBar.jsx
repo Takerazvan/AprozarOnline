@@ -12,7 +12,7 @@ function NavBar() {
               <a
                 className="header__nav-link"
                 href="#"
-                style={{ color: "black" }}
+                style={{ color: "#20990D" }}
               >
                 Home
               </a>
@@ -21,7 +21,7 @@ function NavBar() {
               <a
                 className="header__nav-link"
                 href="#"
-                style={{ color: "black" }}
+                style={{ color: "#20990D" }}
               >
                 About
               </a>
@@ -33,27 +33,24 @@ function NavBar() {
               <a
                 className="header__nav-link"
                 href="#"
-                style={{ color: "black" }}
+                style={{ color: "#20990D" }}
               >
                 Products
               </a>
             </Link>
           </li>
           <li className="header__nav-item">
-            <a className="header__nav-link" href="#" style={{ color: "black" }}>
+            <a
+              className="header__nav-link"
+              href="#"
+              style={{ color: "#20990D" }}
+            >
               Contact
             </a>
           </li>
-          <li>
-            
-          </li>
+          <li></li>
         </ul>
       </nav>
-
-      <label className="toggle-button__label" for="toggleInput">
-        <i className="fa-solid fa-bars toggle-button__burger"></i>
-        <i className="fa-solid fa-xmark toggle-button__cross"></i>
-      </label>
     </>
   );
 }

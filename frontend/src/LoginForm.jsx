@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import "./Login.css";
 
 export default function LoginForm() {
+ 
   const backgroundImageUrl =
-    "https://img.freepik.com/free-vector/vegetable-seller-concept-illustration_114360-12369.jpg?w=2000";
+    "https://img.freepik.com/free-vector/hand-drawn-flat-design-farmers-market-illustration_23-2149344902.jpg?w=2000";
   const mainDivStyle = {
     maxWidth: "800px",
     margin: "0 auto",
@@ -45,9 +46,11 @@ export default function LoginForm() {
       if (response.ok) {
         // Login successful, handle the response as needed
         console.log("Login successful");
+       window.location.replace("/");
+        
       } else {
         // Login failed, handle the error
-        console.error("Login failed:", response.statusText);
+        alert("Login failed:", response.statusText);
       }
     } catch (error) {
       console.error("Error:", error);
@@ -84,7 +87,9 @@ export default function LoginForm() {
         >
           LOGIN
         </button>
-        <p className="login-link">Forgot your password?</p>
+        {/* <p className="login-link" style={{ fontSize: "3.8rem", color:"yellow" }}>
+          Forgot your password?
+        </p> */}
       </form>
     </div>
   );

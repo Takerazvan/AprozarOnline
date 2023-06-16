@@ -1,8 +1,7 @@
 .header__nav{
   display: flex;
   justify-content: space-around;
-  background: #89FFB1;
-  opacity: 70%;
-  height: 14%;
-}
+background: rgba(255, 255, 255, 0.4);
 
+  
+}

@@ -93,7 +93,7 @@ function RegisterForm() {
   ///
 
   const backgroundImageUrl =
-    "https://img.freepik.com/free-vector/vegetable-seller-concept-illustration_114360-12369.jpg?w=2000";
+    "https://youmatter.world/app/uploads/sites/2/2019/02/organic-farming-definition-examples-.jpg";
   const mainDivStyle = {
     maxWidth: "800px",
     margin: "0 auto",
@@ -103,7 +103,8 @@ function RegisterForm() {
     backgroundPosition: "center",
     borderRadius: "32px",
     boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.1)",
-    marginBottom:"-50px",
+    marginBottom: "-50px",
+   
   };
   const [formData, setFormData] = useState({
     firstName: "",
@@ -123,7 +124,7 @@ function RegisterForm() {
     e.preventDefault();
 
     // Password validation
-    if (formData.password !== formData.confirmPassword) {
+    if (input.password !== input.confirmPassword) {
       setPasswordError("Passwords do not match");
       return;
     }
@@ -138,8 +139,7 @@ function RegisterForm() {
     };
     console.log(payload);
 
-
-      try {
+    try {
       // Send the POST request
       const response = await fetch("http://localhost:8080/api/auth/register", {
         method: "POST",
@@ -160,7 +160,11 @@ function RegisterForm() {
       console.error("Error:", error);
     }
 
-
+    // Reset the form
+    setInput({
+      password: "", // Reset password field
+      confirmPassword: "", // Reset confirm password field
+    });
     // Reset the form
     setFormData({
       firstName: "",
@@ -171,6 +175,7 @@ function RegisterForm() {
       role: "",
     });
     setPasswordError("");
+    setMeter(false);
   };
 //
   
@@ -212,7 +217,7 @@ function RegisterForm() {
 
           <br />
 
-          <input
+          <Form.Control
             type="password"
             name="password"
             placeholder="Enter Password"
@@ -224,12 +229,12 @@ function RegisterForm() {
           <br />
 
           <br />
-          <input
+          <Form.Control
             type="password"
             name="confirmPassword"
             placeholder="Confirm Password"
-            value={formData.confirmPassword}
-            onChange={handleChange}
+            value={input.confirmPassword}
+            onChange={onInputChange}
             required
           />
 
@@ -267,9 +272,9 @@ function RegisterForm() {
                       fontFamily: "Monserat",
                       fontSize: "19px",
                       fontWeight: "bold",
-                      color: "black",
+                      color: "red",
                       fontStyle: "oblique",
-                      backgroundColor: "#7FEBAA",
+                      backgroundColor: "lightgrey",
                       borderRadius: "10%",
                     }}
                   >
@@ -282,8 +287,9 @@ function RegisterForm() {
                     {!passwordTracker.number && ", number"}
                   </p>
                 ) : null}
+               
                 {passwordStrength >= 5 && (
-                  <h1 style={{ fontSize: "18px", color: "black" }}>
+                  <h1 style={{ fontSize: "25px", color: "black" }}>
                     Strong Password
                   </h1>
                 )}
