@@ -1,11 +1,12 @@
 .about-us {
   max-width: 800px;
-  margin: 0 auto;
+ 
   padding: 40px;
  
   background-image: url("https: //www.tastingtable.com/img/gallery/why-vegetables-taste-better-from-a-farmers-market-than-a-grocery-store/intro-1659981512.webp");
   border-radius: 8px;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 4.5%;
   
 }
 

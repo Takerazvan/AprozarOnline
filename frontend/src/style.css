@@ -3,6 +3,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  overflow: hidden;
 }
 
 
@@ -133,7 +134,7 @@ nav a:hover {
 .category {
   position: relative;
   z-index: 1;
-  color: rgb(0, 0, 0);
+  color: rgb(65, 181, 23);
   font-size: 24px;
   font-weight: bold;
   

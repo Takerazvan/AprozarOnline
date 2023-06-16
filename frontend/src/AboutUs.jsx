@@ -5,8 +5,7 @@ const AboutUs = () => {
   
   return (
     <div className="about-us">
-     
-      <div className="content-container">
+      <div className="content-container" style={{ marginTop: "10px" }}>
         <div className="image-container">
           <img
             src="https://www.rebootwithjoe.com/wp-content/uploads/2014/04/Farmers-Markets-Local-Produce-Benefits1.jpg"
@@ -14,18 +13,18 @@ const AboutUs = () => {
           />
         </div>
         <div className="text-container">
-          <h3>Our Mission</h3>
+          <h3 style={{ color: "purple" }}>Our Mission</h3>
           <p>
-            Welcome to our Natural Food Online Store!We are
-            passionate about providing you with the finest selection of natural
-            products sourced directly from local producers. We believe in the
-            power of nature and the importance of supporting local communities.
+            Welcome to our Natural Food Online Store!We are passionate about
+            providing you with the finest selection of natural products sourced
+            directly from local producers. We believe in the power of nature and
+            the importance of supporting local communities.
           </p>
         </div>
       </div>
       <div className="content-container">
         <div className="text-container">
-          <h3>What Sets Us Apart</h3>
+          <h3 style={{ color: "purple" }}>What Sets Us Apart</h3>
           <ol>
             <li>
               <strong>Locally Sourced:</strong> We prioritize working directly
