@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Login.css";
 
 export default function LoginForm() {
+ 
   const backgroundImageUrl =
     "https://img.freepik.com/free-vector/hand-drawn-flat-design-farmers-market-illustration_23-2149344902.jpg?w=2000";
   const mainDivStyle = {
@@ -45,10 +46,11 @@ export default function LoginForm() {
       if (response.ok) {
         // Login successful, handle the response as needed
         console.log("Login successful");
+       window.location.replace("/");
         
       } else {
         // Login failed, handle the error
-        console.error("Login failed:", response.statusText);
+        alert("Login failed:", response.statusText);
       }
     } catch (error) {
       console.error("Error:", error);
