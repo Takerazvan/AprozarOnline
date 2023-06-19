@@ -134,7 +134,7 @@ function RegisterForm() {
       firstName: formData.firstName,
       lastName: formData.lastName,
       email: formData.email,
-      password: formData.password,
+      password: input.password,
       role: formData.role,
     };
     console.log(payload);
@@ -154,10 +154,12 @@ function RegisterForm() {
         console.log("Registration successful");
       } else {
         // Registration failed, handle the error
+           alert("User Already Exists");
         console.error("Registration failed:", response.statusText);
       }
     } catch (error) {
       console.error("Error:", error);
+   
     }
 
     // Reset the form
