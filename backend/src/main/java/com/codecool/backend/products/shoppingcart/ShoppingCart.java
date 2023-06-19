@@ -35,34 +35,6 @@ public class ShoppingCart {
 
     private double total;
 
-
-
-    public void addItem(CartItem cartItem) {
-        var checkForOrderItem = findOrderItem(cartItem);
-        if (checkForOrderItem != null) {
-            checkForOrderItem.increaseQuantity();
-        } else {
-            cartItems.add(cartItem);
-        }
-    }
-
-    public CartItem findOrderItem(CartItem cartItem) {
-        return cartItems.get(cartItems.indexOf(cartItem));
-    }
-
-    public void decreaseItem(CartItem cartItem) {
-        var checkForOrderItem = findOrderItem(cartItem);
-        if (checkForOrderItem.getQuantity() > 0) {
-            checkForOrderItem.decreaseQuantity();
-        } else {
-            cartItems.remove(cartItem);
-        }
-    }
-
-    public void removeOrderItem(CartItem cartItem) {
-        cartItems.remove(cartItem);
-    }
-
     public double getTotal() {
         return cartItems.stream().mapToDouble(cartItem -> cartItem.getProduct().getPrice()).sum();
     }
