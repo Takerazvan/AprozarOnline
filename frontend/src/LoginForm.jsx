@@ -49,7 +49,7 @@ export default function LoginForm() {
 
       console.log(token);
       console.log("Login successful. Token:", token);
-      // Save the token in local storage or state, and use it for subsequent requests
+      // Save the token in local storage or state, and use it for subsequent requests!
       localStorage.setItem("token", token);
        window.location.replace("/");
        //
