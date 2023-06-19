@@ -27,39 +27,46 @@ export default function LoginForm() {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const payload = {
-      email: username,
-      password: password,
-    };
+ const handleSubmit = async (e) => {
+   e.preventDefault();
+   const payload = {
+     email: username,
+     password: password,
+   };
 
-    try {
-      const response = await fetch("http://localhost:8080/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+   try {
+     const response = await fetch("http://localhost:8080/api/auth/login", {
+       method: "POST",
+       headers: {
+         "Content-Type": "application/json",
+       },
+       body: JSON.stringify(payload),
+     });
+  console.log("Response:", response.headers.get("Authorization")); 
+     if (response.ok) {
+      const responseJson = await response.json();
+      const token = responseJson.token;
 
-      if (response.ok) {
-        // Login successful, handle the response as needed
-        console.log("Login successful");
-       window.location.replace("/");
-        
-      } else {
-        // Login failed, handle the error
-        alert("Login failed:", response.statusText);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
+      console.log(token);
+      console.log("Login successful. Token:", token);
+      // Save the token in local storage or state, and use it for subsequent requests
+      localStorage.setItem("token", token);
+      window.location.replace("/");
+     }
+     
+     else {
+       // Login failed, handle the error
+       alert("Login failed:", response.statusText);
+     }
+   } catch (error) {
+     console.error("Error:", error);
+   }
 
-    // Reset the form inputs
-    setUsername("");
-    setPassword("");
-  };
+   // Reset the form inputs
+   setUsername("");
+   setPassword("");
+ };
+
 
   return (
     <div>

@@ -3,9 +3,10 @@ import { useState, useRef, useEffect } from "react";
   import "./style.css";
 import { Link } from "react-router-dom";
 import ShoppingCart from "./ShoppingCart";
-import NavBar from "./NavBar";
 
-  function HomePage() {
+
+function HomePage() {
+     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [mouseDownAt, setMouseDownAt] = useState(0);
     const [prevPercentage, setPrevPercentage] = useState(0);
    
@@ -52,6 +53,11 @@ import NavBar from "./NavBar";
     };
 
     useEffect(() => {
+      const handleTouchMove = (e) => {
+        // Prevent the default behavior of touch events
+        e.preventDefault();
+        handleOnMove(e.touches[0]);
+      };
       window.addEventListener("mousedown", handleOnDown);
       window.addEventListener("touchstart", handleOnDown);
       window.addEventListener("mouseup", handleOnUp);
@@ -71,6 +77,38 @@ import NavBar from "./NavBar";
       };
     });
     
+
+    //Logout
+     const handleLogout = async () => {
+       try {
+         const response = await fetch("http://localhost:8080/api/auth/logout", {
+           method: "POST",
+           headers: {
+            "Authorization": `Bearer ${localStorage.getItem("token")}`,
+           },
+         });
+
+         if (response.ok) {
+           // Clear the token from local storage
+           localStorage.removeItem("token");
+           // Perform any other necessary actions upon successful logout
+            setIsLoggedIn(false);
+         } else {
+           console.log(`Bearer ${token}`);
+           // Handle the logout error
+           console.error("Logout failed:", response.statusText);
+         }
+       } catch (error) {
+         console.error("Error:", error);
+       }
+  };
+  
+    useEffect(() => {
+      // Check if the user is logged in on initial load
+      if (localStorage.getItem("token") != null) {
+        setIsLoggedIn(true);
+      }
+    }, []);
     return (
       <>
         <div
@@ -79,14 +117,14 @@ import NavBar from "./NavBar";
           data-mouse-down-at={mouseDownAt}
           data-prev-percentage={prevPercentage}
         >
-          <div className="category" >Vegetables</div>
+          <div className="category">Vegetables</div>
           <img
             className="image"
             src="https://media.istockphoto.com/id/1203599923/photo/food-background-with-assortment-of-fresh-organic-vegetables.jpg?b=1&s=170667a&w=0&k=20&c=fRNCED4dyey-i6K2RHTPaIm_HFLUr3hnj4J6WblHaXc="
             draggable="false"
             data-category="Vegetables"
           />
-          <div className="category" >Fruits</div>
+          <div className="category">Fruits</div>
           <img
             className="image"
             src="https://foodboxhq.com/wp-content/uploads/2018/07/fruit-of-the-month-club.webp"
@@ -121,32 +159,46 @@ import NavBar from "./NavBar";
           />
         </div>
         <div id="cent">
-          <Link to="/login">
-            <a
-              id="source-link"
-              className="meta-link"
-              href=""
-              target="_blank"
+          {isLoggedIn ? (
+            <button
+              className="logout-button"
+              onClick={handleLogout}
               style={{ backgroundColor: "#D3F239" }}
             >
               <span style={{ fontSize: "3.3rem", color: "#298929" }}>
-                LOGIN
+                LOGOUT
               </span>
-            </a>
-          </Link>
-          <Link to="/register">
-            <a
-              id="yt-link"
-              className="meta-link"
-              href=""
-              target="_blank"
-              style={{ backgroundColor: "#D3F239" }}
-            >
-              <span style={{ fontSize: "3.3rem", color: "#298929" }}>
-                REGISTER
-              </span>
-            </a>
-          </Link>
+            </button>
+          ) : (
+            <>
+              <Link to="/login">
+                <a
+                  id="source-link"
+                  className="meta-link"
+                  href=""
+                  target="_blank"
+                  style={{ backgroundColor: "#D3F239" }}
+                >
+                  <span style={{ fontSize: "3.3rem", color: "#298929" }}>
+                    LOGIN
+                  </span>
+                </a>
+              </Link>
+              <Link to="/register">
+                <a
+                  id="yt-link"
+                  className="meta-link"
+                  href=""
+                  target="_blank"
+                  style={{ backgroundColor: "#D3F239" }}
+                >
+                  <span style={{ fontSize: "3.3rem", color: "#298929" }}>
+                    REGISTER
+                  </span>
+                </a>
+              </Link>
+            </>
+          )}
         </div>
       </>
     );
