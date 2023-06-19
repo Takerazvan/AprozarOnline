@@ -32,7 +32,7 @@ public class CustomerService extends AppUserService {
 
     public AppUser registerCustomer(RegistrationRequest request) {
 
-        AppUser newUser = addUser(request, AppUserRole.BUYER);
+        AppUser newUser = addUser(request, AppUserRole.valueOf(request.role()));
         shoppingCartRepository.save(new ShoppingCart(newUser.getId()));
 
         return newUser;

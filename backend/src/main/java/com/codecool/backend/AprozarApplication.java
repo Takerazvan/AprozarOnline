@@ -59,7 +59,7 @@ public class AprozarApplication implements CommandLineRunner {
         productList.add(apple);
 
 
-        RegistrationRequest newUserRequest = new RegistrationRequest("admin", "admin", "mail", "123");
+        RegistrationRequest newUserRequest = new RegistrationRequest("admin", "admin", "mail@yahoo.com", "123","SELLER");
         authenthicationService.registerCustomer(newUserRequest);
         productService.addProducts(productList);
 //        s3Service.putObject("aprozar", "key", apple.getName().getBytes());
