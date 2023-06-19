@@ -29,14 +29,6 @@ public class CustomerService extends AppUserService {
         this.shoppingCartRepository = shoppingCartRepository1;
     }
 
-//    public AppUser registerCustomer(RegistrationRequest request) {
-//
-//        AppUser newUser = addUser(request, AppUserRole.BUYER);
-//        shoppingCartRepository.save(new ShoppingCart(newUser.getId()));
-//
-//        return newUser;
-//    }
-
 
     public ShoppingCart getCart(Long id) {
         return shoppingCartRepository.findByUserId(id).orElseThrow(() -> new NoSuchElementException("User not found"));
@@ -45,5 +37,6 @@ public class CustomerService extends AppUserService {
     public void addProductToCart(CartItem item,Long userId){
         getCart(userId).addItem(item);
     }
+
 
 }

@@ -1,20 +1,21 @@
 package com.codecool.backend.users.seller;
 
 import com.codecool.backend.products.Product;
+import com.codecool.backend.products.ProductDTO;
 import com.codecool.backend.products.ProductForm;
 import com.codecool.backend.products.ProductService;
 import com.codecool.backend.products.shoppingcart.ShoppingCartRepository;
 import com.codecool.backend.s3.S3Buckets;
 import com.codecool.backend.s3.S3Service;
-import com.codecool.backend.users.*;
+import com.codecool.backend.users.RegistrationRequest;
 import com.codecool.backend.users.repository.AppUser;
 import com.codecool.backend.users.repository.AppUserDTOMapper;
 import com.codecool.backend.users.repository.AppUserDao;
-import com.codecool.backend.users.repository.AppUserRole;
 import com.codecool.backend.users.service.AppUserService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -28,13 +29,8 @@ public class SellerService extends AppUserService {
         this.productService = productService;
     }
 
-    public List<Product> getProductList(Long sellerId) {
+    public List<ProductDTO> getProductList(Long sellerId) {
         return productService.getAllProductsBySeller(sellerId);
-    }
-
-
-    public void register(RegistrationRequest request) {
-        AppUser newUser = addUser(request);
     }
 
     public void addProduct(ProductForm productForm, Long userId) {
@@ -43,10 +39,24 @@ public class SellerService extends AppUserService {
                 .quantity(productForm.quantity())
                 .price(productForm.price())
                 .userId(userId).build();
+
+        productService.addProduct(product);
     }
 
+    public void deleteProduct(Long productID) {
 
+        productService.deleteProduct(productID);
+    }
+
+    public void uploadProductImage(Long productId, MultipartFile file) {
+        productService.uploadProductImage(productId, file);
+    }
+
+    public void updateProduct(Long productId, ProductForm productForm){
+        productService.updateProduct(productId,productForm);
+    }
 }
+
 
 
 

@@ -23,6 +23,7 @@ public class Product {
     private CartItem cartItem;
     private  String name;
     private Long userId;
-    private String profileImageId;
+    private String productImageId;
+    private String productDescription;
 
 }

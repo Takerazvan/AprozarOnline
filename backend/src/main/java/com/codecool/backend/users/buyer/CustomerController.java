@@ -20,23 +20,5 @@ public class CustomerController {
     }
 
 
-    @GetMapping("/{customerId}")
-    public ResponseEntity<AppUserDTO> getCustomerById(@PathVariable Long customerId) {
-        AppUserDTO customer = customerService.getUser(customerId);
-        return ResponseEntity.ok(customer);
-    }
-    @DeleteMapping("/{customerId}")
-    public ResponseEntity<Void> deleteCustomer(@PathVariable Long customerId) {
-        customerService.deleteCustomerById(customerId);
-        return ResponseEntity.noContent().build();
-    }
-
-    @PutMapping("/{customerId}")
-    public void updateUser(@PathVariable Long customerId,@RequestBody UpdateRequest updateRequest){
-        customerService.updateCustomer(customerId,updateRequest);
-    }
-
-
-
 
 }

@@ -10,7 +10,7 @@ public record ProductForm(
 
         ProductType type,
 
-        String profileImageId
+        String productDescription
 
 ) {
 
