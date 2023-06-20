@@ -1,5 +1,6 @@
 package com.codecool.backend.security.auth;
 
+import com.codecool.backend.email.EmailService;
 import com.codecool.backend.security.jwt.JWTService;
 import com.codecool.backend.users.buyer.CustomerService;
 import com.codecool.backend.users.repository.AppUser;
@@ -22,6 +23,7 @@ public class AuthenticationService {
     private final JWTService jwtService;
     private final AppUserDTOMapper appUserDTOMapper;
     private final CustomerService customerService;
+    private final EmailService emailService;
 
     public AuthenticationResponse login(LoginRequest request) {
         Authentication authentication = authenticationManager.authenticate(
@@ -43,6 +45,10 @@ public class AuthenticationService {
         AppUserDTO newUserDTO = appUserDTOMapper.apply(newUser);
 
         String token = jwtService.issueToken(newUserDTO.email());
+
+        String email = newUser.getEmail();
+        String message = "Hello"+ " " + newUser.getFirstName() + " "+ "Welcome to Aprozar Online ! Thank you for registering.";
+        emailService.send(email, message);
 
         return new AuthenticationResponse(token, newUserDTO);
     }
