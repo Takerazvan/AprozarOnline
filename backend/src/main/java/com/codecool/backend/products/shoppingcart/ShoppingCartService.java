@@ -1,10 +1,10 @@
 package com.codecool.backend.products.shoppingcart;
 
+import com.codecool.backend.products.orders.CartItem;
 import lombok.AllArgsConstructor;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class ShoppingCartService implements ShoppingCartDAO {

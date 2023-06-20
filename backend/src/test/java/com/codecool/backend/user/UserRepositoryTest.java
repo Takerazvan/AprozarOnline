@@ -1,4 +1,4 @@
-package com.codecool.backend.user;
-
-public class UserRepositoryTest {
-}
+//package com.codecool.backend.user;
+//
+//public class UserRepositoryTest {
+//}

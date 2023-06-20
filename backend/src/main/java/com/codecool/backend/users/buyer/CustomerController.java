@@ -1,6 +1,6 @@
 package com.codecool.backend.users.buyer;
 
-import com.codecool.backend.products.shoppingcart.CartItem;
+import com.codecool.backend.products.orders.CartItem;
 import com.codecool.backend.products.shoppingcart.ShoppingCartDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

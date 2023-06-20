@@ -1,7 +1,5 @@
 package com.codecool.backend.users.service;
 
-import com.codecool.backend.products.shoppingcart.ShoppingCart;
-import com.codecool.backend.products.shoppingcart.ShoppingCartRepository;
 import com.codecool.backend.s3.S3Buckets;
 import com.codecool.backend.s3.S3Service;
 import com.codecool.backend.users.RegistrationRequest;
@@ -26,15 +24,13 @@ public class AppUserService {
     private final S3Service s3Service;
     private final S3Buckets s3Buckets;
 
-    private final ShoppingCartRepository shoppingCartrepository;
     @Autowired
-    public AppUserService(@Qualifier("jpa") AppUserDao appUserDao, AppUserDTOMapper userDTOMapper, PasswordEncoder passwordEncoder, S3Service s3Service, S3Buckets s3Buckets,ShoppingCartRepository shoppingCartRepository) {
+    public AppUserService(@Qualifier("jpa") AppUserDao appUserDao, AppUserDTOMapper userDTOMapper, PasswordEncoder passwordEncoder, S3Service s3Service, S3Buckets s3Buckets ){
         this.appUserDao = appUserDao;
         this.userDTOMapper = userDTOMapper;
         this.passwordEncoder = passwordEncoder;
         this.s3Service = s3Service;
         this.s3Buckets = s3Buckets;
-        this.shoppingCartrepository=shoppingCartRepository;
     }
 
     public List<AppUserDTO> getAllCustomers() {
@@ -66,10 +62,6 @@ public class AppUserService {
                 .appUserRole(AppUserRole.valueOf(registrationRequest.role()))
                 .build();
         appUserDao.addAppUser(appUser);
-        if (appUser.getAppUserRole()==AppUserRole.BUYER){
-            ShoppingCart shoppingCart=new ShoppingCart(appUser.getId());
-            shoppingCartrepository.save(shoppingCart);
-        }
 
 
 

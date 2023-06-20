@@ -1,6 +1,6 @@
 package com.codecool.backend.products.shoppingcart;
 
-import com.codecool.backend.products.shoppingcart.CartItem;
+import com.codecool.backend.products.orders.CartItem;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

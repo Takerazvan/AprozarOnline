@@ -1,0 +1,50 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://db.fhfspezscoxvatknduhd.supabase.co:5432/postgres?sslmode=require
+    username: postgres
+    password: rPwYLhsOg8LpbsUs
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    open-in-view: false
+
+  thymeleaf:
+    check-template-location: false
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: aprozar4us@gmail.com
+    password: ifjxeifauoeyqmcr
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+            required: true
+          auth: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 935019481866-tc7t9rgucm0nup9j511c6gfph028a491.apps.googleusercontent.com
+            client-secret: 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
+
+logging:
+  level:
+    org.springframework: debug
+    org.springframework.security: TRACE
+
+paypal:
+  client:
+    id: ARIcGsRWHhPm5IYxfFnzRuOro5qId2klTAOj0CyhBS-DT2HsSK7bWT87arrtV7ui9XOJEc7Ph7-LIkBm
+    secret: EB7WK4XcFdONDx-4PcLIf69H9TGzCEFbULIfJaLHKorNKdP95emHkd55IPtiqoOH-_rFjMpOZT8eeuN9
+  mode: sandbox

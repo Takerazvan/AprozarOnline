@@ -1,6 +1,6 @@
 package com.codecool.backend.products.orders;
 
-public enum Payment {
+public enum PaymentMethod {
     CASH,
     PAYPAL
 }
