@@ -22,7 +22,6 @@ public class UserController {
     private WebTestClient webTestClient;
 
     private static final Random RANDOM = new Random();
-    private static final String CUSTOMER_PATH = "/api/v1/customers";
 
     Faker faker = new Faker();
     Name fakerName = faker.name();
