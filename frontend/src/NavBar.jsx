@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo from "./11zon_cropped.png";
 import "./NavBar.css"
+import shoppingCartIcon from "./assets/shopping.png"
+import { useAtom } from "jotai";
+import { cartItemsAtom} from "./Atom";
 function NavBar() {
+  const [cartItems,setCartItems] = useAtom(cartItemsAtom);
+  const cart = localStorage.getItem("cartItems");
+  console.log(cart)
+  useEffect(() => {
+    // Retrieve cart items from local storage on component mount
+    const storedCartItems = localStorage.getItem("cartItems");
+    if (storedCartItems) {
+      setCartItems(JSON.parse(storedCartItems));
+    }
+  }, [setCartItems]);
   return (
     <>
       <nav className="header__nav">
@@ -39,16 +52,17 @@ function NavBar() {
               </a>
             </Link>
           </li>
-          <li className="header__nav-item">
-            <a
-              className="header__nav-link"
-              href="#"
-              style={{ color: "#20990D" }}
-            >
-              Contact
-            </a>
-          </li>
-          <li></li>
+          <Link to="/shoppingCart">
+            <img
+              src={shoppingCartIcon}
+              className="meal-img"
+              alt={"name"}
+              style={{ width: "50px", height: "50px" }}
+            />
+            <span className="cart-items-count" style={{ fontSize: "20px" }}>
+              {cartItems.length}
+            </span>
+          </Link>
         </ul>
       </nav>
     </>

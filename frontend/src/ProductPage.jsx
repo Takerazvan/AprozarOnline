@@ -1,13 +1,16 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useAtom } from "jotai";
+import { cartItemsAtom, selectedQuantitiesAtom } from "./Atom"; // Import Jotai atoms
 import "./ProductPage.css";
-
 import Card from "react-bootstrap/Card";
 
 function ProductPage() {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedQuantities, setSelectedQuantities] = useState({});
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useAtom(cartItemsAtom); 
+  const [selectedQuantities, setSelectedQuantities] = useAtom(
+    selectedQuantitiesAtom
+  ); // Use Jotai atom for selected quantities
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,37 +40,47 @@ function ProductPage() {
       }));
     }
   };
-
+   useEffect(() => {
+     // Save cart items to local storage whenever it changes
+     localStorage.setItem("cartItems", JSON.stringify(cartItems));
+   }, [cartItems]);
   const handleAddToCart = (product) => {
-    const existingIndex = cartItems.findIndex(
-      (item) => item.product.id === product.id
-    );
-    if (existingIndex !== -1) {
-      const updatedCartItems = [...cartItems];
-      updatedCartItems[existingIndex].quantity +=
-        selectedQuantities[product.id] || 1;
-      setCartItems(updatedCartItems);
-    } else {
-      setCartItems((prevItems) => [
-        ...prevItems,
-        {
-          product,
-          quantity: selectedQuantities[product.id] || 1,
-        },
-      ]);
+ 
+   
+ const selectedQuantity = selectedQuantities[product.id] || 0;
+    if (selectedQuantity > 0) {
+      
+      const existingIndex = cartItems.findIndex(
+        (item) => item.product.id === product.id
+      );
+      if (existingIndex !== -1) {
+        const updatedCartItems = [...cartItems];
+        updatedCartItems[existingIndex].quantity += selectedQuantity;
+        setCartItems(updatedCartItems);
+      } else {
+        setCartItems((prevItems) => [
+          ...prevItems,
+          {
+            product,
+            quantity: selectedQuantity,
+          },
+        ]);
+      }
+      setSelectedQuantities((prevQuantities) => ({
+        ...prevQuantities,
+        [product.id]: 0,
+      }));
     }
-    setSelectedQuantities((prevQuantities) => ({
-      ...prevQuantities,
-      [product.id]: 0,
-    }));
+    
   };
+
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
   return (
     <>
-      <div id="razvan" >
+      <div id="razvan">
         <section className="section-meals">
           <div className="container grid grid--3-cols margin-right-md" id="">
             {products.map((product) => (

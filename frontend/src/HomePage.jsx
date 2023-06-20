@@ -53,11 +53,7 @@ function HomePage() {
     };
 
     useEffect(() => {
-      const handleTouchMove = (e) => {
-        // Prevent the default behavior of touch events
-        e.preventDefault();
-        handleOnMove(e.touches[0]);
-      };
+    
       window.addEventListener("mousedown", handleOnDown);
       window.addEventListener("touchstart", handleOnDown);
       window.addEventListener("mouseup", handleOnUp);
@@ -94,7 +90,7 @@ function HomePage() {
            // Perform any other necessary actions upon successful logout
             setIsLoggedIn(false);
          } else {
-           console.log(`Bearer ${token}`);
+          
            // Handle the logout error
            console.error("Logout failed:", response.statusText);
          }
@@ -109,6 +105,7 @@ function HomePage() {
         setIsLoggedIn(true);
       }
     }, []);
+  
     return (
       <>
         <div
