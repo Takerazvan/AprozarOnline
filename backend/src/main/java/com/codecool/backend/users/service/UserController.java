@@ -34,6 +34,4 @@ public class UserController{
         appUserService.updateCustomer(id,updateRequest);
     }
 
-
-
 }

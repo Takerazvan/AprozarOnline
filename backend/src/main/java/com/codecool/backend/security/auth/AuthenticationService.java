@@ -1,6 +1,10 @@
 package com.codecool.backend.security.auth;
 
+
+
 import com.codecool.backend.email.EmailService;
+import com.codecool.backend.security.auth.AuthenticationResponse;
+import com.codecool.backend.security.auth.LoginRequest;
 import com.codecool.backend.security.jwt.JWTService;
 import com.codecool.backend.users.buyer.CustomerService;
 import com.codecool.backend.users.repository.AppUser;
