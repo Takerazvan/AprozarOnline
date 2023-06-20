@@ -1,6 +1,7 @@
 package com.codecool.backend.products.orders;
 
 import com.codecool.backend.products.shoppingcart.CartItem;
+import com.codecool.backend.products.shoppingcart.ShoppingCart;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -13,7 +14,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long orderId;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "shoppingCart", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "order", orphanRemoval = true)
     private List<CartItem> cartItems;
     private Double total;
     private String address;
