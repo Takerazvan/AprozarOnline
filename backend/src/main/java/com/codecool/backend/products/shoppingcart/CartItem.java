@@ -1,7 +1,9 @@
 package com.codecool.backend.products.shoppingcart;
 
 import com.codecool.backend.products.Product;
+import com.codecool.backend.products.orders.Order;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,20 +19,7 @@ public class CartItem {
     private Integer quantity = 1;
     @ManyToOne(fetch = FetchType.EAGER)
     private ShoppingCart shoppingCart;
-
-
-    public void increaseQuantity() {
-        quantity++;
-    }
-
-    public boolean decreaseQuantity() {
-        var check = true;
-        if (quantity > 1) {
-            quantity--;
-        } else {
-            check = false;
-        }
-        return check;
-    }
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Order order;
 
 }

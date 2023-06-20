@@ -29,7 +29,7 @@ public class EmailService implements EmailSender {
             helper.setFrom("aprozar4us@gmail.com");
             helper.setText(message, true);
             helper.setTo(to);
-            helper.setSubject("Account Created");
+            helper.setSubject("Confirm your email");
 
             mailSender.send(mimeMessage);
             System.out.println("Mail Sent!");

@@ -12,15 +12,14 @@ import java.sql.SQLException;
 public class AppUserRowMapper implements RowMapper<AppUser> {
     @Override
     public AppUser mapRow(ResultSet rs, int rowNum) throws SQLException {
-        return new AppUser(
-                rs.getLong("id"),
-                rs.getString("first_name"),
-                rs.getString("last_name"),
-                rs.getString("email"),
-                rs.getString("password"),
-                AppUserRole.valueOf("app_user_role")
+        return AppUser.builder()
+                .id(rs.getLong("id"))
+                .firstName(rs.getString("first_name"))
+                .lastName(rs.getString("last_name"))
+                .email(rs.getString("email"))
+                .password(rs.getString("password"))
+                .appUserRole(AppUserRole.valueOf("app_user_role"))
+                .build();
 
-
-        );
     }
 }

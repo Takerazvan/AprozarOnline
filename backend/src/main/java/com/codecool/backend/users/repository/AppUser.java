@@ -36,12 +36,14 @@ public class AppUser implements UserDetails {
     private String lastName;
     private String email;
     private String password;
+    @Column(
+            nullable = true
+    )
+    private String address;
 
 
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
-
-
 
 
     @Override

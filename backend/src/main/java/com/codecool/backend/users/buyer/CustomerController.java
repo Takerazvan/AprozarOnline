@@ -1,6 +1,7 @@
 package com.codecool.backend.users.buyer;
-import com.codecool.backend.users.UpdateRequest;
-import com.codecool.backend.users.repository.AppUserDTO;
+
+import com.codecool.backend.products.shoppingcart.CartItem;
+import com.codecool.backend.products.shoppingcart.ShoppingCartDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,24 +20,28 @@ public class CustomerController {
 
     }
 
-
-    @GetMapping("/{customerId}")
-    public ResponseEntity<AppUserDTO> getCustomerById(@PathVariable Long customerId) {
-        AppUserDTO customer = customerService.getUser(customerId);
-        return ResponseEntity.ok(customer);
+    @GetMapping("/{userId}/shoppingCart")
+    public ResponseEntity<ShoppingCartDTO> getShoppingCartByUserId(@PathVariable Long userId){
+       ShoppingCartDTO shoppingCartDTO= customerService.getShoppingCartByUserId(userId);
+        return ResponseEntity.ok(shoppingCartDTO);
     }
-    @DeleteMapping("/{customerId}")
-    public ResponseEntity<Void> deleteCustomer(@PathVariable Long customerId) {
-        customerService.deleteCustomerById(customerId);
+
+    @PostMapping("/{userId}/shoppingCart")
+    public ResponseEntity<Void> addProductToCart(@PathVariable Long userId, @RequestBody CartItem cartItem){
+        customerService.addProductToCart(cartItem,userId);
+        return ResponseEntity.noContent().build();
+    }
+    @PostMapping("/{userId}/delete")
+    public ResponseEntity<Void> deleteProductById(@PathVariable Long userId,@RequestBody Long productId)
+    {
+        customerService.deleteProductFromCart(productId,userId);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/{customerId}")
-    public void updateUser(@PathVariable Long customerId,@RequestBody UpdateRequest updateRequest){
-        customerService.updateCustomer(customerId,updateRequest);
+    @PutMapping("/{userId}/shoppingCart/{productId}")
+    public ResponseEntity<Void> updateCartItem(@PathVariable Long userId,@PathVariable Long productId,@RequestBody Integer quantity){
+        customerService.updateCartItem(quantity,userId,productId);
+        return ResponseEntity.noContent().build();
     }
-
-
-
 
 }

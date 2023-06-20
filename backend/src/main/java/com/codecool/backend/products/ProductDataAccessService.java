@@ -49,4 +49,21 @@ public class ProductDataAccessService implements ProductDAO {
     public void deleteProductById(Long productId) {
         productRepository.deleteById(productId);
     }
+
+    @Override
+    public void updateProductImageId(String productImageId, Long productId) {
+        productRepository.updateProfileImageId(productImageId,productId);
+    }
+
+    @Override
+    public boolean existProductById(Long id) {
+        return productRepository.existsProductById(id);
+    }
+
+    @Override
+    public void updateProduct(Product updates) {
+        productRepository.save(updates);
+    }
+
+
 }
