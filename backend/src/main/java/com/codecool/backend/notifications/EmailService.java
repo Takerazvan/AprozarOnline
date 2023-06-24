@@ -1,4 +1,4 @@
-package com.codecool.backend.email;
+package com.codecool.backend.notifications;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class EmailService implements EmailSender {
+public class EmailService implements MessageSender {
 
     private final static Logger LOGGER = LogManager.getLogger(EmailService.class);
 

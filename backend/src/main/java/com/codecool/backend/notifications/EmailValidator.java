@@ -1,4 +1,4 @@
-package com.codecool.backend.email;
+package com.codecool.backend.notifications;
 
 import org.springframework.stereotype.Service;
 

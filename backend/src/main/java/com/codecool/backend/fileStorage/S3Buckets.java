@@ -1,4 +1,4 @@
-package com.codecool.backend.s3;
+package com.codecool.backend.fileStorage;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

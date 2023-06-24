@@ -1,4 +1,4 @@
-package com.codecool.backend.s3;
+package com.codecool.backend.fileStorage;
 
 import org.springframework.stereotype.Service;
 import software.amazon.awssdk.core.ResponseInputStream;

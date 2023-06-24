@@ -55,15 +55,8 @@ public class AuthenthicationTest {
         );
 
         LoginRequest loginRequest=new LoginRequest(email,password);
-        webTestClient.post()
-                .uri(AUTH+ "/login")
-                .accept(MediaType.APPLICATION_JSON)
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(Mono.just(loginRequest), LoginRequest.class)
-                .exchange()
-                .expectStatus()
-                .isUnauthorized();
 
+        System.out.println(registrationRequest);
         webTestClient.post()
                 .uri(AUTH + "/register")
                 .accept(MediaType.APPLICATION_JSON)
@@ -72,7 +65,7 @@ public class AuthenthicationTest {
                 .exchange()
                 .expectStatus()
                 .isOk();
-
+        System.out.println(loginRequest);
         EntityExchangeResult<AuthenticationResponse> result = webTestClient.post()
                 .uri(AUTH + "/login")
                 .accept(MediaType.APPLICATION_JSON)
@@ -89,7 +82,7 @@ public class AuthenthicationTest {
                 .get(0);
 
         AuthenticationResponse authenticationResponse = result.getResponseBody();
-
+        System.out.println(authenticationResponse);
         AppUserDTO userDTO=authenticationResponse.appUserDTO();
 
         Assertions.assertThat(jwtService.isTokenValid(

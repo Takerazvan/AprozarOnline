@@ -4,8 +4,9 @@ package com.codecool.backend;
 import com.codecool.backend.products.Product;
 import com.codecool.backend.products.ProductService;
 import com.codecool.backend.products.Types.ProductType;
-import com.codecool.backend.s3.S3Service;
+import com.codecool.backend.fileStorage.S3Service;
 import com.codecool.backend.security.auth.AuthenticationService;
+import com.codecool.backend.security.auth.LoginRequest;
 import com.codecool.backend.users.RegistrationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -61,8 +62,10 @@ public class AprozarApplication implements CommandLineRunner {
 
         RegistrationRequest newUserRequest = new RegistrationRequest("admin", "admin", "simam9520@gmail.com", "123","SELLER");
         authenthicationService.registerCustomer(newUserRequest);
+        System.out.println(authenthicationService.login(new LoginRequest("simam9520@gmail.com", "123")));
         productService.addProducts(productList);
-        s3Service.putObject("aprozar", "key", apple.getName().getBytes());
+        s3Service.putObject("aproz" +
+                "ar", "key", apple.getName().getBytes());
 
         byte[] obj = s3Service.getObject("aprozar", "key");
         System.out.println("Heep-heep horay" + new String(obj));

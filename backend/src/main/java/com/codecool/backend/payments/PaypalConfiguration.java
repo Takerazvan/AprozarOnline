@@ -1,4 +1,4 @@
-package com.codecool.backend.paypal;
+package com.codecool.backend.payments;
 
 import com.paypal.base.rest.APIContext;
 import com.paypal.base.rest.OAuthTokenCredential;

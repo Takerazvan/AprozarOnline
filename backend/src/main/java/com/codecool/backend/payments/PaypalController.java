@@ -1,4 +1,4 @@
-package com.codecool.backend.paypal;
+package com.codecool.backend.payments;
 
 import com.codecool.backend.products.orders.Order;
 import com.paypal.api.payments.Payment;
@@ -15,14 +15,10 @@ public class PaypalController {
 
     @Autowired
     PaypalService service;
-    public static final String HOST_URL="http://localhost:9090/";
+    public static final String HOST_URL="http://localhost:8080/";
     public static final String SUCCESS_URL = "pay/success";
     public static final String CANCEL_URL = "pay/cancel";
 
-    @GetMapping("/")
-    public String home(){
-        return "home";
-    }
 
     @PostMapping("/pay")
     public String payment(@ModelAttribute("order")Order order){

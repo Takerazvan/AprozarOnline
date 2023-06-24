@@ -1,15 +1,13 @@
 package com.codecool.backend.security.auth;
 
-import com.codecool.backend.email.EmailService;
+import com.codecool.backend.notifications.EmailService;
 import com.codecool.backend.security.jwt.JWTService;
-import com.codecool.backend.users.buyer.CustomerService;
 import com.codecool.backend.users.repository.AppUser;
 import com.codecool.backend.users.repository.AppUserDTO;
 import com.codecool.backend.users.repository.AppUserDTOMapper;
 import com.codecool.backend.users.RegistrationRequest;
 import com.codecool.backend.users.service.AppUserService;
 import jakarta.servlet.http.HttpServletRequest;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

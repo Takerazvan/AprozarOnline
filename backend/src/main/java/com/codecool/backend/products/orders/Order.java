@@ -16,8 +16,8 @@ import java.util.List;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long orderId;
+
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "order", orphanRemoval = true)
     private List<CartItem> cartItems;
     private Double total;

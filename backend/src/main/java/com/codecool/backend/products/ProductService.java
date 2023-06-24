@@ -1,7 +1,7 @@
 package com.codecool.backend.products;
 
-import com.codecool.backend.s3.S3Buckets;
-import com.codecool.backend.s3.S3Service;
+import com.codecool.backend.fileStorage.S3Buckets;
+import com.codecool.backend.fileStorage.S3Service;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
