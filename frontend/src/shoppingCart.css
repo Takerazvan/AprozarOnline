@@ -1,46 +1,54 @@
+#basket {
+  font-family: Arial, sans-serif;
+}
 
+h2 {
+  color: #333;
+}
 
-#controls {
-  text-align: center;
-  padding-bottom: 20px;
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.meal-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  margin-right: 10px;
 }
 
 
-
-
-
-.shopping-cart {
-  display: inline-block;
-  min-width: 140px;
-  margin: auto;
-  padding: 10px;
-  border-radius: 20px;
-  box-shadow: 0px 0px 20px darkgrey;
-  background-color: white;
-  text-align: center;
+.item-details {
+  flex-grow: 1;
 }
 
-#badge {
-  height: 10px;
-  width: 10px;
-  background-color: #21c999;
-  color: rgb(20, 3, 3);
-  font-size: 40px;
-  position: relative;
-  transform: rotate(-50deg);
-  border-radius: 20px;
-  top: 45px;
-  left: 120px;
-  padding: 10px;
-  z-index: 0;
-  text-align: center;
-  font-family: Arial;
+.item-name {
+  font-weight: bold;
 }
 
-.shopping-cart-icon {
-  font-size: 150px;
-  opacity: 1;
-  z-index: -20;
-  color: rgb(218, 30, 30);
-  position: relative;
+.item-quantity {
+  color: #888;
+}
+
+.remove-button {
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.remove-button:hover {
+  background-color: #d32f2f;
+}
+.fa-trash {
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.fa-trash:hover {
+  color: rgb(180, 220, 220);
 }
