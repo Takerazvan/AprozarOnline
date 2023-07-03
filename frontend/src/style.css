@@ -67,7 +67,7 @@ nav a:hover {
   gap: 4vmin;
   position: absolute;
  
-  margin-right: 40vmin;
+  margin-right: 40vmin;margin-top: 20px;
   left: -5%;
   top: 50%;
   

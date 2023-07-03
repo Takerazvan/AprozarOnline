@@ -8,8 +8,11 @@ import AddProductForm from "./AddProductForm";
 import LoginForm from "./LoginForm";
 import AboutUs from "./AboutUs";
 import ShoppingCart from "./ShoppingCart";
-
+import PaymentForm from "./PaymentForm";
+import { useEffect } from "react";
 function App() {
+
+ 
   return (
     <Router>
       <div>
@@ -30,8 +33,9 @@ function App() {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/login" element={<LoginForm />} />
-          <Route path="/add" element={<AddProductForm />} />
+          <Route path="/seller-profile" element={<AddProductForm />} />
           <Route path="/shoppingCart" element={<ShoppingCart />} />
+          <Route path="/payment-form" element={<PaymentForm />} />
         </Routes>
       </div>
     </Router>

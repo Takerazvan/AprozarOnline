@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAtom } from "jotai";
 import { cartItemsAtom, selectedQuantitiesAtom } from "./Atom"; // Import Jotai atoms
 import "./ProductPage.css";
-import Card from "react-bootstrap/Card";
+
 
 function ProductPage() {
   const [products, setProducts] = useState([]);
@@ -76,82 +76,84 @@ function ProductPage() {
 
 
   if (isLoading) {
-    return <div>Loading...</div>;
-  }
-  return (
-    <>
-      <div id="razvan">
-        <section className="section-meals">
-          <div className="container grid grid--3-cols margin-right-md" id="">
-            {products.map((product) => (
-              <div className="meal" key={product.id}>
-                <img
-                  src="https://cdn.romania-insider.com/sites/default/files/styles/article_large_image/public/2020-06/vegetables_in_a_bag_-_photo_julia_sudnitskaya_-_dreamstime.com_.jpg"
-                  className="meal-img"
-                  alt={product.name}
-                />
-                <div className="meal-content">
-                  <div className="meal-tags"></div>
-                  <p className="meal-title">{product.name}</p>
-                  <ul className="meal-attributes">
-                    <li className="meal-attribute">
-                      <ion-icon
-                        className="meal-icon"
-                        name="flame-outline"
-                      ></ion-icon>
-                      <span>
-                        <strong>{product.price}</strong> PRICE
-                      </span>
-                    </li>
-                    <li className="meal-attribute">
-                      <ion-icon
-                        className="meal-icon"
-                        name="restaurant-outline"
-                      ></ion-icon>
-                      <span>
-                        CATEGORY <strong>{product.productType}</strong>
-                      </span>
-                    </li>
-                    <li className="meal-attribute">
-                      <ion-icon
-                        className="meal-icon"
-                        name="star-outline"
-                      ></ion-icon>
-                      <button
-                        className="button-33"
-                        role="button"
-                        onClick={() => handleAddToCart(product)}
-                      >
-                        🛒
-                        <span className="quantity-badge">
-                          {selectedQuantities[product.id] || 0}
+    return <div style={{fontSize:"50px", color:"green"}}>Loading...</div>;
+  } else {
+
+    return (
+      <>
+        <div id="razvan">
+          <section className="section-meals">
+            <div className="container grid grid--3-cols margin-right-md" id="">
+              {products.map((product) => (
+                <div className="meal" key={product.id}>
+                  <img
+                    src="https://cdn.romania-insider.com/sites/default/files/styles/article_large_image/public/2020-06/vegetables_in_a_bag_-_photo_julia_sudnitskaya_-_dreamstime.com_.jpg"
+                    className="meal-img"
+                    alt={product.name}
+                  />
+                  <div className="meal-content">
+                    <div className="meal-tags"></div>
+                    <p className="meal-title">{product.name}</p>
+                    <ul className="meal-attributes">
+                      <li className="meal-attribute">
+                        <ion-icon
+                          className="meal-icon"
+                          name="flame-outline"
+                        ></ion-icon>
+                        <span>
+                          <strong>{product.price}</strong> PRICE
                         </span>
-                      </button>
-                    </li>
-                    <li className="meal-attribute quantity-controls">
-                      <button
-                        className="quantity-button"
-                        onClick={() => handleQuantityChange(product.id, -1)}
-                      >
-                        -
-                      </button>
-                      <span className="quantity-value"></span>
-                      <button
-                        className="quantity-button"
-                        onClick={() => handleQuantityChange(product.id, 1)}
-                      >
-                        +
-                      </button>
-                    </li>
-                  </ul>
+                      </li>
+                      <li className="meal-attribute">
+                        <ion-icon
+                          className="meal-icon"
+                          name="restaurant-outline"
+                        ></ion-icon>
+                        <span>
+                          CATEGORY <strong>{product.productType}</strong>
+                        </span>
+                      </li>
+                      <li className="meal-attribute">
+                        <ion-icon
+                          className="meal-icon"
+                          name="star-outline"
+                        ></ion-icon>
+                        <button
+                          className="button-33"
+                          role="button"
+                          onClick={() => handleAddToCart(product)}
+                        >
+                          🛒
+                          <span className="quantity-badge">
+                            {selectedQuantities[product.id] || 0}
+                          </span>
+                        </button>
+                      </li>
+                      <li className="meal-attribute quantity-controls">
+                        <button
+                          className="quantity-button"
+                          onClick={() => handleQuantityChange(product.id, -1)}
+                        >
+                          -
+                        </button>
+                        <span className="quantity-value"></span>
+                        <button
+                          className="quantity-button"
+                          onClick={() => handleQuantityChange(product.id, 1)}
+                        >
+                          +
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      </div>
-    </>
-  );
+              ))}
+            </div>
+          </section>
+        </div>
+      </>
+    );
+  }
 }
 
 export default ProductPage;

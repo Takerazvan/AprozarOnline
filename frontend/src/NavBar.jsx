@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo from "./11zon_cropped.png";
-import "./NavBar.css"
-import shoppingCartIcon from "./assets/shopping.png"
+import "./NavBar.css";
+import shoppingCartIcon from "./assets/shopping.png";
 import { useAtom } from "jotai";
-import { cartItemsAtom} from "./Atom";
+import { cartItemsAtom } from "./Atom";
 function NavBar() {
-  const [cartItems,setCartItems] = useAtom(cartItemsAtom);
+  const [cartItems, setCartItems] = useAtom(cartItemsAtom);
   const cart = localStorage.getItem("cartItems");
-  console.log(cart)
+  console.log(cart);
   useEffect(() => {
     // Retrieve cart items from local storage on component mount
     const storedCartItems = localStorage.getItem("cartItems");
@@ -52,16 +52,19 @@ function NavBar() {
               </a>
             </Link>
           </li>
-          <Link to="/shoppingCart">
-            <img
-              src={shoppingCartIcon}
-              className="meal-img"
-              alt={"name"}
-              style={{ width: "50px", height: "50px" }}
-            />
-            <span className="cart-items-count" style={{ fontSize: "20px" }}>
-              {cartItems.length}
-            </span>
+          <Link to="/shoppingCart  ">
+           
+            <div className="cart-icon-container">
+              <img
+                src={shoppingCartIcon}
+                className="meal-img"
+                alt={"name"}
+                style={{ width: "50px", height: "50px" }}
+              />
+              {cartItems.length > 0 && (
+                <span className="cart-items-count">{cartItems.length}</span>
+              )}
+            </div>
           </Link>
         </ul>
       </nav>

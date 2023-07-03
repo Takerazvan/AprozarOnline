@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import "./Login.css";
-
+import loginBackground from "./loginBackground.jpg";
 export default function LoginForm() {
  
-  const backgroundImageUrl =
-    "https://img.freepik.com/free-vector/hand-drawn-flat-design-farmers-market-illustration_23-2149344902.jpg?w=2000";
+  
   const mainDivStyle = {
     maxWidth: "800px",
     margin: "0 auto",
     padding: "60px",
-    backgroundImage: `url(${backgroundImageUrl})`,
+    backgroundImage: `url(${loginBackground})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
     borderRadius: "8px",
@@ -42,17 +41,18 @@ export default function LoginForm() {
        },
        body: JSON.stringify(payload),
      });
-  console.log("Response:", response.headers.get("Authorization")); 
-     if (response.ok) {
-      const responseJson = await response.json();
-      const token = responseJson.token;
 
-      console.log(token);
-      console.log("Login successful. Token:", token);
+     if (response.ok) {
+       const responseJson = await response.json();
+       
+       const token = responseJson.token;
+   
+ 
       // Save the token in local storage or state, and use it for subsequent requests
        
       localStorage.setItem("token", token);
        window.location.replace("/");
+      
        //
      }
      
@@ -71,7 +71,7 @@ export default function LoginForm() {
 
 
   return (
-    <div>
+    <div style={{marginTop:"100px"}}>
       <form className="login-form" onSubmit={handleSubmit} style={mainDivStyle}>
         <input
           className="login-input"
@@ -92,7 +92,7 @@ export default function LoginForm() {
         <button
           className="login-button"
           type="submit"
-          style={{ fontSize: "2.8rem" }}
+          style={{ fontSize: "2.8rem",backgroundColor:"purple"}}
         >
           LOGIN
         </button>
