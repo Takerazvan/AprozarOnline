@@ -46,6 +46,6 @@ Future plans for @Prozar include the integration of AWS and Google OAuth for sea
 
 
 
-![@Prozar Logo](/path/to/logo.png)
+![@Prozar Logo](https://i.imgur.com/fE0mNWt.png)
 
 > "Connecting communities, promoting local produce."
