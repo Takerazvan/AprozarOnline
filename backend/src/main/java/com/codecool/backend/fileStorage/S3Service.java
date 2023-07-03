@@ -1,43 +1,53 @@
 package com.codecool.backend.fileStorage;
 
+import com.amazonaws.HttpMethod;
+import com.amazonaws.services.s3.AmazonS3;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import software.amazon.awssdk.core.ResponseInputStream;
-import software.amazon.awssdk.core.sync.RequestBody;
-import software.amazon.awssdk.services.s3.S3Client;
-import software.amazon.awssdk.services.s3.model.GetObjectRequest;
-import software.amazon.awssdk.services.s3.model.GetObjectResponse;
-import software.amazon.awssdk.services.s3.model.PutObjectRequest;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Optional;
 
 
 @Service
 public class S3Service {
+    @Autowired
+    private ImageRepository repository;
 
-    private final S3Client s3Client;
+//    @Autowired
+//    private AmazonS3 amazonS3;
+//
+//    @Value("${aws.s3.bucket}")
+//    private String bucketName;
+//
+//    public String generatePreSignedUrl(String filePath, HttpMethod http) {
+//
+//        Calendar cal = Calendar.getInstance();
+//        cal.setTime(new Date());
+//        cal.add(Calendar.MINUTE,2);
+//        return amazonS3.generatePresignedUrl(bucketName,filePath,cal.getTime(),http).toString();
+//    }
 
-    public S3Service(S3Client s3Client) {
-        this.s3Client = s3Client;
-    }
-
-    public void putObject(String bucketname, String keyname, byte[] file) {
-        PutObjectRequest objectRequest = PutObjectRequest.builder().bucket(bucketname).key(keyname).build();
-
-        s3Client.putObject(objectRequest, RequestBody.fromBytes(file));
-    }
-
-    public byte[] getObject(String bucketName, String key) {
-        GetObjectRequest getObjectRequest = GetObjectRequest.builder()
-                .bucket(bucketName)
-                .key(key)
-                .build();
-
-        ResponseInputStream<GetObjectResponse> res = s3Client.getObject(getObjectRequest);
-
-        try {
-            return res.readAllBytes();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    public String uploadImage(MultipartFile file) throws IOException {
+        Image imageData = repository.save(Image.builder()
+                .name(file.getOriginalFilename())
+                .type(file.getContentType())
+                .imageData(ImageUtils.compressImage(file.getBytes())).build());
+        if (imageData != null) {
+            return file.getOriginalFilename();
         }
+        return null;
+    }
+
+
+
+    public byte[] downloadImage(String fileName) {
+        Optional<Image> dbImage = repository.findByName(fileName);
+        byte[] images = ImageUtils.decompressImage(dbImage.get().getImageData());
+        return images;
     }
 }

@@ -18,9 +18,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findProductsByNameContainingIgnoreCase(String name);
 
     boolean existsProductById(Long productId);
-    @Modifying(clearAutomatically = true)
-    @Query("UPDATE Product c SET c.productImageId = ?1 WHERE c.id = ?2")
-    int updateProfileImageId(String profileImageId, Long customerId);
+//    @Modifying(clearAutomatically = true)
+//    @Query("UPDATE Product c SET c.productImageId = ?1 WHERE c.id = ?2")
+//    int updateProfileImageId(String profileImageId, Long customerId);
 
 
 }

@@ -34,16 +34,18 @@ public class SecurityFilterChainConfig {
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers(
                                     HttpMethod.GET,
-                                    "/api/products"
+                                    "/api/products",
+                            "/images"
                             )
                             .permitAll();
                     auth.requestMatchers(
                                     HttpMethod.POST,
                                     "/api/auth/register",
-                                    "/api/auth/login"
+                                    "/api/auth/login",
+                            "/images"
                             )
                             .permitAll();
-                    auth.anyRequest().authenticated();
+                    auth.anyRequest().permitAll();
                 })
 //                .oauth2Login(Customizer.withDefaults())
                 .sessionManagement()

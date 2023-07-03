@@ -45,9 +45,9 @@ public class SellerService extends AppUserService {
         productService.deleteProduct(productID);
     }
 
-    public void uploadProductImage(Long productId, MultipartFile file) {
-        productService.uploadProductImage(productId, file);
-    }
+//    public void uploadProductImage(Long productId, MultipartFile file) {
+//        productService.uploadProductImage(productId, file);
+//    }
 
     public void updateProduct(Long productId, ProductForm productForm){
         productService.updateProduct(productId,productForm);

@@ -22,7 +22,7 @@ public interface ProductDAO {
 
     void deleteProductById(Long productId);
 
-  void updateProductImageId(String productImageId,Long productId);
+//  void updateProductImageId(String productImageId,Long productId);
 
   boolean existProductById(Long id);
 

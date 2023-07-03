@@ -12,7 +12,7 @@ public record ProductDTO(
 
         Long sellerId,
 
-        String profileImageId
+        String productFilePath
 
 ) {
 
