@@ -23,26 +23,26 @@ class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping
-    public ResponseEntity<List<Product> >getProducts() {
-        List<Product> products=productService.getAllProducts();
-        System.out.println(products);
-        return ResponseEntity.ok(products);
-    }
+//    @GetMapping
+//    public ResponseEntity<List<Product> >getProducts() {
+//        List<Product> products=productService.getAllProducts();
+//        System.out.println(products);
+//        return ResponseEntity.ok(products);
+//    }
 
-    @GetMapping("/{id}")
-    public Optional<Product> getProductById(@PathVariable("id") Long id) {
-        return productService.findProductById(id);
-    }
-
-    @GetMapping("{productType}")
-    public List<Product> getProductsByCategory(@PathVariable("type") ProductType productType) {
-        return productService.getProductsByCategory(productType);
-    }
-
-    @GetMapping("/{sellerId}")
-    public List<Product> getAllProductsBySeller(@PathVariable("id") Long id) {
-        return productService.getAllProductsBySeller(id);
-    }
+//    @GetMapping("/{id}")
+//    public Optional<Product> getProductById(@PathVariable("id") Long id) {
+//        return productService.findProductById(id);
+//    }
+//
+//    @GetMapping("{productType}")
+//    public List<Product> getProductsByCategory(@PathVariable("type") ProductType productType) {
+//        return productService.getProductsByCategory(productType);
+//    }
+//
+//    @GetMapping("/{sellerId}")
+//    public List<Product> getAllProductsBySeller(@PathVariable("id") Long id) {
+//        return productService.getAllProductsBySeller(id);
+//    }
 }
 

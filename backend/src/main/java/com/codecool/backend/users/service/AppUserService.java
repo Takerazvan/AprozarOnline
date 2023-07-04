@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,15 +23,15 @@ public class AppUserService {
     private final AppUserDao appUserDao;
     private final AppUserDTOMapper userDTOMapper;
     private final PasswordEncoder passwordEncoder;
-    private final ImageService s3Service;
+    private final ImageService imageService;
     private final S3Buckets s3Buckets;
 
     @Autowired
-    public AppUserService(@Qualifier("jpa") AppUserDao appUserDao, AppUserDTOMapper userDTOMapper, PasswordEncoder passwordEncoder, ImageService s3Service, S3Buckets s3Buckets ){
+    public AppUserService(@Qualifier("jpa") AppUserDao appUserDao, AppUserDTOMapper userDTOMapper, PasswordEncoder passwordEncoder, ImageService imageService, S3Buckets s3Buckets ){
         this.appUserDao = appUserDao;
         this.userDTOMapper = userDTOMapper;
         this.passwordEncoder = passwordEncoder;
-        this.s3Service = s3Service;
+        this.imageService = imageService;
         this.s3Buckets = s3Buckets;
     }
 
@@ -110,6 +112,27 @@ public class AppUserService {
         if (isModified) {
             appUserDao.updateAppUser(appUser);
         }
+    }
+
+    public List<AppUserDTO> getUsersByRole(AppUserRole role){
+        return appUserDao.findUsersByRole(role).stream().map(userDTOMapper).collect(Collectors.toList());
+    }
+
+    public void uploadProfileImage(Long userId, MultipartFile file){
+        try {
+            imageService.upload(file);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void changePassword(String newPassword,Long userId){
+        AppUser appUser = appUserDao.getCustomerById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        String.format("Customer with id [%s] not found", userId)
+                ));
+        appUser.setPassword(newPassword);
+        appUserDao.addAppUser(appUser);
     }
 
 }

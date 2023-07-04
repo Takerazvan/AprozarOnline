@@ -2,6 +2,10 @@ package com.codecool.backend.users.buyer;
 
 import com.codecool.backend.fileStorage.ImageService;
 import com.codecool.backend.fileStorage.aws.S3Buckets;
+import com.codecool.backend.products.orders.Order;
+import com.codecool.backend.products.orders.OrderDAO;
+import com.codecool.backend.products.orders.OrderDTO;
+import com.codecool.backend.products.orders.OrderRequest;
 import com.codecool.backend.users.repository.AppUserDTOMapper;
 import com.codecool.backend.users.repository.AppUserDao;
 import com.codecool.backend.users.service.AppUserService;
@@ -21,13 +25,13 @@ public class CustomerService extends AppUserService {
     public CustomerService(@Qualifier("jpa") AppUserDao appUserDao,
                            AppUserDTOMapper userDTOMapper,
                            PasswordEncoder passwordEncoder,
-                           ImageService s3Service, S3Buckets s3Buckets,
+                           ImageService imageService, S3Buckets s3Buckets,
                            OrderDAO orderDAO) {
-        super(appUserDao, userDTOMapper, passwordEncoder, s3Service, s3Buckets);
+        super(appUserDao, userDTOMapper, passwordEncoder, imageService, s3Buckets);
         this.orderDAO = orderDAO;
     }
 
-    public OrderDTO makeOrder(OrderRequest orderRequest,Long userId) {
+    public OrderDTO makeOrder(OrderRequest orderRequest, Long userId) {
 Order newOrder=new Order().builder()
         .cartItems(orderRequest.items())
         .description(orderRequest.description())

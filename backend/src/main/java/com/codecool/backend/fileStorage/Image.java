@@ -26,6 +26,9 @@ public class Image {
     @Column(name = "VERSION")
     private String version;
 
+
+    private Long userId;
+
     public Image(String fileName, String filePath, String version) {
         this.fileName = fileName;
         this.filePath = filePath;

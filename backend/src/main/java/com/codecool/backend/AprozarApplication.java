@@ -24,7 +24,7 @@ public class AprozarApplication implements CommandLineRunner {
     @Autowired
     private ProductService productService;
     @Autowired
-    private ImageService s3Service;
+    private ImageService imageService;
 
 
     public static void main(String[] args) {
@@ -63,7 +63,6 @@ public class AprozarApplication implements CommandLineRunner {
         RegistrationRequest newUserRequest = new RegistrationRequest("admin", "admin", "simam9520@gmail.com", "123","SELLER");
         authenthicationService.registerCustomer(newUserRequest);
         System.out.println(authenthicationService.login(new LoginRequest("simam9520@gmail.com", "123")));
-        productService.addProducts(productList);
 
     }
 

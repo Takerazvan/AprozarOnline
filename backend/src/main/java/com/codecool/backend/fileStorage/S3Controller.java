@@ -16,22 +16,22 @@ import java.io.InputStream;
 @RequestMapping("/image")
 public class S3Controller {
 
-    private ImageService s3Service;
+    private ImageService imageService;
 @Autowired
-    public S3Controller(ImageService s3Service) {
-        this.s3Service = s3Service;
+    public S3Controller(ImageService imageService) {
+        this.imageService = imageService;
     }
 
     @PostMapping
     public ResponseEntity<?> uploadImage(@RequestParam("image") MultipartFile file) throws IOException {
-        s3Service.upload(file);
+       imageService.upload(file);
 
     return ResponseEntity.ok("Upload Succesful");
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> downloadImage(@PathVariable Long id) throws IOException {
-        byte[] imageData=s3Service.download(id);
+        byte[] imageData=imageService.download(id);
         return ResponseEntity.status(HttpStatus.OK)
                 .contentType(MediaType.valueOf("image/png"))
                 .body(imageData);

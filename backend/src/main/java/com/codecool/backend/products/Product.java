@@ -28,7 +28,5 @@ public class Product {
     private Long userId;
 
     private String productDescription;
-    @OneToMany(mappedBy = "product",cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Image> productImages;
 
 }

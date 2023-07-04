@@ -11,6 +11,6 @@ public interface ImageService {
         public Image upload(MultipartFile file) throws IOException;
         public byte[] download(Long id) throws
                 IOException;
-//        public List<Image> list();
+    List<byte[]> listByUser(Long id);
     }
 

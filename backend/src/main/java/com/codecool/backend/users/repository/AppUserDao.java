@@ -20,4 +20,6 @@ public interface AppUserDao {
 
     Optional<AppUser> findUserByEmail(String email);
 
+    List<AppUser> findUsersByRole(AppUserRole role);
+
 }
