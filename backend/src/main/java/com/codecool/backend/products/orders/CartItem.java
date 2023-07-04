@@ -1,7 +1,6 @@
 package com.codecool.backend.products.orders;
 
 import com.codecool.backend.products.Product;
-import com.codecool.backend.products.orders.Order;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

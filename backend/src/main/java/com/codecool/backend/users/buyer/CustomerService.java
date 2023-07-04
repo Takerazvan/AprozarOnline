@@ -1,10 +1,6 @@
 package com.codecool.backend.users.buyer;
 
 import com.codecool.backend.fileStorage.ImageService;
-import com.codecool.backend.products.orders.Order;
-import com.codecool.backend.products.orders.OrderDAO;
-import com.codecool.backend.products.orders.OrderDTO;
-import com.codecool.backend.products.orders.OrderRequest;
 import com.codecool.backend.fileStorage.S3Buckets;
 import com.codecool.backend.users.repository.AppUserDTOMapper;
 import com.codecool.backend.users.repository.AppUserDao;
