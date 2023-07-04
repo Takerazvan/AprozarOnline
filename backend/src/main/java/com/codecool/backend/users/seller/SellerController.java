@@ -2,6 +2,7 @@ package com.codecool.backend.users.seller;
 
 import com.codecool.backend.products.ProductDTO;
 import com.codecool.backend.products.ProductForm;
+import com.codecool.backend.users.repository.AppUserDTO;
 import com.codecool.backend.users.service.AppUserService;
 import com.codecool.backend.users.service.UserController;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,6 +27,12 @@ public class SellerController extends UserController {
     public ResponseEntity<List<ProductDTO>> getMyProducts(Long sellerId){
         List<ProductDTO> myProducts=service.getProductList(sellerId);
         return ResponseEntity.ok(myProducts);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<AppUserDTO>> getAllSellers(){
+        List <AppUserDTO>  seller= service.findUsersByRole();
+        return  ResponseEntity.ok(seller);
     }
 
     @PostMapping("/addProduct")

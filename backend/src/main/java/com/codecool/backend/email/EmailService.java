@@ -21,21 +21,22 @@ public class EmailService implements EmailSender {
 
     @Override
     @Async
-    public void send(String to, String message) {
-        try{
+    public void send(String to, String verificationLink ) {
+        try {
             MimeMessage mimeMessage = mailSender.createMimeMessage();
-            MimeMessageHelper helper =
-                    new MimeMessageHelper(mimeMessage, "utf-8");
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
             helper.setFrom("aprozar4us@gmail.com");
-            helper.setText(message, true);
             helper.setTo(to);
             helper.setSubject("Confirm your email");
+            String message = "<img src=\"https://raw.githubusercontent.com/Takerazvan/AprozarOnline/development/frontend/src/11zon_cropped.png\" alt=\"Logo\">" +"Welcome to Aprozar Online! Please click the following link to verify your email: " + verificationLink ;
+            helper.setText(message, true);
+
 
             mailSender.send(mimeMessage);
-            System.out.println("Mail Sent!");
-        } catch (MessagingException e){
-            LOGGER.error("failed to send email", e);
-            throw new IllegalStateException("failed to send email");
+            System.out.println("Verification email sent!");
+        } catch (MessagingException e) {
+            LOGGER.error("Failed to send email", e);
+            throw new IllegalStateException("Failed to send email");
         }
     }
 }

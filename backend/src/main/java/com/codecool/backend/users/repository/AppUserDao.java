@@ -14,6 +14,7 @@ public interface AppUserDao {
 
     boolean isAppUserWithEmail(String email);
 
+
     boolean isAppUserWithId(Long id);
 
     void deleteAppUserById(Long Id);
@@ -21,5 +22,10 @@ public interface AppUserDao {
     void updateAppUser(AppUser update);
 
     Optional<AppUser> findUserByEmail(String email);
+
+    List<AppUser> findUsersByRole(AppUserRole appUserRole);
+
+
+
 
 }

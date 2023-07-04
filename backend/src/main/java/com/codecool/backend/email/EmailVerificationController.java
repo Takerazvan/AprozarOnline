@@ -1,2 +1,5 @@
-package com.codecool.backend.email;public class EmailVerificationController {
-}
+//package com.codecool.backend.email;
+//
+//public class EmailVerificationController {
+//
+//}

@@ -15,13 +15,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service("appUser")
 public class AppUserService {
 
-    private final AppUserDao appUserDao;
-    private final AppUserDTOMapper userDTOMapper;
+     protected final AppUserDao appUserDao;
+    protected final AppUserDTOMapper userDTOMapper;
     private final PasswordEncoder passwordEncoder;
     private final S3Service s3Service;
     private final S3Buckets s3Buckets;
@@ -42,6 +43,7 @@ public class AppUserService {
                 .stream().map(userDTOMapper)
                 .collect(Collectors.toList());
     }
+
 
     public AppUserDTO getUser(Long id) {
         return appUserDao.getCustomerById(id)
@@ -89,6 +91,9 @@ public class AppUserService {
         }
     }
 
+    public boolean checkUserExistsByEmail(String email) {
+        return appUserDao.isAppUserWithEmail(email);
+    }
     public void updateCustomer(Long userId, UpdateRequest updateRequest){
         AppUser appUser = appUserDao.getCustomerById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException(
@@ -119,5 +124,7 @@ public class AppUserService {
             appUserDao.updateAppUser(appUser);
         }
     }
+
+
 
 }

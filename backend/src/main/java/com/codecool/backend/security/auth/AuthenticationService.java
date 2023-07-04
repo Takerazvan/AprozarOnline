@@ -3,23 +3,22 @@ package com.codecool.backend.security.auth;
 
 
 import com.codecool.backend.email.EmailService;
-import com.codecool.backend.security.auth.AuthenticationResponse;
-import com.codecool.backend.security.auth.LoginRequest;
 import com.codecool.backend.security.jwt.JWTService;
-import com.codecool.backend.users.buyer.CustomerService;
 import com.codecool.backend.users.repository.AppUser;
 import com.codecool.backend.users.repository.AppUserDTO;
 import com.codecool.backend.users.repository.AppUserDTOMapper;
 import com.codecool.backend.users.RegistrationRequest;
+import com.codecool.backend.users.repository.AppUserRepository;
 import com.codecool.backend.users.service.AppUserService;
 import jakarta.servlet.http.HttpServletRequest;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class AuthenticationService {
@@ -28,13 +27,17 @@ public class AuthenticationService {
     private final AppUserDTOMapper appUserDTOMapper;
     private final AppUserService userService;
     private EmailService emailService;
+    private AppUserRepository userRepository;
 
-    public AuthenticationService(AuthenticationManager authenticationManager, JWTService jwtService, AppUserDTOMapper appUserDTOMapper, @Qualifier("appUser") AppUserService userService,EmailService emailService) {
+
+
+    public AuthenticationService(AuthenticationManager authenticationManager, JWTService jwtService, AppUserDTOMapper appUserDTOMapper, @Qualifier("appUser") AppUserService userService, EmailService emailService, AppUserRepository userRepository) {
         this.authenticationManager = authenticationManager;
         this.jwtService = jwtService;
         this.appUserDTOMapper = appUserDTOMapper;
         this.userService = userService;
-        this.emailService=emailService;
+        this.emailService = emailService;
+        this.userRepository = userRepository;
     }
 
     public AuthenticationResponse login(LoginRequest request) {
@@ -45,9 +48,13 @@ public class AuthenticationService {
                 )
         );
         AppUser principal = (AppUser) authentication.getPrincipal();
+        if (!principal.isVerified()) {
+            throw new IllegalStateException("Email not verified");
+        }
         AppUserDTO userDTO = appUserDTOMapper.apply(principal);
         String token = jwtService.issueToken(userDTO.email());
-        System.out.println(token);
+
+
         return new AuthenticationResponse(token, userDTO);
     }
 
@@ -59,8 +66,15 @@ public class AuthenticationService {
 
         String token = jwtService.issueToken(newUserDTO.email());
         String email = newUser.getEmail();
-        String message = "Hello"+ " " + newUser.getFirstName() + " "+ "Welcome to Aprozar Online ! Thank you for registering.";
-        emailService.send(email, message);
+
+        System.out.println(jwtService.getSubject(token));
+
+        // Generate verification link
+        String verificationLink =
+                 "http://localhost:8080/api/auth/user?token=" + token;
+
+
+        emailService.send(email, verificationLink);
         return new AuthenticationResponse(token, newUserDTO);
     }
 
@@ -73,6 +87,23 @@ public class AuthenticationService {
                 SecurityContextHolder.getContext().setAuthentication(null);
             }
         }
+    }
+
+
+    public boolean verifyEmail(String token) {
+        String email = jwtService.getSubject(token);
+
+        Optional<AppUser> optionalUser = userRepository.findAppUserByEmail(email);
+
+        if (optionalUser.isPresent()) {
+            AppUser user = optionalUser.get();
+            user.setVerified(true);
+            userRepository.save(user);
+
+            return true;
+        }
+
+        return false;
     }
 
 }

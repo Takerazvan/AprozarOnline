@@ -8,9 +8,7 @@ import com.codecool.backend.products.shoppingcart.ShoppingCartRepository;
 import com.codecool.backend.s3.S3Buckets;
 import com.codecool.backend.s3.S3Service;
 import com.codecool.backend.users.RegistrationRequest;
-import com.codecool.backend.users.repository.AppUser;
-import com.codecool.backend.users.repository.AppUserDTOMapper;
-import com.codecool.backend.users.repository.AppUserDao;
+import com.codecool.backend.users.repository.*;
 import com.codecool.backend.users.service.AppUserService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,11 +16,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service("seller")
 public class SellerService extends AppUserService {
     private final ProductService productService;
+
 
     public SellerService(@Qualifier("jpa") AppUserDao appUserDao, AppUserDTOMapper userDTOMapper, PasswordEncoder passwordEncoder, S3Service s3Service, S3Buckets s3Buckets, ShoppingCartRepository shoppingCartRepository, ProductService productService) {
         super(appUserDao, userDTOMapper, passwordEncoder, s3Service, s3Buckets, shoppingCartRepository);
@@ -54,6 +54,10 @@ public class SellerService extends AppUserService {
 
     public void updateProduct(Long productId, ProductForm productForm){
         productService.updateProduct(productId,productForm);
+    }
+
+    public List<AppUserDTO> findUsersByRole(){
+        return  appUserDao.findUsersByRole(AppUserRole.SELLER).stream().map(userDTOMapper).collect(Collectors.toList());
     }
 }
 

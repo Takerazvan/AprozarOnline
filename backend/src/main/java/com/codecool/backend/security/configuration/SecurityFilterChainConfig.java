@@ -34,13 +34,15 @@ public class SecurityFilterChainConfig {
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers(
                                     HttpMethod.GET,
-                                    "/api/products"
+                                    "/api/products",
+                                    "/api/auth/user","/seller/myproducts","/seller/all"
                             )
                             .permitAll();
                     auth.requestMatchers(
                                     HttpMethod.POST,
                                     "/api/auth/register",
                                     "/api/auth/login"
+
                             )
                             .permitAll();
                     auth.anyRequest().authenticated();

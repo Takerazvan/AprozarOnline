@@ -5,10 +5,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
+
 @AllArgsConstructor
 @RestController
 @RequestMapping("api/auth")
@@ -37,5 +36,18 @@ public class AuthenticationController {
     public ResponseEntity<String> logout(HttpServletRequest request) {
         authenticationService.logout(request);
         return ResponseEntity.ok("Logged out successfully");
+    }
+
+    @GetMapping("/user")
+    public RedirectView verify(@RequestParam("token") String token) {
+        boolean emailVerified = authenticationService.verifyEmail(token);
+
+        if (emailVerified) {
+            // Redirect to the login page
+            return new RedirectView("http://127.0.0.1:3000/login");
+        } else {
+            // Redirect to an error page
+            return new RedirectView("http://127.0.0.1:3000/error");
+        }
     }
 }
