@@ -48,7 +48,7 @@ function NavBar() {
                 href="#"
                 style={{ color: "#20990D" }}
               >
-                Products
+                Market
               </a>
             </Link>
           </li>

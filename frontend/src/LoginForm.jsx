@@ -5,9 +5,9 @@ export default function LoginForm() {
  
   
   const mainDivStyle = {
-    maxWidth: "800px",
+    
     margin: "0 auto",
-    padding: "60px",
+    padding: "30px",
     backgroundImage: `url(${loginBackground})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
@@ -71,7 +71,7 @@ export default function LoginForm() {
 
 
   return (
-    <div style={{marginTop:"100px"}}>
+    <div style={{marginTop:"120px"}}>
       <form className="login-form" onSubmit={handleSubmit} style={mainDivStyle}>
         <input
           className="login-input"

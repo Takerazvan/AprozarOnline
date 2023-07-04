@@ -155,7 +155,7 @@ function HomePage() {
             draggable="false"
           />
         </div>
-        <div id="cent">
+        <div id="cent" style={{borderColor:"beige"}}>
           {isLoggedIn ? (
             <button
               className="logout-button"

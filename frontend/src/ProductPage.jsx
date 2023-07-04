@@ -11,7 +11,7 @@ function ProductPage() {
   const [selectedQuantities, setSelectedQuantities] = useAtom(
     selectedQuantitiesAtom
   ); // Use Jotai atom for selected quantities
-
+ const [searchQuery, setSearchQuery] = useState("");
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -23,7 +23,7 @@ function ProductPage() {
         });
         const data = await response.json();
         setProducts(data);
-        console.log(data);
+      
         setIsLoading(false);
       } catch (error) {
         console.error(error);
@@ -74,17 +74,116 @@ function ProductPage() {
     
   };
 
-
+ const filteredProducts = products.filter((product) =>
+   product.name.toLowerCase().includes(searchQuery.toLowerCase())
+ );
   if (isLoading) {
     return <div style={{fontSize:"50px", color:"green"}}>Loading...</div>;
   } else {
 
     return (
       <>
-        <div id="razvan">
-          <section className="section-meals">
+        <div>
+          <section
+            className="section-meals"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              marginTop: "90px",
+            }}
+          >
+            <div
+              style={{
+                border: "1px solid white",
+                backgroundColor: "green",
+              }}
+            >
+              <h2
+                style={{
+                  color: "yellow",
+                  textAlign: "center",
+                  border: "1px solid yellow",
+                }}
+              >
+                Camara Bunicii
+              </h2>
+              <img
+                src="https://cdn.discordapp.com/attachments/1105018241799180358/1125757727214420028/8f7150318500e790966c129ed11a742f-1063x560-00-86.png"
+                alt=""
+                style={{ width: "700px", height: "auto" }}
+              />
+
+              <p style={{ color: "yellow" }}>
+                Welcome to Camara Bunicii! We are a specialty store offering a
+                wide range of traditional and homemade products.
+              </p>
+              <p style={{ color: "yellow" }}>
+                Our store is dedicated to preserving the flavors and traditions
+                of our ancestors.
+              </p>
+            </div>
+            <br />
+            <div
+              style={{
+                border: "1px solid black",
+                backgroundColor: "green",
+                padding: "20px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <h2 style={{ color: "yellow", marginBottom: "10px" }}>
+                Rediscover the Taste of Home
+              </h2>
+              <p style={{ color: "white", marginBottom: "20px" }}></p>
+              <div style={{ display: "flex", marginBottom: "10px" }}>
+                <button
+                  style={{
+                    marginRight: "10px",
+                    background: "none",
+                    color: "white",
+                    fontSize: "20px",
+                    border: "none",
+                    cursor: "pointer",
+                  }}
+                >
+                  FRUITS
+                </button>
+                <button
+                  style={{
+                    marginRight: "10px",
+                    background: "none",
+                    color: "white",
+                    fontSize: "20px",
+                    border: "none",
+                    cursor: "pointer",
+                  }}
+                >
+                  VEGETABLES
+                </button>
+                <button
+                  style={{
+                    background: "none",
+                    color: "white",
+                    border: "none",
+                    fontSize: "20px",
+                    cursor: "pointer",
+                  }}
+                >
+                  DAIRY
+                </button>
+              </div>
+              <input
+                type="text"
+                placeholder="Search products..."
+                style={{ padding: "8px", width: "100%", marginBottom: "10px" }}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
             <div className="container grid grid--3-cols margin-right-md" id="">
-              {products.map((product) => (
+              {filteredProducts.map((product) => (
                 <div className="meal" key={product.id}>
                   <img
                     src="https://cdn.romania-insider.com/sites/default/files/styles/article_large_image/public/2020-06/vegetables_in_a_bag_-_photo_julia_sudnitskaya_-_dreamstime.com_.jpg"

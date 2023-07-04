@@ -9,6 +9,7 @@ import LoginForm from "./LoginForm";
 import AboutUs from "./AboutUs";
 import ShoppingCart from "./ShoppingCart";
 import PaymentForm from "./PaymentForm";
+import Sellers from "./Sellers";
 import { useEffect } from "react";
 function App() {
 
@@ -29,8 +30,9 @@ function App() {
       <div>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/products" element={<ProductPage />} />
+          <Route path="/products" element={<Sellers />} />
           <Route path="/about" element={<AboutUs />} />
+          <Route path="/shop" element={<ProductPage />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/seller-profile" element={<AddProductForm />} />

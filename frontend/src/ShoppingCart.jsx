@@ -100,8 +100,8 @@ export default function ShoppingCart() {
   };
   return (
     <>
-      <div className="container" >
-        <div className="card" style={{ textAlign: "center", width: "350px" }}>
+      <div className="container">
+        <div className="card1" style={{ textAlign: "center", width: "350px" }}>
           <div
             className="cardBody"
             style={{
@@ -112,7 +112,6 @@ export default function ShoppingCart() {
               borderRadius: "10px",
               height: cartItems.length === 0 ? "400px" : "auto",
               marginTop: "100px",
-              
             }}
           >
             <MDBTypography style={{ color: "white", fontSize: "32px" }}>

@@ -97,13 +97,14 @@ function RegisterForm() {
   const mainDivStyle = {
     maxWidth: "800px",
     margin: "0 auto",
-    padding: "60px",
+    
+    padding: "20px",
     backgroundImage: `url(${backgroundImageUrl})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
     borderRadius: "32px",
     boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.1)",
-    marginBottom: "-50px",
+    marginBottom: "-110px",
    
   };
   const [formData, setFormData] = useState({
