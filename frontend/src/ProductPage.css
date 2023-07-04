@@ -5,7 +5,7 @@
 
 html {
   font-size: 32.5%;
-  
+
   
 }
 body{
@@ -36,8 +36,8 @@ body{
 
 .grid {
   display: grid;
-  column-gap: 6.4rem;
-  row-gap: 9.6rem;
+  column-gap: 3.4rem;
+  
 }
 
 .grid--3-cols {

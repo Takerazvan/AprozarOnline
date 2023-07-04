@@ -110,7 +110,7 @@ function ProductPage() {
               <img
                 src="https://cdn.discordapp.com/attachments/1105018241799180358/1125757727214420028/8f7150318500e790966c129ed11a742f-1063x560-00-86.png"
                 alt=""
-                style={{ width: "700px", height: "auto" }}
+                style={{ width: "800px", height: "auto" }}
               />
 
               <p style={{ color: "yellow" }}>
@@ -184,11 +184,12 @@ function ProductPage() {
             </div>
             <div className="container grid grid--3-cols margin-right-md" id="">
               {filteredProducts.map((product) => (
-                
+
                 <div className="meal" key={product.id}>
                   <img
                     src="https://cdn.romania-insider.com/sites/default/files/styles/article_large_image/public/2020-06/vegetables_in_a_bag_-_photo_julia_sudnitskaya_-_dreamstime.com_.jpg"
                     className="meal-img"
+                    
                     alt={product.name}
                   />
                   <div className="meal-content">

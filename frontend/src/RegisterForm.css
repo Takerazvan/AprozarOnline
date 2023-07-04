@@ -3,10 +3,7 @@
   --secondary-color: #fafafa;
   --main-color: #ecf8e1;
 }
-body{
-  display: flex;
-  justify-content: center;
-}
+
 
 #container {
   display: flex;

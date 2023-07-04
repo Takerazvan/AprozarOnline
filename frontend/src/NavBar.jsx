@@ -6,7 +6,6 @@ import shoppingCartIcon from "./assets/shopping.png";
 import { useAtom } from "jotai";
 import { cartItemsAtom } from "./Atom";
 function NavBar() {
-  
   const [cartItems, setCartItems] = useAtom(cartItemsAtom);
   const cart = localStorage.getItem("cartItems");
   console.log(cart);
@@ -26,7 +25,7 @@ function NavBar() {
               <a
                 className="header__nav-link"
                 href="#"
-                style={{ color: "#20990D" }}
+                style={{ color: "green" }}
               >
                 Home
               </a>
@@ -35,26 +34,27 @@ function NavBar() {
               <a
                 className="header__nav-link"
                 href="#"
-                style={{ color: "#20990D" }}
+                style={{ color: "green" }}
               >
                 About
               </a>
             </Link>
           </li>
-          <img src={logo} alt="Logo" style={{ height: "100px" }} />
+          <Link to="/">
+            <img src={logo} alt="Logo" style={{ height: "100px" }} />
+          </Link>
           <li className="header__nav-item">
             <Link to="/products">
               <a
                 className="header__nav-link"
                 href="#"
-                style={{ color: "#20990D" }}
+                style={{ color: "green" }}
               >
                 Market
               </a>
             </Link>
           </li>
           <Link to="/shoppingCart  ">
-           
             <div className="cart-icon-container">
               <img
                 src={shoppingCartIcon}

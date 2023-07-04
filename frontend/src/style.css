@@ -1,8 +1,11 @@
 body {
- background-color: rgb(185, 124, 243);
+  background-image: url("https://images3.alphacoders.com/190/190787.jpg");
   background-repeat: no-repeat;
+    display: flex;
+      justify-content: center;
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
   overflow: hidden;
 }
 
