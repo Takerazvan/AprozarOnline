@@ -1,8 +1,10 @@
-package com.codecool.backend.fileStorage;
+package com.codecool.backend.fileStorage.aws;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectResult;
+import com.codecool.backend.fileStorage.ImageRepository;
+import com.codecool.backend.fileStorage.aws.AmazonS3Service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

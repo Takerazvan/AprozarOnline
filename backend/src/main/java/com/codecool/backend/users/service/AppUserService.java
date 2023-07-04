@@ -1,7 +1,7 @@
 package com.codecool.backend.users.service;
 
 import com.codecool.backend.fileStorage.ImageService;
-import com.codecool.backend.fileStorage.S3Buckets;
+import com.codecool.backend.fileStorage.aws.S3Buckets;
 import com.codecool.backend.users.RegistrationRequest;
 import com.codecool.backend.users.UpdateRequest;
 import com.codecool.backend.users.repository.*;

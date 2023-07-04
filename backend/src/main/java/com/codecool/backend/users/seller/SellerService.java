@@ -5,7 +5,7 @@ import com.codecool.backend.products.Product;
 import com.codecool.backend.products.ProductDTO;
 import com.codecool.backend.products.ProductForm;
 import com.codecool.backend.products.ProductService;
-import com.codecool.backend.fileStorage.S3Buckets;
+import com.codecool.backend.fileStorage.aws.S3Buckets;
 import com.codecool.backend.users.repository.AppUserDTOMapper;
 import com.codecool.backend.users.repository.AppUserDao;
 import com.codecool.backend.users.service.AppUserService;

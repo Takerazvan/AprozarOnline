@@ -1,4 +1,4 @@
-package com.codecool.backend.fileStorage;
+package com.codecool.backend.fileStorage.aws;
 
 import com.amazonaws.services.s3.model.PutObjectResult;
 import com.amazonaws.services.s3.model.S3Object;

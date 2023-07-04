@@ -1,11 +1,15 @@
 package com.codecool.backend.products;
 
+import com.codecool.backend.fileStorage.Image;
 import com.codecool.backend.fileStorage.ImageService;
-import com.codecool.backend.fileStorage.S3Buckets;
+import com.codecool.backend.fileStorage.aws.S3Buckets;
 import lombok.AllArgsConstructor;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import software.amazon.awssdk.utils.StringUtils;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -15,7 +19,6 @@ import java.util.stream.Collectors;
 public class ProductService {
 
     private final ImageService s3Service;
-    private final S3Buckets s3Buckets;
     private ProductDAO productDAO;
     private ProductDTOMapper productDTOMapper;
 
@@ -47,43 +50,48 @@ public class ProductService {
         }
     }
 
-//    public void uploadProductImage(Long productId, MultipartFile file) {
-//        var product = productDAO.findProductById(productId)
-//                .map(productDTOMapper)
-//                .orElseThrow(() -> new ResourceNotFoundException(
-//                        "product with id [%s] not found".formatted(productId)
-//                ));
-//
-//        try {
-//          s3Service.uploadImage(file);
-//
-//        } catch (IOException e) {
-//            throw new RuntimeException("failed to upload profile image", e);
-//        }
-//        productDAO.updateProductImageId(productImageId, productId);
-//
-//    }
+    public void uploadProductImage(Long productId, MultipartFile file) {
+        var product = productDAO.findProductById(productId)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "product with id [%s] not found".formatted(productId)
+                ));
 
-//    public byte[] getProductImage(Long productId) {
-//        ProductDTO product = productDAO.findProductById(productId)
-//                .map(productDTOMapper)
-//                .orElseThrow(() -> new ResourceNotFoundException(
-//                        "product with id [%s] not found".formatted(productId)
-//                ));
-//
-//
-//        if (StringUtils.isBlank(product.profileImageId())) {
-//            throw new ResourceNotFoundException(
-//                    "customer with id [%s] profile image not found".formatted(productId));
-//        }
-//
-//        byte[] productImage = s3Service.getObject(
-//                s3Buckets.getProduct(),
-//                "product-images/%s/%s".formatted(productId, product.profileImageId())
-//
-//        );
-//        return productImage;
-//    }
+        try {
+        Image image=s3Service.upload(file);
+        List<Image> updatedimages=product.getProductImages();
+        updatedimages.add(image);
+     product.setProductImages(updatedimages);
+     productDAO.addProduct(product);
+        } catch (IOException e) {
+            throw new RuntimeException("failed to upload profile image", e);
+        }
+
+
+    }
+
+    public List<byte[]> getProductImage(Long productId) {
+        Product product = productDAO.findProductById(productId)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "product with id [%s] not found".formatted(productId)
+                ));
+
+
+        if (product.getProductImages() != null) {
+            throw new ResourceNotFoundException(
+                    "customer with id [%s] image not found".formatted(productId));
+        }
+
+        return product.getProductImages().stream()
+                .map(image -> {
+                    try {
+                        return s3Service.download(image.getId());
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                })
+                .collect(Collectors.toList());
+
+    }
 
     public ProductDTO getProductById(Long productId) {
         return productDAO.findProductById(productId).map(productDTOMapper).orElseThrow(() -> new ResourceNotFoundException(

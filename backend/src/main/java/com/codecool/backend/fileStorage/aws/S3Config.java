@@ -1,4 +1,4 @@
-package com.codecool.backend.fileStorage;
+package com.codecool.backend.fileStorage.aws;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

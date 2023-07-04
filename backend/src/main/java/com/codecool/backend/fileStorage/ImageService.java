@@ -8,7 +8,7 @@ import java.io.InputStream;
 import java.util.List;
 
 public interface ImageService {
-        public void upload(MultipartFile file) throws IOException;
+        public Image upload(MultipartFile file) throws IOException;
         public byte[] download(Long id) throws
                 IOException;
 //        public List<Image> list();

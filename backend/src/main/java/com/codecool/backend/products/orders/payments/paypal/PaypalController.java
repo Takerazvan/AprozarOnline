@@ -1,5 +1,6 @@
 package com.codecool.backend.products.orders.payments.paypal;
 
+import com.codecool.backend.products.orders.OrderRequest;
 import com.paypal.api.payments.Payment;
 import com.paypal.base.rest.PayPalRESTException;
 import org.springframework.beans.factory.annotation.Autowired;

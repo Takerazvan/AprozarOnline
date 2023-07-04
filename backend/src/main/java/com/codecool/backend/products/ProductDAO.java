@@ -1,5 +1,6 @@
 package com.codecool.backend.products;
 
+import com.codecool.backend.fileStorage.Image;
 import com.codecool.backend.products.Types.ProductType;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public interface ProductDAO {
 
     void deleteProductById(Long productId);
 
-//  void updateProductImageId(String productImageId,Long productId);
+
 
   boolean existProductById(Long id);
 

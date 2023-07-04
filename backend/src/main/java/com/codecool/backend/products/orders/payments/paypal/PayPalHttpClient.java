@@ -1,5 +1,6 @@
 package com.codecool.backend.products.orders.payments.paypal;
 
+import com.codecool.backend.products.orders.OrderDTO;
 import com.codecool.backend.products.orders.OrderResponseDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;

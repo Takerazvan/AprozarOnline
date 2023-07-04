@@ -2,6 +2,7 @@ package com.codecool.backend.fileStorage;
 
 import com.amazonaws.services.s3.model.PutObjectResult;
 import com.amazonaws.services.s3.model.S3Object;
+import com.codecool.backend.fileStorage.aws.AmazonS3Service;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.*;
 @Slf4j
 @Service
@@ -27,7 +27,7 @@ public class ImageServiceImpl implements ImageService{
     }
 
     @Override
-    public void upload(MultipartFile file) throws IOException {
+    public Image upload(MultipartFile file) throws IOException {
         if (file.isEmpty())
             throw new IllegalStateException("Cannot upload empty file");
 
@@ -42,9 +42,9 @@ public class ImageServiceImpl implements ImageService{
         PutObjectResult putObjectResult = s3Service.upload(
                 path, fileName, Optional.of(metadata), file.getInputStream());
 
-        imageRepository.save(new Image(
-                fileName, path, putObjectResult.getMetadata().getVersionId()
-        ));
+        Image image=new Image(fileName, path, putObjectResult.getMetadata().getVersionId());
+        imageRepository.save(image);
+        return image;
 
     }
 
