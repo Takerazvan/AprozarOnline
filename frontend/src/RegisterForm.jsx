@@ -98,6 +98,7 @@ function RegisterForm() {
     maxWidth: "800px",
     margin: "0 auto",
     
+    
     padding: "20px",
     backgroundImage: `url(${backgroundImageUrl})`,
     backgroundSize: "cover",

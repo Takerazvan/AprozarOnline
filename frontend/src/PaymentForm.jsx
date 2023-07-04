@@ -45,6 +45,7 @@ function PaymentForm() {
         marginTop: "100px",
         borderRadius: "10px",
         backgroundColor: "white",
+        
         opacity: "89%",
        
       }}

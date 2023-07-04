@@ -6,6 +6,7 @@ import shoppingCartIcon from "./assets/shopping.png";
 import { useAtom } from "jotai";
 import { cartItemsAtom } from "./Atom";
 function NavBar() {
+  
   const [cartItems, setCartItems] = useAtom(cartItemsAtom);
   const cart = localStorage.getItem("cartItems");
   console.log(cart);

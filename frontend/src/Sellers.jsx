@@ -10,6 +10,7 @@ export default function Sellers() {
           <h1 className="card-title">Camara Bunicii</h1>
           <Link to="/shop">
             <div
+              
               className="card"
               style={{
                 backgroundImage: `url(${"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQE36CtthEfoVgdqeOMY7Rwf5jD3-3V3xWGXw&usqp=CAU"})`,

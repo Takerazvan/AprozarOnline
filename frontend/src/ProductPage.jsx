@@ -184,6 +184,7 @@ function ProductPage() {
             </div>
             <div className="container grid grid--3-cols margin-right-md" id="">
               {filteredProducts.map((product) => (
+                
                 <div className="meal" key={product.id}>
                   <img
                     src="https://cdn.romania-insider.com/sites/default/files/styles/article_large_image/public/2020-06/vegetables_in_a_bag_-_photo_julia_sudnitskaya_-_dreamstime.com_.jpg"

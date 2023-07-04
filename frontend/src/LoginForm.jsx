@@ -94,6 +94,7 @@ export default function LoginForm() {
           type="submit"
           style={{ fontSize: "2.8rem",backgroundColor:"purple"}}
         >
+          
           LOGIN
         </button>
         {/* <p className="login-link" style={{ fontSize: "3.8rem", color:"yellow" }}>

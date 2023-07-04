@@ -103,6 +103,7 @@ export default function ShoppingCart() {
       <div className="container">
         <div className="card1" style={{ textAlign: "center", width: "350px" }}>
           <div
+            
             className="cardBody"
             style={{
               backgroundImage:

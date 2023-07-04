@@ -160,6 +160,7 @@ function HomePage() {
             <button
               className="logout-button"
               onClick={handleLogout}
+              
               style={{ backgroundColor: "#D3F239" }}
             >
               <span style={{ fontSize: "3.3rem", color: "#298929" }}>

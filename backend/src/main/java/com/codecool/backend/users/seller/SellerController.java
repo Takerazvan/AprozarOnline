@@ -29,11 +29,7 @@ public class SellerController extends UserController {
         return ResponseEntity.ok(myProducts);
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<List<AppUserDTO>> getAllSellers(){
-        List <AppUserDTO>  seller= service.findUsersByRole();
-        return  ResponseEntity.ok(seller);
-    }
+   
 
     @PostMapping("/addProduct")
     public ResponseEntity<Void> addProduct(ProductForm productForm,Long userId){
