@@ -1,7 +1,5 @@
 package com.codecool.backend.users.repository;
 
-import com.codecool.backend.users.repository.AppUser;
-
 import java.util.List;
 import java.util.Optional;
 

@@ -2,6 +2,8 @@ package com.codecool.backend.products;
 
 import com.codecool.backend.products.Types.ProductType;
 
+import java.util.List;
+
 public record ProductDTO(
         Long id,
         Double price,
@@ -12,7 +14,7 @@ public record ProductDTO(
 
         Long sellerId,
 
-        String profileImageId
+        List<byte[]> images
 
 ) {
 

@@ -45,7 +45,7 @@ public class SecurityFilterChainConfig {
 
                             )
                             .permitAll();
-                    auth.anyRequest().authenticated();
+                    auth.anyRequest().permitAll();
                 })
 //                .oauth2Login(Customizer.withDefaults())
                 .sessionManagement()

@@ -52,11 +52,11 @@ public class SellerController extends UserController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/{productId}/productImage")
-public ResponseEntity<Void> uploadImage(@PathVariable Long productId, @RequestBody MultipartFile file){
-        service.uploadProductImage(productId,file);
-        return ResponseEntity.noContent().build();
-    }
+//    @PostMapping("/{productId}/productImage")
+//public ResponseEntity<Void> uploadImage(@PathVariable Long productId, @RequestBody MultipartFile file){
+//        service.uploadProductImage(productId,file);
+//        return ResponseEntity.noContent().build();
+//    }
 
 
 

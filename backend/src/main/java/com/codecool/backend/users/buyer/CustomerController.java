@@ -1,10 +1,12 @@
 package com.codecool.backend.users.buyer;
 
-import com.codecool.backend.products.shoppingcart.CartItem;
-import com.codecool.backend.products.shoppingcart.ShoppingCartDTO;
+import com.codecool.backend.products.orders.OrderDTO;
+import com.codecool.backend.products.orders.OrderRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -20,27 +22,15 @@ public class CustomerController {
 
     }
 
-    @GetMapping("/{userId}/shoppingCart")
-    public ResponseEntity<ShoppingCartDTO> getShoppingCartByUserId(@PathVariable Long userId){
-       ShoppingCartDTO shoppingCartDTO= customerService.getShoppingCartByUserId(userId);
-        return ResponseEntity.ok(shoppingCartDTO);
+    @GetMapping("/{userId}/orders")
+    public ResponseEntity<List<OrderDTO>> getShoppingCartByUserId(@PathVariable Long userId){
+      List<OrderDTO> orders= customerService.getOrdersForThisCustomer(userId);
+        return ResponseEntity.ok(orders);
     }
 
-    @PostMapping("/{userId}/shoppingCart")
-    public ResponseEntity<Void> addProductToCart(@PathVariable Long userId, @RequestBody CartItem cartItem){
-        customerService.addProductToCart(cartItem,userId);
-        return ResponseEntity.noContent().build();
-    }
-    @PostMapping("/{userId}/delete")
-    public ResponseEntity<Void> deleteProductById(@PathVariable Long userId,@RequestBody Long productId)
-    {
-        customerService.deleteProductFromCart(productId,userId);
-        return ResponseEntity.noContent().build();
-    }
-
-    @PutMapping("/{userId}/shoppingCart/{productId}")
-    public ResponseEntity<Void> updateCartItem(@PathVariable Long userId,@PathVariable Long productId,@RequestBody Integer quantity){
-        customerService.updateCartItem(quantity,userId,productId);
+    @PostMapping("/{userId}/makeOrder")
+    public ResponseEntity<OrderDTO> addProductToCart(@PathVariable Long userId, @RequestBody OrderRequest orderRequest){
+        customerService.makeOrder(orderRequest,userId);
         return ResponseEntity.noContent().build();
     }
 

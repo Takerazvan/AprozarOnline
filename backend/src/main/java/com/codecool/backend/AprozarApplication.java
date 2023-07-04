@@ -1,11 +1,12 @@
 package com.codecool.backend;
 
 
+import com.codecool.backend.fileStorage.ImageService;
 import com.codecool.backend.products.Product;
 import com.codecool.backend.products.ProductService;
 import com.codecool.backend.products.Types.ProductType;
-import com.codecool.backend.s3.S3Service;
 import com.codecool.backend.security.auth.AuthenticationService;
+import com.codecool.backend.security.auth.LoginRequest;
 import com.codecool.backend.users.RegistrationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -23,7 +24,7 @@ public class AprozarApplication implements CommandLineRunner {
     @Autowired
     private ProductService productService;
     @Autowired
-    private S3Service s3Service;
+    private ImageService imageService;
 
 
     public static void main(String[] args) {
@@ -94,7 +95,7 @@ public class AprozarApplication implements CommandLineRunner {
                 .quantity(10)
                 .build();
         productList.add(milk);
-        productService.addProducts(productList);
+
 
 
 

@@ -1,0 +1,17 @@
+# IntelliJ IDEA
+.idea/
+
+# Maven
+.mvn/
+
+# Compiled output
+/target/
+
+# Logs
+/logs/
+
+# Application properties
+src/main/resources/
+
+# Maven Wrapper
+.mvn/wrapper/

@@ -1,9 +1,7 @@
 package com.codecool.backend.users.service;
 
-import com.codecool.backend.products.shoppingcart.ShoppingCart;
-import com.codecool.backend.products.shoppingcart.ShoppingCartRepository;
-import com.codecool.backend.s3.S3Buckets;
-import com.codecool.backend.s3.S3Service;
+import com.codecool.backend.fileStorage.ImageService;
+import com.codecool.backend.fileStorage.aws.S3Buckets;
 import com.codecool.backend.users.RegistrationRequest;
 import com.codecool.backend.users.UpdateRequest;
 import com.codecool.backend.users.repository.*;
@@ -13,7 +11,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -24,18 +24,16 @@ public class AppUserService {
      protected final AppUserDao appUserDao;
     protected final AppUserDTOMapper userDTOMapper;
     private final PasswordEncoder passwordEncoder;
-    private final S3Service s3Service;
+    private final ImageService imageService;
     private final S3Buckets s3Buckets;
 
-    private final ShoppingCartRepository shoppingCartrepository;
     @Autowired
-    public AppUserService(@Qualifier("jpa") AppUserDao appUserDao, AppUserDTOMapper userDTOMapper, PasswordEncoder passwordEncoder, S3Service s3Service, S3Buckets s3Buckets,ShoppingCartRepository shoppingCartRepository) {
+    public AppUserService(@Qualifier("jpa") AppUserDao appUserDao, AppUserDTOMapper userDTOMapper, PasswordEncoder passwordEncoder, ImageService imageService, S3Buckets s3Buckets ){
         this.appUserDao = appUserDao;
         this.userDTOMapper = userDTOMapper;
         this.passwordEncoder = passwordEncoder;
-        this.s3Service = s3Service;
+        this.imageService = imageService;
         this.s3Buckets = s3Buckets;
-        this.shoppingCartrepository=shoppingCartRepository;
     }
 
     public List<AppUserDTO> getAllCustomers() {
@@ -68,10 +66,6 @@ public class AppUserService {
                 .appUserRole(AppUserRole.valueOf(registrationRequest.role()))
                 .build();
         appUserDao.addAppUser(appUser);
-        if (appUser.getAppUserRole()==AppUserRole.BUYER){
-            ShoppingCart shoppingCart=new ShoppingCart(appUser.getId());
-            shoppingCartrepository.save(shoppingCart);
-        }
 
 
 
@@ -125,6 +119,25 @@ public class AppUserService {
         }
     }
 
+    public List<AppUserDTO> getUsersByRole(AppUserRole role){
+        return appUserDao.findUsersByRole(role).stream().map(userDTOMapper).collect(Collectors.toList());
+    }
 
+    public void uploadProfileImage(Long userId, MultipartFile file){
+        try {
+            imageService.upload(file);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void changePassword(String newPassword,Long userId){
+        AppUser appUser = appUserDao.getCustomerById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        String.format("Customer with id [%s] not found", userId)
+                ));
+        appUser.setPassword(newPassword);
+        appUserDao.addAppUser(appUser);
+    }
 
 }

@@ -4,6 +4,7 @@ import com.codecool.backend.users.repository.AppUser;
 import com.codecool.backend.users.repository.AppUserDao;
 import com.codecool.backend.users.repository.AppUserRepository;
 import com.codecool.backend.users.repository.AppUserRole;
+import com.codecool.backend.users.repository.AppUserRole;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
