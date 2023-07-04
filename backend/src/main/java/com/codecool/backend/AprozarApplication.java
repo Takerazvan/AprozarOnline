@@ -1,10 +1,10 @@
 package com.codecool.backend;
 
 
+import com.codecool.backend.fileStorage.ImageService;
 import com.codecool.backend.products.Product;
 import com.codecool.backend.products.ProductService;
 import com.codecool.backend.products.Types.ProductType;
-import com.codecool.backend.fileStorage.S3Service;
 import com.codecool.backend.security.auth.AuthenticationService;
 import com.codecool.backend.security.auth.LoginRequest;
 import com.codecool.backend.users.RegistrationRequest;
@@ -24,7 +24,7 @@ public class AprozarApplication implements CommandLineRunner {
     @Autowired
     private ProductService productService;
     @Autowired
-    private S3Service s3Service;
+    private ImageService s3Service;
 
 
     public static void main(String[] args) {

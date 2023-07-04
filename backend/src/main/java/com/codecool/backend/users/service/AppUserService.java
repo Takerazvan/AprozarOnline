@@ -1,7 +1,7 @@
 package com.codecool.backend.users.service;
 
+import com.codecool.backend.fileStorage.ImageService;
 import com.codecool.backend.fileStorage.S3Buckets;
-import com.codecool.backend.fileStorage.S3Service;
 import com.codecool.backend.users.RegistrationRequest;
 import com.codecool.backend.users.UpdateRequest;
 import com.codecool.backend.users.repository.*;
@@ -21,11 +21,11 @@ public class AppUserService {
     private final AppUserDao appUserDao;
     private final AppUserDTOMapper userDTOMapper;
     private final PasswordEncoder passwordEncoder;
-    private final S3Service s3Service;
+    private final ImageService s3Service;
     private final S3Buckets s3Buckets;
 
     @Autowired
-    public AppUserService(@Qualifier("jpa") AppUserDao appUserDao, AppUserDTOMapper userDTOMapper, PasswordEncoder passwordEncoder, S3Service s3Service, S3Buckets s3Buckets ){
+    public AppUserService(@Qualifier("jpa") AppUserDao appUserDao, AppUserDTOMapper userDTOMapper, PasswordEncoder passwordEncoder, ImageService s3Service, S3Buckets s3Buckets ){
         this.appUserDao = appUserDao;
         this.userDTOMapper = userDTOMapper;
         this.passwordEncoder = passwordEncoder;

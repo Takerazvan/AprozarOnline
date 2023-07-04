@@ -1,24 +1,20 @@
 package com.codecool.backend.products;
 
+import com.codecool.backend.fileStorage.ImageService;
 import com.codecool.backend.fileStorage.S3Buckets;
-import com.codecool.backend.fileStorage.S3Service;
 import lombok.AllArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class ProductService {
 
-    private final S3Service s3Service;
+    private final ImageService s3Service;
     private final S3Buckets s3Buckets;
     private ProductDAO productDAO;
     private ProductDTOMapper productDTOMapper;
