@@ -6,8 +6,8 @@ public record AppUserDTO(
         String lastName,
         String email,
         String password,
-        AppUserRole role,
+        AppUserRole role
 
-        byte[] profileImage
+
 ) {
 }

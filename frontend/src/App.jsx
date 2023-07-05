@@ -10,7 +10,7 @@ import AboutUs from "./AboutUs";
 import ShoppingCart from "./ShoppingCart";
 import PaymentForm from "./PaymentForm";
 import Sellers from "./Sellers";
-import { useEffect } from "react";
+
 function App() {
 
  

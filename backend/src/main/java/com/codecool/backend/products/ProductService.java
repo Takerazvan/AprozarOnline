@@ -52,7 +52,7 @@ public class ProductService {
 
         try {
         Image image=imageService.upload(file);
-        image.setProductId(productId);
+
         } catch (IOException e) {
             throw new RuntimeException("failed to upload profile image", e);
         }

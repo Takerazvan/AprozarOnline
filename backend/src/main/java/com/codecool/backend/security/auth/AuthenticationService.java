@@ -2,7 +2,8 @@ package com.codecool.backend.security.auth;
 
 
 
-import com.codecool.backend.email.EmailService;
+
+import com.codecool.backend.notifications.EmailService;
 import com.codecool.backend.security.jwt.JWTService;
 import com.codecool.backend.users.repository.AppUser;
 import com.codecool.backend.users.repository.AppUserDTO;
@@ -17,6 +18,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class AuthenticationService {
@@ -93,7 +96,7 @@ public class AuthenticationService {
 
         Optional<AppUser> optionalUser = userRepository.findAppUserByEmail(email);
 
-        if (optionalUser.isPresent()) {
+        if (((Optional<?>) optionalUser).isPresent()) {
             AppUser user = optionalUser.get();
             user.setVerified(true);
             userRepository.save(user);
