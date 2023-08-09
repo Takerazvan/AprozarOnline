@@ -15,7 +15,7 @@ public record ProductForm(
 
         String productDescription,
 
-        List<MultipartFile> photos
+        MultipartFile photos
 
 ) {
 

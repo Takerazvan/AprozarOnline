@@ -30,7 +30,7 @@ public class CheckoutController {
         orderDTO.setApplicationContext(appContext);
         var orderResponse = payPalHttpClient.createOrder(orderDTO);
 
-        var entity = new Order();
+        var entity = new OrderRequest();
         entity.setPaypalOrderStatus(orderResponse.status().toString());
         var out = orderDAO.addOrder(entity);
         return ResponseEntity.ok(orderResponse);

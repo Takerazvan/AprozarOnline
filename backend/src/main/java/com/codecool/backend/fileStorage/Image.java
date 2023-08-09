@@ -22,16 +22,15 @@ public class Image {
 
     @Column(name = "FILE_PATH")
     private String filePath;
+    private String contentType;
+    private long contentSize;
+    private String url;
 
-    @Column(name = "VERSION")
-    private String version;
-
-
-    private Long userId;
-
-    public Image(String fileName, String filePath, String version) {
+    public Image(String fileName, String filePath, String contentType, long contentSize, String url) {
         this.fileName = fileName;
         this.filePath = filePath;
-        this.version = version;
+        this.contentType = contentType;
+        this.contentSize = contentSize;
+        this.url = url;
     }
 }

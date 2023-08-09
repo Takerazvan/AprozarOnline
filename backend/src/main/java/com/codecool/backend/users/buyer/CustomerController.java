@@ -1,7 +1,7 @@
 package com.codecool.backend.users.buyer;
 
 import com.codecool.backend.products.orders.OrderDTO;
-import com.codecool.backend.products.orders.OrderRequest;
+import com.codecool.backend.products.orders.OrderForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +29,7 @@ public class CustomerController {
     }
 
     @PostMapping("/{userId}/makeOrder")
-    public ResponseEntity<OrderDTO> addProductToCart(@PathVariable Long userId, @RequestBody OrderRequest orderRequest){
+    public ResponseEntity<OrderDTO> addProductToCart(@PathVariable Long userId, @RequestBody OrderForm orderRequest){
         customerService.makeOrder(orderRequest,userId);
         return ResponseEntity.noContent().build();
     }

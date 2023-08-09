@@ -1,7 +1,6 @@
 package com.codecool.backend.users.repository;
 
-import com.codecool.backend.users.repository.AppUser;
-import com.github.javafaker.App;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

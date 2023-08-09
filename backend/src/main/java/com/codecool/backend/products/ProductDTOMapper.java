@@ -13,7 +13,8 @@ public class ProductDTOMapper implements Function<Product,ProductDTO> {
                 product.getQuantity(),
                 product.getProductType(),
                 product.getName(),
-                product.getUserId()
+                product.getUserId(),
+                product.getProductUrl()
         );
     }
 }

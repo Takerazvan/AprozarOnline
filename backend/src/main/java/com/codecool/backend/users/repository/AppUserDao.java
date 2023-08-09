@@ -6,6 +6,7 @@ import java.util.Optional;
 public interface AppUserDao {
 
     List<AppUser> getAllCustomers();
+
     Optional<AppUser> getCustomerById(Long appUserId);
 
     void addAppUser(AppUser appUser);
@@ -22,8 +23,6 @@ public interface AppUserDao {
     Optional<AppUser> findUserByEmail(String email);
 
     List<AppUser> findUsersByRole(AppUserRole appUserRole);
-
-
 
 
 }

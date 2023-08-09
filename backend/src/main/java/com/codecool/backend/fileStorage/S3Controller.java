@@ -16,7 +16,7 @@ import java.io.InputStream;
 @RequestMapping("/image")
 public class S3Controller {
 
-    private ImageService imageService;
+    private final ImageService imageService;
 @Autowired
     public S3Controller(ImageService imageService) {
         this.imageService = imageService;

@@ -12,11 +12,10 @@ public record ProductDTO(
 
         String name,
 
-        Long sellerId
+        Long sellerId,
+        String photoUrl
 
-
-
-) {
+        ) {
 
 
 }

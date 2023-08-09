@@ -1,9 +1,9 @@
 package com.codecool.backend.products.orders;
 
+import com.codecool.backend.exception.ResourceNotFoundException;
 import com.codecool.backend.products.Product;
 import com.codecool.backend.products.ProductDAO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,7 +34,7 @@ public class OrderService implements OrderDAO {
     }
 
     @Override
-    public com.codecool.backend.products.orders.Order findByPaypalId(Long paypalId) {
+    public OrderRequest findByPaypalId(Long paypalId) {
         return orderRepository.findByPaypalOrderId(paypalId).orElseThrow(() ->
                 new ResourceNotFoundException("user with id [%s] hasn't placed any orders ".formatted(id)));
     }
@@ -56,7 +56,7 @@ public class OrderService implements OrderDAO {
     }
 
     @Override
-    public com.codecool.backend.products.orders.OrderDTO addOrder(Order order) {
+    public OrderDTO addOrder(OrderRequest order) {
         orderRepository.save(order);
         TakeProductsOutOfStock(order.getCartItems());
         return orderDTOMapper.apply(order);

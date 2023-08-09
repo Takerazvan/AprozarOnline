@@ -7,6 +7,8 @@ public record UpdateRequest(
 
         String email,
 
+        String password,
+
         String address
 
 ) {

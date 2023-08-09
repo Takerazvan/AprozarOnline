@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import "./Login.css";
 import loginBackground from "./loginBackground.jpg";
+import { Link } from "react-router-dom";
 export default function LoginForm() {
  
   
   const mainDivStyle = {
-    
     margin: "0 auto",
     padding: "30px",
-    backgroundImage: `url(${loginBackground})`,
+    backgroundImage: `url("https://w0.peakpx.com/wallpaper/929/367/HD-wallpaper-fruits-fruits-vegetables-fruit-vegetable.jpg")`,
     backgroundSize: "cover",
     backgroundPosition: "center",
     borderRadius: "8px",
@@ -49,8 +49,11 @@ export default function LoginForm() {
    
  
       // Save the token in local storage or state, and use it for subsequent requests
-       
-      localStorage.setItem("token", token);
+       //save role after login
+     
+       localStorage.setItem("Role", responseJson.appUserDTO.role);
+       localStorage.setItem("token", token);
+       localStorage.setItem("userId", responseJson.appUserDTO.id);
        window.location.replace("/");
       
        //
@@ -71,7 +74,7 @@ export default function LoginForm() {
 
 
   return (
-    <div style={{marginTop:"120px"}}>
+    <div style={{ marginTop: "120px" }}>
       <form className="login-form" onSubmit={handleSubmit} style={mainDivStyle}>
         <input
           className="login-input"
@@ -92,14 +95,24 @@ export default function LoginForm() {
         <button
           className="login-button"
           type="submit"
-          style={{ fontSize: "2.8rem",backgroundColor:"purple"}}
+          style={{ fontSize: "2.8rem", backgroundColor: "purple" }}
         >
-          
           LOGIN
         </button>
-        {/* <p className="login-link" style={{ fontSize: "3.8rem", color:"yellow" }}>
-          Forgot your password?
-        </p> */}
+        <Link to="/reset-password">
+          <p
+            className="login-link"
+            style={{
+              fontSize: "4.8rem",
+              color: "white",
+           
+              borderRadius: "10px",
+              padding: "5px",
+            }}
+          >
+            Forgot your password?
+          </p>
+        </Link>
       </form>
     </div>
   );

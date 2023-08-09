@@ -1,14 +1,25 @@
-body {
+body::before {
+  content: "";
   background-image: url("https://images3.alphacoders.com/190/190787.jpg");
   background-repeat: no-repeat;
-    display: flex;
-      justify-content: center;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: blur(3px);
+  /* Adjust the blur radius as per your preference */
+  z-index: -1;
 }
 
+body {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
 
 #title {
   display: flex;

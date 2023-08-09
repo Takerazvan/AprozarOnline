@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 public class PaypalService implements PaymentMaker {
 
-    private APIContext apiContext;
+    private final APIContext apiContext;
     @Autowired
     public PaypalService(APIContext apiContext) {
         this.apiContext = apiContext;
@@ -42,10 +42,10 @@ public class PaypalService implements PaymentMaker {
         transactions.add(transaction);
 
         Payer payer = new Payer();
-        payer.setPaymentMethod(method.toString());
+        payer.setPaymentMethod(method);
 
         Payment payment = new Payment();
-        payment.setIntent(intent.toString());
+        payment.setIntent(intent);
         payment.setPayer(payer);
         payment.setTransactions(transactions);
         RedirectUrls redirectUrls = new RedirectUrls();

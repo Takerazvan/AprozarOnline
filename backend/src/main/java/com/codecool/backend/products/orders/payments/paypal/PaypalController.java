@@ -1,6 +1,6 @@
 package com.codecool.backend.products.orders.payments.paypal;
 
-import com.codecool.backend.products.orders.OrderRequest;
+import com.codecool.backend.products.orders.OrderForm;
 import com.paypal.api.payments.Payment;
 import com.paypal.base.rest.PayPalRESTException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class PaypalController {
 
 
 
-    public String payment(OrderRequest order, String SUCCESS_URL, String CANCEL_URL){
+    public String payment(OrderForm order, String SUCCESS_URL, String CANCEL_URL){
         try {
             Payment payment=paymentMaker.createPayment(order.total(),
                     order.currency(),

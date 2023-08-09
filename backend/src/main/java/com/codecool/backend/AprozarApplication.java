@@ -23,8 +23,7 @@ public class AprozarApplication implements CommandLineRunner {
     private AuthenticationService authenthicationService;
     @Autowired
     private ProductService productService;
-    @Autowired
-    private ImageService imageService;
+
 
 
     public static void main(String[] args) {
@@ -33,76 +32,11 @@ public class AprozarApplication implements CommandLineRunner {
 
 
     public void run(String... args) {
-        List<Product> productList = new ArrayList<>();
 
 
-        Product bread = Product.builder()
-                .name("Bread")
-                .productType(ProductType.Meat)
-                .price(5.00)
-                .build();
-        productList.add(bread);
+        RegistrationRequest newUserRequest = new RegistrationRequest("admin", "admin", "simam9520@gmail.com", "123","SELLER");
+        authenthicationService.registerCustomer(newUserRequest);
 
-
-        Product eggs = Product.builder()
-                .name("Eggs")
-                .productType(ProductType.Dairy)
-                .price(2.50)
-                .quantity(20)
-                .build();
-        productList.add(eggs);
-
-        Product apple = Product.builder()
-                .name("Apple")
-                .productType(ProductType.Fruits)
-                .price(1.00)
-                .quantity(30)
-                .build();
-        productList.add(apple);
-
-        Product orange = Product.builder()
-                .name("Orange")
-                .productType(ProductType.Fruits)
-                .price(1.20)
-                .quantity(25)
-                .build();
-        productList.add(orange);
-
-        Product chicken = Product.builder()
-                .name("Chicken")
-                .productType(ProductType.Meat)
-                .price(8.50)
-                .build();
-        productList.add(chicken);
-
-        Product cheese = Product.builder()
-                .name("Cheese")
-                .productType(ProductType.Dairy)
-                .price(4.50)
-                .quantity(15)
-                .build();
-        productList.add(cheese);
-
-
-
-        RegistrationRequest newUserRequest = new RegistrationRequest("admin", "admin", "mail@yahoo.com", "123","SELLER");
-
-       var user= authenthicationService.registerCustomer(newUserRequest);
-        Product milk = Product.builder().userId(user.appUserDTO().id())
-                .name("Milk")
-                .productType(ProductType.Dairy)
-                .price(3.50)
-                .quantity(10)
-                .build();
-        productList.add(milk);
-
-
-
-
-//        s3Service.putObject("aprozar", "key", apple.getName().getBytes());
-//
-//        byte[] obj = s3Service.getObject("aprozar", "key");
-//        System.out.println("Heep-heep horay" + new String(obj));
     }
 
 }

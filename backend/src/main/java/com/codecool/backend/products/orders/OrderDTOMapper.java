@@ -4,9 +4,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.function.Function;
 @Service
-public class OrderDTOMapper implements Function<com.codecool.backend.products.orders.Order, com.codecool.backend.products.orders.OrderDTO> {
+public class OrderDTOMapper implements Function<OrderRequest,OrderDTO> {
     @Override
-    public com.codecool.backend.products.orders.OrderDTO apply(Order order) {
+    public com.codecool.backend.products.orders.OrderDTO apply(OrderRequest order) {
         return new OrderDTO(
                 order.getOrderId(),
                 order.getCartItems(),

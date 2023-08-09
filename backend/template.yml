@@ -1,0 +1,34 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Globals:
+  Function:
+    Runtime: java17
+    MemorySize: 2048
+    Timeout: 29
+
+Resources:
+  AprozarAPI:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: prod
+  AprozarFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler:  com/codecool/backend/cloudformation/aws/StreamLambdaHandler.java
+      CodeUri: .
+      AutoPublishAlias: live
+      SnapStart:
+        ApplyOn: PublishedVersions
+      Events:
+        ApiEvents:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+            RestApiId: !Ref AprozarAPI
+Outputs:
+  BlogPostsEndpoint:
+    Description: API Gateway Aprozar Endpoint
+    Value:
+      Fn::Sub: https://${AprozarAPI}.execute-api.${AWS::Region}.amazonaws.com/prod/
